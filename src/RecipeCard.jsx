@@ -8,14 +8,16 @@ import { LuSandwich } from "react-icons/lu";
 import { FaRegSquarePlus } from "react-icons/fa6"; //vazio
 import { FaSquarePlus } from "react-icons/fa6"; // preenchido
 
+import { useState } from "react";
+import "./RecipeCard.css";
 
-function RecipeType({nameType}) {
+
+function RecipeType({nameType, iconColor}) {
   
   if( nameType === "Main meal") {
     return (
       <>
-        <GiMeal />
-        <span>{nameType}</span>
+        <GiMeal color={iconColor}/>   
       </>
     )
   }
@@ -23,8 +25,7 @@ function RecipeType({nameType}) {
   if( nameType === "Dessert") {
     return (
       <>
-        <LuDessert />
-        <span>{nameType}</span>
+        <LuDessert color={iconColor}/>
       </>
     )
   }
@@ -32,8 +33,7 @@ function RecipeType({nameType}) {
   if( nameType === "Drink") {
     return (
       <>
-        <RiDrinks2Line />
-        <span>{nameType}</span>
+        <RiDrinks2Line color={iconColor}/>
       </>
     )
   }
@@ -41,36 +41,46 @@ function RecipeType({nameType}) {
   if( nameType === "Snack") {
     return (
       <>
-        <LuSandwich />
-        <span>{nameType}</span>
+        <LuSandwich color={iconColor}/>
       </>
     )
   }
 
-  return alert("Nome do tipo de receita inválido. Por favor, verifique o nome do tipo de receita e tente novamente.");
+  return null;
 };
 
 
-function RecipeCard({name = "Random recipe name", alternativeText, image, description = "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", type, cookingTimeInMinutes = "30"}) {
+function RecipeCard({name = "Escondidinho de Batata", alternativeText, image, description = "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiu smod tempor incididunt ut labore et dolore magna aliqua. ashudau duashdus ahdua hduasdh ashdadsasda asdadsad", type, readyInMinutes = "30", iconColor = "#000"}) {
   
+  const [ isWishlisted, setIsWishlisted ] = useState(false);
+
+  function handleWishlistClick() {
+    setIsWishlisted(!isWishlisted);
+  };
+
   return (
     <div className="recipe-card">
+      
       <div className="container-recipe-image-and-icon">
-        <FaRegSquarePlus/>
+        <span className="container-wishlist-icon" onClick={handleWishlistClick}>
+          { isWishlisted ? <FaRegSquarePlus className="wishlist-icon empty"/> : <FaSquarePlus className="wishlist-icon filled" /> }
+        </span>
         <img src={image} alt={alternativeText}/>
       </div>
       
-      <h2>{name}</h2>  
-      <p>{description}</p>
-      <div>
-        <div className="container-recipe-type">
-          <RecipeType nameType={type}/>
+      <div className="container-all-recipe-info">
+        <h2 className="name">{name}</h2>
+        <p className="description">{description}</p>
+        <div className="container-recipe-type-and-ready-in-minutes">
+          <div className="container-recipe-type">
+            <RecipeType nameType={type} iconColor = {iconColor}/>
+            <span>{type}</span>
+          </div>
+          <div className="container-ready-in-minutes">
+            <FaRegClock className="recipe-icon clock"  color = {iconColor}/>
+            <time className="ready-in-minutes" dateTime={`PT${readyInMinutes}M`}>{`${readyInMinutes} min`}</time>
+          </div>
         </div>
-        <div className="container-cooking-time">
-          <FaRegClock />
-          <time className="cooking-minutes" dateTime={`PT${cookingTimeInMinutes}M`}>{`${cookingTimeInMinutes} min`}</time>
-        </div>
-
       </div>
     </div>
   );
