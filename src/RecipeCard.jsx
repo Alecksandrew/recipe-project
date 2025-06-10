@@ -15,42 +15,28 @@ import "./RecipeCard.css";
 function RecipeType({nameType, iconColor}) {
   
   if( nameType === "Main meal") {
-    return (
-      <>
-        <GiMeal color={iconColor}/>   
-      </>
-    )
+    return <GiMeal color={iconColor}/>   
+
   }
 
   if( nameType === "Dessert") {
-    return (
-      <>
-        <LuDessert color={iconColor}/>
-      </>
-    )
+    return <LuDessert color={iconColor}/>
   }
 
   if( nameType === "Drink") {
-    return (
-      <>
-        <RiDrinks2Line color={iconColor}/>
-      </>
-    )
+    return <RiDrinks2Line color={iconColor}/>
+
   }
 
   if( nameType === "Snack") {
-    return (
-      <>
-        <LuSandwich color={iconColor}/>
-      </>
-    )
+    return <LuSandwich color={iconColor}/>
   }
 
   return null;
 };
 
 
-function RecipeCard({name = "Escondidinho de Batata", alternativeText, image, description = "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiu smod tempor incididunt ut labore et dolore magna aliqua. ashudau duashdus ahdua hduasdh ashdadsasda asdadsad", type, readyInMinutes = "30", iconColor = "#000"}) {
+function RecipeCard({name = "Escondidinho de Batata", alternativeText, image, description = "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiu smod tempor incididunt ut labore etdasda  dasda sdasdw", type, readyInMinutes = "30", iconColor = "#000"}) {
   
   const [ isWishlisted, setIsWishlisted ] = useState(false);
 
@@ -68,7 +54,7 @@ function RecipeCard({name = "Escondidinho de Batata", alternativeText, image, de
         <img src={image} alt={alternativeText}/>
       </div>
       
-      <div className="container-all-recipe-info">
+      <div  className="container-all-recipe-info">
         <h2 className="name">{name}</h2>
         <p className="description">{description}</p>
         <div className="container-recipe-type-and-ready-in-minutes">
