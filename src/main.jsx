@@ -6,6 +6,6 @@ import RecipeCard from './RecipeCard.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RecipeCard type="Main meal"/>
+    <App/>
   </StrictMode>,
 )
