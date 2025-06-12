@@ -1,9 +1,10 @@
-import RecipeCard from '../RecipeCard.jsx';
+import RecipeCard from '../components/RecipeCard.jsx';
+import "../pages/Home.css";
 
 function Home() {
 
     return(
-        <div>
+        <div className="recipe-grid-home">
             <RecipeCard/>
             <RecipeCard/>
             <RecipeCard/>
