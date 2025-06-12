@@ -8,6 +8,11 @@ function Home() {
             <RecipeCard/>
             <RecipeCard/>
             <RecipeCard/>
+            <RecipeCard/>
+            <RecipeCard/>
+            <RecipeCard/>
+            <RecipeCard/>
+            <RecipeCard/>
         </div>
         
     )

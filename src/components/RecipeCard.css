@@ -5,11 +5,11 @@
 }
 
 .recipe-card {
-  
+  container-type: inline-size;
   
   aspect-ratio: 6/5;
   width: 100%;
-  max-width: 450px;
+  max-width: 400px;
   background-color: rgb(255, 255, 255);
   border: 1px solid rgb(255, 255, 255);
   border-radius: 5px;
@@ -52,7 +52,7 @@
 .name {
   color: black;
   text-align: left;
-  font-size: clamp(1.25rem, 0.019rem + 6.154vw, 1.75rem);
+  font-size: 6.5cqw;
 
   white-space: nowrap;
   overflow: hidden;
@@ -61,8 +61,8 @@
 
 .description {
   text-align: left;
-  font-size: clamp(0.875rem, 0.26rem + 3.077vw, 1.125rem);
-  line-height: clamp(0.875rem, -0.048rem + 4.615vw, 1.25rem);
+  font-size: 4.5cqw;
+  line-height: 4.5cqw;
   color: gray;
 
   display: -webkit-box;
@@ -73,37 +73,7 @@
   line-clamp: 3;
 }
 
-@media (min-width: 510px) {
-  .name {
 
-    font-size: clamp(1.063rem, -0.049rem + 3.488vw, 1.625rem);
-
-  }
-
-  .description {
- 
-    font-size: clamp(0.75rem, 0.132rem + 1.938vw, 1.063rem);
-    line-height: clamp(0.75rem, 0.009rem + 2.326vw, 1.125rem);
-
-
-  }
-}
-
-@media (min-width: 769px) {
-  .name {
-
-    font-size:clamp(1.125rem, 0.132rem + 2.065vw, 1.875rem);
-
-  }
-
-  .description {
- 
-    font-size: clamp(0.813rem, 0.233rem + 1.205vw, 1.25rem);
-    line-height:clamp(0.813rem, 0.233rem + 1.205vw, 1.25rem);
-
-
-  }
-}
 
 .container-recipe-type-and-ready-in-minutes {
   margin-top: auto;
@@ -114,7 +84,7 @@
   display: flex;
   justify-content: space-between;
 
-  font-size: 16px;
+  font-size: min(5cqw, 18px);
   font-weight: bold;
 }
 
