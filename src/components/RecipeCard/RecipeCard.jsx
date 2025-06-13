@@ -5,8 +5,8 @@ import { LuDessert } from "react-icons/lu";
 import { RiDrinks2Line } from "react-icons/ri";
 import { LuSandwich } from "react-icons/lu";
 
-import { FaRegSquarePlus } from "react-icons/fa6"; //vazio
-import { FaSquarePlus } from "react-icons/fa6"; // preenchido
+import { FaRegBookmark } from "react-icons/fa6";; //vazio
+import { FaBookmark } from "react-icons/fa"; // preenchido
 
 import { useState } from "react";
 import "./RecipeCard.css";
@@ -48,8 +48,8 @@ function RecipeCard({name = "Escondidinho de Batata", alternativeText, image, de
     <div className="recipe-card">
       
       <div className="container-recipe-image-and-icon">
-        <span className="container-wishlist-icon" onClick={handleWishlistClick}>
-          { isWishlisted ? <FaRegSquarePlus className="wishlist-icon empty"/> : <FaSquarePlus className="wishlist-icon filled" /> }
+        <span className="container-wishlist-icon" onClick={handleWishlistClick} data-testid = "container-bookmark">
+          { isWishlisted ? <FaBookmark className="bookmark-icon filled" data-testid = "bookmark-filled"/> : <FaRegBookmark className="bookmark-icon empty" data-testid = "bookmark-empty" /> }
         </span>
         <img src={image} alt={alternativeText}/>
       </div>
