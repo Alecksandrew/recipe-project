@@ -1,12 +1,9 @@
-import { useState } from 'react'
-import './App.css'
-import Home from './pages/Home.jsx'
+import './App.css';
+import FilterSearchBar from './components/FilterSearchBar/FilterSearchBar.jsx'
 
 function App() {
 
-  return (
-    <Home/>
-  )
+  return <FilterSearchBar/>
 }
 
 export default App

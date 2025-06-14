@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import RecipeCard from './RecipeCard';
+import RecipeCard from '../src/components/RecipeCard/RecipeCard';
 import userEvent from '@testing-library/user-event';
 
 describe('RecipeCard component', () => {
