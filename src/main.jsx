@@ -6,6 +6,6 @@ import CheckboxGroup from './components/CheckboxGroup/CheckboxGroup.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <CheckboxGroup/>
+    <App/>
   </StrictMode>,
 )
