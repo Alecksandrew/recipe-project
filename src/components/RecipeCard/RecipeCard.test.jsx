@@ -14,13 +14,24 @@ it("It should turn the empty icon into filled icon when it is clicked", async() 
     
     expect(bookmarkIconEmpty).toBeInTheDocument();
 
-    await userEvent.click(containerBookmark);
+    await user.click(containerBookmark);
     const bookmarkIconFilled = screen.getByTestId("bookmark-filled");
 
     expect(bookmarkIconFilled).toBeInTheDocument();
     expect(bookmarkIconEmpty).not.toBeInTheDocument();
 
 
+});
+
+it("It should show up either empty icon or filled icon", () => {
+    
+   render(<RecipeCard/>);
+   
+   
+   const bookmarkIconFilled = screen.queryByTestId("bookmark-filled");
+   const bookmarkIconEmpty = screen.queryByTestId("bookmark-empty");
+
+   expect(bookmarkIconEmpty || bookmarkIconFilled).toBeInTheDocument();
 });
 
 });
