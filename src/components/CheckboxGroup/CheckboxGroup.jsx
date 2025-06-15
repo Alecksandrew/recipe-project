@@ -14,7 +14,7 @@ function CheckboxGroup({ optionsTitle = "Crazy", inputNameOptions = ["optionOne,
                     {option}
                 </label>
                 )
-            }) };
+            }) }
         </fieldset>
     );
 };

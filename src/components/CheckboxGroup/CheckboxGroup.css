@@ -1,0 +1,29 @@
+:root {
+    --legend-color: rgb(1, 73, 1);
+    --options-color: rgb(70, 70, 70);
+}
+
+.checkbox-group {
+    
+    container-name: checkbox-group-container;
+    border: none;
+
+}
+
+legend {
+    color: var(--legend-color);
+    font-size: clamp(18px, 4vw, 24px);
+
+}
+
+label {
+    color: var(--options-color);
+    font-size: clamp(12px, 3vw, 16px);
+
+}
+
+input[type="checkbox"] {
+    aspect-ratio: 1 / 1;
+    width: 10%;
+    margin-right:6px;
+}

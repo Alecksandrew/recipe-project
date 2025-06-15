@@ -1,0 +1,78 @@
+:root {
+
+    --filter-button-bg-color: #008CBA;
+    --search-bar-bg-color: #f1f1f1;
+    --search-bar-container-bg-color: #f1f1f1;
+
+}
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.filter-search-bar {
+    max-height: 30vh;
+    width: 100%;
+    min-width: 10rem;
+    overflow: auto;
+    position: absolute;
+    top: 30px;
+    right: 0;
+
+    background-color: gray;
+    padding: 5px;
+
+    border-radius: 0px 0px 5px 5px;
+}
+
+
+.filter-search-bar > * {
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-flow: column nowrap;
+    max-width: 100%;
+    margin-top: 20px;
+}
+.checkbox-group label {
+    margin-top: 2px;
+}
+
+.checkbox-group label:first-of-type {
+    margin-top: 4px;
+}
+
+legend {
+    font-weight: bold;
+}
+
+label {
+    display: flex;
+    align-items: stretch;
+}
+
+input[type="checkbox"] {
+    flex: 0 0 auto;
+}
+
+.apply-filters {
+    display: block;
+    margin-top: 10px;
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: var(--filter-button-bg-color);
+}
+
+button {
+  
+    border: none;
+}
+
