@@ -1,9 +1,9 @@
 import './App.css';
-import FilterSearchBar from './components/FilterSearchBar/FilterSearchBar.jsx'
+import SearchBar from './components/SearchBar/SearchBar.jsx'
 
 function App() {
 
-  return <FilterSearchBar/>
+  return <SearchBar/>
 }
 
 export default App
