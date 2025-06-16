@@ -1,0 +1,57 @@
+header {
+    height: clamp(40px, 6vh, 60px);
+    background-color: red;
+}
+
+.nav-menu {
+    position: relative;
+    height: 100%;
+    place-items: center center;
+    container-type: size;
+
+    
+}
+
+.nav-menu.mobile {
+    display: grid;
+    grid-template: 1fr / 1fr 4fr 1fr;
+  
+}
+
+.nav-menu.desktop {
+
+}
+
+.container-logo {
+    grid-area: 1/1/2/2;
+    width: 100%;
+    height: 100%;
+}
+
+.menu-hamburguer {
+    grid-area: 1/3/2/4;
+    font-size: 100cqh;
+}
+
+.container-pages-options {
+    list-style: none;
+    background-color: blue;
+}
+
+.container-pages-options.mobile {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    transform: translateX(-100%);
+    transition: transform 1s ease-in-out;
+}
+
+.container-pages-options.mobile.show-menu {
+    transform: translateX(0);
+}
+
+
+.container-pages-options.desktop {
+    position: relative;
+}

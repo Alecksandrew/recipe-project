@@ -1,9 +1,9 @@
 import './App.css';
-import SearchBar from './components/SearchBar/SearchBar.jsx'
+import Header from './components/Header/Header.jsx';
 
 function App() {
 
-  return <SearchBar/>
+  return <Header logo = {{logoFile: "undefined.png"}}/>
 }
 
 export default App
