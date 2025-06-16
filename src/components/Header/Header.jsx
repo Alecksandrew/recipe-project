@@ -1,13 +1,19 @@
 import "./Header.css";
 import React, { useEffect, useState } from "react";
 import { IoIosMenu } from "react-icons/io";
+import { AiOutlineHome } from "react-icons/ai";
+import { TbFridge } from "react-icons/tb";
+import { FaRegHeart } from "react-icons/fa";
+
+
+
 
 /*logoFile -> You can use SVG tag or image url*/
 
-function Header({ logo = {logoFile: undefined, altText:"logo"}}) {
+function Header({ objectLogo = {logoFile: undefined, altText:"logo"}, arrayMenuOptions = [{name:"Home", icon: <AiOutlineHome />}, {name:"What is there in your fridge?", icon: <TbFridge />}, {name:"Wishlist", icon: <FaRegHeart />}]}) {
     
     /*=============== CODE ABOUT LOGO =================================*/
-    const { logoFile, altText } = logo;
+    const { logoFile, altText } = objectLogo;
 
     const ValidImgFormats = [".jpg", ".jpeg", ".png", ".gif", ".bmp", ".webp", ".svg"];
     function isValidImageFormat(file) {
@@ -33,7 +39,7 @@ function Header({ logo = {logoFile: undefined, altText:"logo"}}) {
         logoWhichWillBeRendered = isSvgTag
     } 
     else {
-        logoWhichWillBeRendered = <span>INVALID FILE, CORRECT YOUR LOGO FILE!!!!</span>
+        logoWhichWillBeRendered = <span>INVALID FILE</span>
     };
 
     /*========================== CODE ABOUT MENU HAMBURGUER LOGIC =========================*/
@@ -60,18 +66,36 @@ function Header({ logo = {logoFile: undefined, altText:"logo"}}) {
         setIsMenuOpen(!isMenuOpen);
     }
 
+    /*========================== CODE ABOUT MENU OPTIONS =========================*/
+    function listMenuOptions() {
+        return arrayMenuOptions.map(option => {
+                    return <li key={option.name} className={`menu-option ${isMobile ? "mobile" : "desktop"}`}>{option.icon}{option.name}</li>
+                })
+    }
+
+    function renderMenuOverlay() {
+        if(isMobile) {
+            if(isMenuOpen){
+                return <div className="menu-overlay-mobile active" onClick={handleClickMenuState}></div>
+            }
+            else {
+                return <div className="menu-overlay-mobile" onClick={handleClickMenuState}></div>
+            }
+        }
+        return null
+    }
+    
 
     return (
         <header>
             <nav className={`nav-menu ${isMobile ? "mobile" : "desktop"}`}>
                 <a href="" className={`container-logo`}>{logoWhichWillBeRendered}</a>
-                <ul className={`container-pages-options ${isMobile ? "mobile" : "desktop"} ${isMenuOpen ? "show-menu" : "" } `}>
-                    <li>Home</li>
-                    <li>What is there in your frigde?</li>
-                    <li>Wishlist</li>
+                <ul className={`container-pages-options ${isMobile ? "mobile" : "desktop"} ${(isMobile && isMenuOpen) ? "show-menu" : "" } `}>
+                    {listMenuOptions()}
                 </ul>
                 {isMobile && <IoIosMenu className="menu-hamburguer" onClick={handleClickMenuState}/>}
             </nav>
+            {renderMenuOverlay()}
         </header>
     );
 
