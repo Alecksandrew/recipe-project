@@ -28,7 +28,7 @@ function Home() {
     */
 
     function listRecipeCardsWithData() { 
-        if (!recipesData) return <p>Carregando receitas...</p>;
+        if (!recipesData) return <p className='loading-text'>Carregando receitas...</p>;
         
         return  recipesData.map((recipe) => {
            
@@ -54,7 +54,7 @@ function Home() {
                 <h1>Inspiration for your next recipe</h1>
                 <p>Discover thousands tasty recipes and find out the perfect inspiration for each situation</p>
                 <SearchBar placeHolder="Search recipes by ingredients, nationalities.."/>
-                <div className="overlay-main"></div>
+                <div className="overlay blur shadow"></div>
             </main>
             <section className="popular-recipes">
                 <h2>Popular Recipes</h2>

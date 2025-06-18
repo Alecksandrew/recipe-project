@@ -38,6 +38,16 @@ header {
 
 }
 
+.container-logo {
+    overflow: hidden;
+}
+
+.container-logo img, .container-logo svg {
+    object-fit: cover;
+    object-position: center center;
+    width: 100%;
+    height: 100%;
+}
 
 .menu-hamburguer {
     grid-area: 1/3/2/4;
@@ -76,7 +86,7 @@ header {
     transform: translateX(-100%);
     transition: transform 1s ease-in-out;
     background-color: var(--menu-options-mobile-bg-color);
-    z-index: 1;
+    z-index: 2;
 
 }
 
@@ -103,6 +113,7 @@ header {
 
 .menu-option.mobile {
     padding: 10px 0px 10px 10px;
+
 }
 
 .menu-option.desktop {
@@ -137,6 +148,7 @@ header {
 .menu-overlay-mobile.active {
     opacity: 100%;
     pointer-events: auto;
+    z-index: 1;
 }
 
 
