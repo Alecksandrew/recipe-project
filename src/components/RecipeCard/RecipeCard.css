@@ -25,8 +25,12 @@
   background-color: rgb(179, 179, 179);
   height: 5%;
   position: relative;
-
+  overflow: hidden;
   flex: 0 0 55%;
+}
+
+.container-recipe-image-and-icon img {
+
 }
 
 .container-wishlist-icon {

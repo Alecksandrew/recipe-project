@@ -7,41 +7,49 @@ import { useState } from 'react';
 
 function Home() {
 
-    const [bgURL, setBgURL] = useState(null);
-
-    const randomRecipesURL = "https://api.spoonacular.com/recipes/random";
-    const randomRecipesParams = new URLSearchParams({
-        apiKey:"6b0d610fe5cf4296b3dd9023ae8150fb",
-        number: 13
-    })
+    const [recipesData, setRecipesData] = useState(null);
 
     useEffect(() => {
-        fetch("spoonURL")
-        .then((response) => response.json())
-        .then((data) => 
-            data.recipes.map((recipe, index) => {
-                            
-                if(index === 0 ) {
-                    setBgURL(recipe.img)
-                }
-                else {
-                    <RecipeCard name={recipe.title} alternativeText={recipe.title} image={recipe.image} description={recipe.summary}/>
-                }
-            }
-        ))
-        .catch((error) => "")
+            const randomRecipesURL = "https://api.spoonacular.com/recipes/random";
+            const randomRecipesParams = new URLSearchParams({
+                apiKey:"6b0d610fe5cf4296b3dd9023ae8150fb",
+                number: 12
+            })
 
-    }, [])
+            fetch(`${randomRecipesURL}?${randomRecipesParams.toString()}`)
+            .then((response) => response.json())
+            .then((data) => {
+                    setRecipesData(data.recipes)
+                 
+                    })
+            .catch((error) => console.log(error))
+    }, []);
 
 
-    function listRecipeCardsWithData() {
+    function listRecipeCardsWithData() { 
+        if (!recipesData) return <p>Carregando receitas...</p>;
+        
+        return  recipesData.map((recipe) => {
+           
+             return <RecipeCard 
+                    key={recipe.title}
+                    name={recipe.title} 
+                    alternativeText={recipe.title} 
+                    image={recipe.image} 
+                    description={recipe.summary} 
+                    type={recipe.dishTypes[0]} 
+                    readyInMinutes={recipe.readyInMinutes} 
+                    iconColor={"#27AE60"}
+                    />
 
-    }
+                });    
+
+    };
 
 
     return(
         <>
-            <main style={{backgroundImage: bgURL ? `url(${bgURL})` : undefined}}>
+            <main>
                 <h1>Inspiration for your next recipe</h1>
                 <p>Discover thousands tasty recipes and find out the perfect inspiration for each situation</p>
                 <SearchBar/>

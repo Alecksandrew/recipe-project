@@ -1,17 +1,21 @@
 :root {
-  --bg-img-main-content: "";
+  --bg-img-main-content: url("../assets/background-food.jpg");
 }
 
 
 main {
-  height: 50vh;
+  height: 70vh;
 
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
 
-  background-color: var(--bg-img-main-content);
+  background-image: var(--bg-img-main-content);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  backdrop-filter: blur(15px);
 }
 
 

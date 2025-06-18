@@ -1,11 +1,11 @@
 import { FaRegClock } from "react-icons/fa";
 
-import { GiMeal, GiHotMeal, GiSlicedBread, GiSoupBowl, GiSauce } from "react-icons/gi";
-import { LuDessert, LuSandwich } from "react-icons/lu";
-import { RiDrinks2Line } from "react-icons/ri";
-import { MdRiceBowl } from "react-icons/md";
-import { BiDish } from "react-icons/bi";
-import { PiCookieFill } from "react-icons/pi";
+import { GiMeal, GiHotMeal, GiSlicedBread } from "react-icons/gi";
+import { LuSoup } from "react-icons/lu";
+import { MdDining, MdLocalDining } from "react-icons/md";
+import { BiDish, BiDrink } from "react-icons/bi";
+import { FaCoffee, FaCookie } from "react-icons/fa";
+import { IoRestaurant } from "react-icons/io5";
 
 import { FaRegBookmark } from "react-icons/fa6";; //vazio
 import { FaBookmark } from "react-icons/fa"; // preenchido
@@ -16,19 +16,19 @@ import "./RecipeCard.css";
 
 
 const recipeTypesIcons = {
-  "main course": "GiMeal",        // prato principal
-  "side dish":   "BiDish",        // acompanhamento
-  "dessert":     "LuDessert",     // sobremesa
-  "appetizer":   "PiCookieFill",  // aperitivo
-  "salad":       "MdRiceBowl",    // salada
-  "bread":       "GiSlicedBread", // pão
-  "breakfast":   "GiHotMeal",     // café da manhã
-  "soup":        "GiSoupBowl",    // sopa
-  "beverage":    "RiDrinks2Line", // bebida
-  "sauce":       "GiSauce",       // molho
-  "drink":       "RiDrinks2Line"  // drink
+  "main course": GiMeal,
+  "side dish": BiDish,
+  "dessert": FaCookie,
+  "appetizer": MdLocalDining,
+  "salad": MdDining,
+  "bread": GiSlicedBread,
+  "breakfast": GiHotMeal,
+  "soup": LuSoup,
+  "beverage": BiDrink,
+  "sauce": IoRestaurant,
+  "drink": FaCoffee
 };
-function showRecipeTypeAndIcon({nameType, iconColor}) {
+function showRecipeTypeAndIcon(nameType, iconColor) {
     const TypeIcon = recipeTypesIcons[nameType];
     return TypeIcon ? <TypeIcon color={iconColor}/> : null
 };
