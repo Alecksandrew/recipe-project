@@ -4,13 +4,14 @@ import { IoIosMenu } from "react-icons/io";
 import { AiOutlineHome } from "react-icons/ai";
 import { TbFridge } from "react-icons/tb";
 import { FaRegHeart } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 
 
 
 /*logoFile -> You can use SVG tag or image url*/
 
-function Header({ objectLogo = {logoFile: undefined, altText:"logo"}, arrayMenuOptions = [{name:"Home", icon: <AiOutlineHome />}, {name:"What is there in your fridge?", icon: <TbFridge />}, {name:"Wishlist", icon: <FaRegHeart />}]}) {
+function Header({ objectLogo = {logoFile: undefined, altText:"logo"}, arrayMenuOptions = [{name:"Home", icon: <AiOutlineHome />, link: "/"}, {name:"What is there in your fridge?", icon: <TbFridge />, link: "whats-in-fridge"}, {name:"Wishlist", icon: <FaRegHeart />, link: "wishlist"}]}) {
     
     /*=============== CODE ABOUT LOGO =================================*/
     const { logoFile, altText } = objectLogo;
@@ -69,7 +70,7 @@ function Header({ objectLogo = {logoFile: undefined, altText:"logo"}, arrayMenuO
     /*========================== CODE ABOUT MENU OPTIONS =========================*/
     function listMenuOptions() {
         return arrayMenuOptions.map(option => {
-                    return <li key={option.name} className={`menu-option ${isMobile ? "mobile" : "desktop"}`}>{option.icon}{option.name}</li>
+                    return <li key={option.name} className={`menu-option ${isMobile ? "mobile" : "desktop"}`}><Link to={option.link} className="link-router">{option.icon}{option.name}</Link></li>
                 })
     }
 

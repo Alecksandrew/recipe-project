@@ -1,42 +1,40 @@
 import { FaRegClock } from "react-icons/fa";
 
-import { GiMeal } from "react-icons/gi";
-import { LuDessert } from "react-icons/lu";
+import { GiMeal, GiHotMeal, GiSlicedBread, GiSoupBowl, GiSauce } from "react-icons/gi";
+import { LuDessert, LuSandwich } from "react-icons/lu";
 import { RiDrinks2Line } from "react-icons/ri";
-import { LuSandwich } from "react-icons/lu";
+import { MdRiceBowl } from "react-icons/md";
+import { BiDish } from "react-icons/bi";
+import { PiCookieFill } from "react-icons/pi";
 
 import { FaRegBookmark } from "react-icons/fa6";; //vazio
 import { FaBookmark } from "react-icons/fa"; // preenchido
 
 import { useState } from "react";
+import PropTypes from "prop-types";
 import "./RecipeCard.css";
 
 
-function RecipeType({nameType, iconColor}) {
-  
-  if( nameType === "Main meal") {
-    return <GiMeal color={iconColor}/>   
-
-  }
-
-  if( nameType === "Dessert") {
-    return <LuDessert color={iconColor}/>
-  }
-
-  if( nameType === "Drink") {
-    return <RiDrinks2Line color={iconColor}/>
-
-  }
-
-  if( nameType === "Snack") {
-    return <LuSandwich color={iconColor}/>
-  }
-
-  return null;
+const recipeTypesIcons = {
+  "main course": "GiMeal",        // prato principal
+  "side dish":   "BiDish",        // acompanhamento
+  "dessert":     "LuDessert",     // sobremesa
+  "appetizer":   "PiCookieFill",  // aperitivo
+  "salad":       "MdRiceBowl",    // salada
+  "bread":       "GiSlicedBread", // pão
+  "breakfast":   "GiHotMeal",     // café da manhã
+  "soup":        "GiSoupBowl",    // sopa
+  "beverage":    "RiDrinks2Line", // bebida
+  "sauce":       "GiSauce",       // molho
+  "drink":       "RiDrinks2Line"  // drink
+};
+function showRecipeTypeAndIcon({nameType, iconColor}) {
+    const TypeIcon = recipeTypesIcons[nameType];
+    return TypeIcon ? <TypeIcon color={iconColor}/> : null
 };
 
 
-function RecipeCard({name = "Escondidinho de Batata", alternativeText, image, description = "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiu smod tempor incididunt ut labore etdasda  dasda sdasdw", type, readyInMinutes = "30", iconColor = "#000"}) {
+function RecipeCard({name, alternativeText, image, description, type, readyInMinutes, iconColor}) {
   
   const [ isWishlisted, setIsWishlisted ] = useState(false);
 
@@ -59,7 +57,7 @@ function RecipeCard({name = "Escondidinho de Batata", alternativeText, image, de
         <p className="description">{description}</p>
         <div className="container-recipe-type-and-ready-in-minutes">
           <div className="container-recipe-type">
-            <RecipeType nameType={type} iconColor = {iconColor}/>
+            {showRecipeTypeAndIcon(type, iconColor)}
             <span>{type}</span>
           </div>
           <div className="container-ready-in-minutes">
@@ -71,5 +69,6 @@ function RecipeCard({name = "Escondidinho de Batata", alternativeText, image, de
     </div>
   );
 };
+
 
 export default RecipeCard;

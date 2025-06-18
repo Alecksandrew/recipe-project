@@ -1,3 +1,20 @@
+:root {
+  --bg-img-main-content: "";
+}
+
+
+main {
+  height: 50vh;
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--bg-img-main-content);
+}
+
+
 .recipe-grid-home {
   width: 100%;
   max-width: 1289px; /*min width do grid + todos os gaps - 1 */
