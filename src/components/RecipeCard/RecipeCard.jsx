@@ -54,7 +54,7 @@ function RecipeCard({name, alternativeText, image, description, type, readyInMin
       
       <div  className="container-all-recipe-info">
         <h2 className="name">{name}</h2>
-        <p className="description">{description}</p>
+        <p className="description" dangerouslySetInnerHTML={{__html: description}}></p>
         <div className="container-recipe-type-and-ready-in-minutes">
           <div className="container-recipe-type">
             {showRecipeTypeAndIcon(type, iconColor)}
