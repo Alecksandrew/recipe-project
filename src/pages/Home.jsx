@@ -9,7 +9,7 @@ function Home() {
 
     const [recipesData, setRecipesData] = useState(null);
 
-    /*
+    
     useEffect(() => {
             const randomRecipesURL = "https://api.spoonacular.com/recipes/random";
             const randomRecipesParams = new URLSearchParams({
@@ -25,7 +25,7 @@ function Home() {
                     })
             .catch((error) => console.log(error))
     }, []);
-    */
+    
 
     function listRecipeCardsWithData() { 
         if (!recipesData) return <p className='loading-text'>Carregando receitas...</p>;
