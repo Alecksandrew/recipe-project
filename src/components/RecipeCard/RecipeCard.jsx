@@ -2,11 +2,10 @@ import { FaRegClock } from "react-icons/fa";
 
 import { GiSaucepan, GiHotMeal, GiSlicedBread } from "react-icons/gi";
 import { LuSoup, LuDessert, LuSalad, LuPopcorn  } from "react-icons/lu";
-import { MdDining, MdLocalDining, MdFreeBreakfast } from "react-icons/md";
+import { MdFreeBreakfast } from "react-icons/md";
 import { BiSolidDrink } from "react-icons/bi";
-import { FaCoffee, FaHandLizard } from "react-icons/fa";
+import { FaHandLizard } from "react-icons/fa";
 import { FaShrimp } from "react-icons/fa6";
-import { IoRestaurant } from "react-icons/io5";
 import { TbBowlSpoonFilled } from "react-icons/tb";
 import { MdLunchDining } from "react-icons/md";
 
@@ -34,7 +33,6 @@ const recipeTypesIcons = {
   "beverage": BiSolidDrink,
   "drink": BiSolidDrink,
   "sauce": GiSaucepan,
-
   'marinade': null,
   'fingerfood': FaHandLizard,
   'snack': LuPopcorn,

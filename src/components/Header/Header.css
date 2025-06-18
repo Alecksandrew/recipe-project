@@ -1,8 +1,10 @@
 :root {
-    --header-bg-color: rgb(19, 185, 19);
-    --menu-options-mobile-bg-color: blue;
-    --hover-menu-option-bg-color: brown;
+    --header-bg-color: #2CA849;
+    --menu-options-mobile-bg-color: #2CA849;
+    --hover-menu-option-bg-color: white;
+    --hover-menu-option-color: #2CA849;
     --overlay-menu-bg-color: rgba(0, 0, 0, 0.432);
+    --color-menu-options: white;
 }
 
 header {
@@ -58,7 +60,11 @@ header {
     gap: 8px;
 
     font-size: clamp(15px, 2vw, 18px);
+    color: var(--color-menu-options);
+    text-decoration: none;
 }
+
+
 
 
 .container-pages-options.mobile {
@@ -87,7 +93,12 @@ header {
 
 .menu-option:hover {
     background-color: var(--hover-menu-option-bg-color);
+    
 
+}
+
+.menu-option:hover .link-router {
+    color: var(--hover-menu-option-color);
 }
 
 .menu-option.mobile {
