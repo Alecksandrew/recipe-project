@@ -1,46 +1,75 @@
 :root {
-        --search-button-bg-color: #4CAF50;
-        --first-filter-button-bg-color: black;
+    --search-bar-color: black;
+    --search-bar-bg-color: white;    
+    --search-button-bg-color: #2CA849;
+    --first-filter-button-color: black;
+    --first-filter-button-bg-color: rgb(255, 255, 255);
+    --first-filter-button-bg-color-hover: #f5f5f5;
+    --input-search-bg-color: transparent;
+    --general-border-radius: 5px;
 }
 
 .search-bar {
-    background-color: gray;
-    padding: max(10px, 0.75vw);
+    background-color: var(--search-bar-bg-color);
+    padding: 6px 6px 6px 12px;
+    height: 5vh;
     border-radius: 5px;
-    box-shadow: 5px 5px 10px black;
+    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.479);
     width: min(80vw, 800px);
     display: flex;
     gap: clamp(5px, 0.5vw, 16px);
 
 }
 
+.search-icon {
+    align-self: center;
+    color: #757575;
+}
+
 input[type="search"] {
     flex: 1 1 60%;
     min-width: 0;
+    color: var(--search-bar-color);
+    background-color: var(--search-bar-bg-color);
+    border: none;
+
 }
 
-button[type="submit"], .container-filter  /*FILTER AND SEARCH BUTTONS*/ {
-    flex: 1 1 15%;
-    max-width: 200px;
- 
+input[type="search"]:focus {
+    outline: none;
 }
+
 
 .container-filter {
     position: relative;
-
     display: flex;
 }
 
-.container-filter button {
-    flex: 1 1 auto;
-}
 
 .search-button {
     background-color: var(--search-button-bg-color);
+    font-weight: bolder;
 }
 
 .first-filter-button {
+    flex: 1 1 auto;
+    border-radius: var(--general-border-radius);
+    color:var(--first-filter-button-color);
     background-color: var(--first-filter-button-bg-color);
+    font-weight: bolder;
+    transition: box-shadow 0.5s ease, background-color 0.5s ease;
+}
+
+.first-filter-button:hover {
+    background-color: var(--first-filter-button-bg-color-hover);
+    box-shadow: inset 0px 0px 3px rgba(0, 0, 0, 0.062);
+}
+
+.search-button, .container-filter  /*FILTER CONTAINER BUTTON AND SEARCH BUTTONS*/ {
+    flex: 1 1 15%;
+    max-width: 200px;
+    border-radius: var(--general-border-radius);
+ 
 }
 
 

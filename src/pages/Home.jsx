@@ -53,7 +53,7 @@ function Home() {
             <main>
                 <h1>Inspiration for your next recipe</h1>
                 <p>Discover thousands tasty recipes and find out the perfect inspiration for each situation</p>
-                <SearchBar/>
+                <SearchBar placeHolder="Search recipes by ingredients, nationalities.."/>
                 <div className="overlay-main"></div>
             </main>
             <section className="popular-recipes">
