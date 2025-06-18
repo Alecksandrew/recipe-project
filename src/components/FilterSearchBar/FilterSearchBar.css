@@ -19,7 +19,7 @@
     min-width: 10rem;
     overflow: auto;
     position: absolute;
-    top: 30px;
+    top: calc(100% + 6px); /*Altura do pai + padding da search bar*/
     right: 0;
 
     background-color: gray;

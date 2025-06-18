@@ -58,6 +58,10 @@ input[type="search"]:focus {
     background-color: var(--first-filter-button-bg-color);
     font-weight: bolder;
     transition: box-shadow 0.5s ease, background-color 0.5s ease;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .first-filter-button:hover {
