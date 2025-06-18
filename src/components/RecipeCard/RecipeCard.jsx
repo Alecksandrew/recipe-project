@@ -1,33 +1,45 @@
 import { FaRegClock } from "react-icons/fa";
 
-import { GiMeal, GiHotMeal, GiSlicedBread } from "react-icons/gi";
-import { LuSoup } from "react-icons/lu";
-import { MdDining, MdLocalDining } from "react-icons/md";
-import { BiDish, BiDrink } from "react-icons/bi";
-import { FaCoffee, FaCookie } from "react-icons/fa";
+import { GiSaucepan, GiHotMeal, GiSlicedBread } from "react-icons/gi";
+import { LuSoup, LuDessert, LuSalad, LuPopcorn  } from "react-icons/lu";
+import { MdDining, MdLocalDining, MdFreeBreakfast } from "react-icons/md";
+import { BiSolidDrink } from "react-icons/bi";
+import { FaCoffee, FaHandLizard } from "react-icons/fa";
+import { FaShrimp } from "react-icons/fa6";
 import { IoRestaurant } from "react-icons/io5";
+import { TbBowlSpoonFilled } from "react-icons/tb";
+import { MdLunchDining } from "react-icons/md";
+
 
 import { FaRegBookmark } from "react-icons/fa6";; //vazio
 import { FaBookmark } from "react-icons/fa"; // preenchido
 
 import { useState } from "react";
-import PropTypes from "prop-types";
+
 import "./RecipeCard.css";
 
 
 const recipeTypesIcons = {
-  "main course": GiMeal,
-  "side dish": BiDish,
-  "dessert": FaCookie,
-  "appetizer": MdLocalDining,
-  "salad": MdDining,
+  "main course": GiHotMeal, 
+  "side dish": TbBowlSpoonFilled,
+  "lunch": MdLunchDining,
+  "dessert": LuDessert,
+  "appetizer": FaShrimp,
+  "antipasti": FaShrimp,
+  "salad": LuSalad,
   "bread": GiSlicedBread,
-  "breakfast": GiHotMeal,
+  "breakfast": MdFreeBreakfast,
+  "morning meal": MdFreeBreakfast,
   "soup": LuSoup,
-  "beverage": BiDrink,
-  "sauce": IoRestaurant,
-  "drink": FaCoffee
+  "beverage": BiSolidDrink,
+  "drink": BiSolidDrink,
+  "sauce": GiSaucepan,
+
+  'marinade': null,
+  'fingerfood': FaHandLizard,
+  'snack': LuPopcorn,
 };
+
 function showRecipeTypeAndIcon(nameType, iconColor) {
     const TypeIcon = recipeTypesIcons[nameType];
     return TypeIcon ? <TypeIcon color={iconColor}/> : null
