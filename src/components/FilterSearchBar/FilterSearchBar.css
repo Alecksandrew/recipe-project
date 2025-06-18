@@ -1,6 +1,6 @@
 :root {
-
-    --filter-button-bg-color: #008CBA;
+    --filter-bg-color: white;
+    --filter-button-bg-color: #2CA849;
     --search-bar-bg-color: #f1f1f1;
     --search-bar-container-bg-color: #f1f1f1;
 
@@ -22,7 +22,7 @@
     top: calc(100% + 6px); /*Altura do pai + padding da search bar*/
     right: 0;
 
-    background-color: gray;
+    background-color: var(--filter-bg-color);
     padding: 5px;
 
     border-radius: 0px 0px 5px 5px;
@@ -33,6 +33,10 @@
 
     margin-left: auto;
     margin-right: auto;
+}
+
+.filter-search-bar::-webkit-scrollbar-track {
+   
 }
 
 .checkbox-group {
