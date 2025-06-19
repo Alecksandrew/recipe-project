@@ -4,9 +4,10 @@ import "../pages/Home.css";
 import SearchBar from "../components/SearchBar/SearchBar.jsx"
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
-
+    const navigate = useNavigate();
     const [recipesData, setRecipesData] = useState(null);
 
     
@@ -25,16 +26,19 @@ function Home() {
                     })
             .catch((error) => console.log(error))
     }, []);
-    
 
+    function sendRecipeDataToOtherPage(data) {
+        navigate(`recipe/${data.id}`, { state: data})
+    };
+    
     function listRecipeCardsWithData() { 
         if (!recipesData) return <p className='loading-text'>Carregando receitas...</p>;
         
         return  recipesData.map((recipe) => {
            
              return <RecipeCard 
-                    linkToRoute={`recipe/${recipe.id}`}
-                    key={recipe.title}
+                    onClick={() => sendRecipeDataToOtherPage(recipe)}
+                    key={recipe.id}
                     name={recipe.title} 
                     alternativeText={recipe.title} 
                     image={recipe.image} 

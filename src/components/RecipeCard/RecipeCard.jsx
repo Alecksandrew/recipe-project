@@ -45,7 +45,7 @@ function showRecipeTypeAndIcon(nameType, iconColor) {
 };
 
 
-function RecipeCard({name, alternativeText, image, description, type, readyInMinutes, iconColor, linkToRoute}) {
+function RecipeCard({name, alternativeText, image, description, type, readyInMinutes, iconColor, onClick}) {
   
   const [ isWishlisted, setIsWishlisted ] = useState(false);
 
@@ -54,8 +54,7 @@ function RecipeCard({name, alternativeText, image, description, type, readyInMin
   };
 
   return (
-    <Link to={linkToRoute} className='recipe-card-link'>
-      <div className="recipe-card">
+      <div className="recipe-card" onClick={onClick}>
         
         <div className="container-recipe-image-and-icon">
           <span className="container-wishlist-icon" onClick={handleWishlistClick} data-testid = "container-bookmark">
@@ -79,7 +78,6 @@ function RecipeCard({name, alternativeText, image, description, type, readyInMin
           </div>
         </div>
       </div>
-    </Link>
   );
 };
 
