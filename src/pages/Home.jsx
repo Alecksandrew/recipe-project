@@ -33,6 +33,7 @@ function Home() {
         return  recipesData.map((recipe) => {
            
              return <RecipeCard 
+                    linkToRoute={`recipe/${recipe.id}`}
                     key={recipe.title}
                     name={recipe.title} 
                     alternativeText={recipe.title} 
@@ -42,6 +43,7 @@ function Home() {
                     readyInMinutes={recipe.readyInMinutes} 
                     iconColor={"#27AE60"}
                     />
+
 
                 });    
 

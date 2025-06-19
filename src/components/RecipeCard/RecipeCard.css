@@ -4,20 +4,25 @@
   padding: 0;
 }
 
-.recipe-card {
-  container-type: inline-size;
-  
-  aspect-ratio: 6/5;
-  width: 100%;
-  max-width: 450px;
-  background-color: rgb(255, 255, 255);
-  border: 1px solid rgb(255, 255, 255);
-  border-radius: 5px;
+.recipe-card-link {
+    container-type: inline-size;
+    aspect-ratio: 6 / 5;
+    width: 100%;
+    max-width: 450px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 5px;
+    display: flex;
+    flex-flow: column nowrap;
+    overflow: hidden;
+    max-height: 100%;
+}
 
+
+.recipe-card {
   display: flex;
   flex-flow: column nowrap;
 
-  overflow: hidden;
   max-height: 100%;
 }
 
