@@ -57,7 +57,7 @@ function RecipeCard({name, alternativeText, image, description, type, readyInMin
       
       <div className="container-recipe-image-and-icon">
         <span className="container-wishlist-icon" onClick={handleWishlistClick} data-testid = "container-bookmark">
-          { isWishlisted ? <FaBookmark className="bookmark-icon filled" data-testid = "bookmark-filled"/> : <FaRegBookmark className="bookmark-icon empty" data-testid = "bookmark-empty" /> }
+          { isWishlisted ? <FaBookmark style={{color: "#2CA849"}} className="bookmark-icon filled" data-testid = "bookmark-filled"/> : <FaRegBookmark  className="bookmark-icon empty" data-testid = "bookmark-empty" /> }
         </span>
         <img src={image} alt={alternativeText}/>
       </div>

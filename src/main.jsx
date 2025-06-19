@@ -14,6 +14,10 @@ const router = createBrowserRouter([
         index: true,
         element: <Home />
       },
+     /* {
+        path: "recipe:id",
+        element: <RecipeDetails />
+      } */
     ]
   },
 
