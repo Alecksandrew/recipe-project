@@ -1,4 +1,6 @@
+import "./RecipeDetails.css"
 import { useLocation } from 'react-router-dom';
+
 
 function RecipeDetails() {
     const location = useLocation();
@@ -8,6 +10,7 @@ function RecipeDetails() {
         <>
             <h1>{recipeData.title}</h1>
             <p dangerouslySetInnerHTML={{__html: recipeData.summary}}></p>
+            <img src={`${recipeData.image}`} alt={`Imagem do ${recipeData.title}`} />
         </>
 
 
