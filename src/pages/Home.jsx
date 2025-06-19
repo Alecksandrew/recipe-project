@@ -33,7 +33,7 @@ function Home() {
     
     function listRecipeCardsWithData() { 
         if (!recipesData) return <p className='loading-text'>Carregando receitas...</p>;
-        
+        console.log(recipesData);
         return  recipesData.map((recipe) => {
            
              return <RecipeCard 
