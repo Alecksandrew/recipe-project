@@ -1,3 +1,7 @@
+:root {
+    line-height: 1.5rem;
+}
+
 .data-in-column {
     background-color: #FFFFFF;
     border: 2px solid #cfcfcf;
@@ -8,15 +12,21 @@
 }
 
 .title-column {
-    color: black;
+    color: #2CA849
 }
 
 ul {
     list-style-position: inside;
+    margin-top: 20px;
+    padding-left: 20px;
+}
+
+ul > * {
+    margin-top: 10px;
 }
 
 li::marker {
-    color: black;
+    color: #2CA849;
 }
 
 
@@ -26,4 +36,6 @@ li::marker {
     display: inline-flex;
     width: 90%;
     justify-content: space-between;
+    font-style: italic;
+    font-weight: 500;
 }
