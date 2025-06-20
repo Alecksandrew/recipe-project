@@ -1,4 +1,4 @@
-import "./Header.css";
+import styles from "./Header.module.css";
 import React, { useEffect, useState } from "react";
 import { IoIosMenu } from "react-icons/io";
 import { AiOutlineHome } from "react-icons/ai";
@@ -70,17 +70,17 @@ function Header({ objectLogo = {logoFile: undefined, altText:"logo"}, arrayMenuO
     /*========================== CODE ABOUT MENU OPTIONS =========================*/
     function listMenuOptions() {
         return arrayMenuOptions.map(option => {
-                    return <li key={option.name} className={`menu-option ${isMobile ? "mobile" : "desktop"}`}><Link to={option.link} className="link-router">{option.icon}{option.name}</Link></li>
-                })
+            return <li key={option.name} className={`${styles.menuOption} ${isMobile ? styles.menuOptionMobile : styles.menuOptionDesktop}`}><Link to={option.link} className={styles.linkRouter}>{option.icon}{option.name}</Link></li>
+        })
     }
 
     function renderMenuOverlay() {
         if(isMobile) {
             if(isMenuOpen){
-                return <div className="menu-overlay-mobile active" onClick={handleClickMenuState}></div>
+                return <div className={`${styles.menuOverlayMobile} ${styles.menuOverlayMobileActive}`} onClick={handleClickMenuState}></div>
             }
             else {
-                return <div className="menu-overlay-mobile" onClick={handleClickMenuState}></div>
+                return <div className={styles.menuOverlayMobile} onClick={handleClickMenuState}></div>
             }
         }
         return null
@@ -89,12 +89,16 @@ function Header({ objectLogo = {logoFile: undefined, altText:"logo"}, arrayMenuO
 
     return (
         <header>
-            <nav className={`nav-menu ${isMobile ? "mobile" : "desktop"}`}>
-                <a href="" className={`container-logo`}>{logoWhichWillBeRendered}</a>
-                <ul className={`container-pages-options ${isMobile ? "mobile" : "desktop"} ${(isMobile && isMenuOpen) ? "show-menu" : "" } `}>
+            <nav className={`${styles.navMenu} ${isMobile ? styles.navMenuMobile : styles.navMenuDesktop}`}>
+                <a href="" className={styles.containerLogo}>{logoWhichWillBeRendered}</a>
+                <ul className={`
+                    ${styles.containerPagesOptions} 
+                    ${isMobile ? styles.containerPagesOptionsMobile : styles.containerPagesOptionsDesktop} 
+                    ${(isMobile && isMenuOpen) ? styles.containerPagesOptionsMobileShowMenu : ""}
+                `.replace(/\s+/g, ' ').trim()}>
                     {listMenuOptions()}
                 </ul>
-                {isMobile && <IoIosMenu className="menu-hamburguer" onClick={handleClickMenuState}/>}
+                {isMobile && <IoIosMenu className={styles.menuHamburguer} onClick={handleClickMenuState}/>} 
             </nav>
             {renderMenuOverlay()}
         </header>

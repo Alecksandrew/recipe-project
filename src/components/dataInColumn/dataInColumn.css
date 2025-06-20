@@ -15,13 +15,13 @@
     color: #2CA849
 }
 
-ul {
+.ul-data-in-column {
     list-style-position: inside;
     margin-top: 20px;
     padding-left: 20px;
 }
 
-ul > * {
+.ul-data-in-column > * {
     margin-top: 10px;
 }
 

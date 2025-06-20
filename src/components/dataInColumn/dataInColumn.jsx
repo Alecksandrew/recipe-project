@@ -28,7 +28,7 @@ function dataInColumn({title, titlePriority = 2, arrayOptionsKeyValue = [["Optio
     return (
         <div className="data-in-column">
             <HeadingTag className="title-column">{title}</HeadingTag>
-            <ul style={{listStyleType: listStyle}}>
+            <ul className="ul-data-in-column" style={{listStyleType: listStyle}}>
                 {listItems()}
             </ul> 
         </div>
