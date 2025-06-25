@@ -1,8 +1,3 @@
-:root {
-    --legend-color: #2CA849;
-    --options-color: black;
-    --checked-checkbox-color:#2CA849;
-}
 
 .checkboxGroup {
     container-name: checkbox-group-container;
@@ -10,12 +5,12 @@
 }
 
 legend {
-    color: var(--legend-color);
+    color: var(--Paleta01);
     font-size: clamp(18px, 4vw, 24px);
 }
 
 label {
-    color: var(--options-color);
+    color: var(--Paleta03);
     font-weight: 500;
     font-size: clamp(12px, 3vw, 14px);
     line-height: 1.2rem;
@@ -25,5 +20,5 @@ input[type="checkbox"] {
     aspect-ratio: 1 / 1;
     width: 10%;
     margin-right:6px;
-    accent-color: var(--checked-checkbox-color) ;
+    accent-color: var(--Paleta01) ;
 }
