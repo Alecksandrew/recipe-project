@@ -3,7 +3,7 @@
 }
 
 .dataInColumn {
-  background-color: #FFFFFF;
+  background-color: var(--Paleta02);
   border: 2px solid #cfcfcf;
   border-radius: 5px;
   padding: 8px;
@@ -12,7 +12,7 @@
 }
 
 .titleColumn {
-  color: #2CA849;
+  color: var(--Paleta01);
 }
 
 .ulDataInColumn {
@@ -26,11 +26,11 @@
 }
 
 li::marker {
-  color: #2CA849;
+  color: var(--Paleta01);
 }
 
 .itemContent {
-  color: black;
+  color: var(--Paleta03);
   display: inline-flex;
   width: 90%;
   justify-content: space-between;
