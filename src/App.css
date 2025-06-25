@@ -2,6 +2,10 @@
     --Paleta01: #2CA849;
     --Paleta02: #FFFFFF;
     --Paleta03: black;
+
+    --small-border-radius: 5px;
+    --medium-border-radius: 10px;
+    --large-border-radius: 15px;
 }
 
 * {
