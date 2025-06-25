@@ -8,13 +8,25 @@ function RecipeDetails() {
     const recipeData = location.state;
     console.log(recipeData);
 
-    const organizedIngredients = recipeData.extendedIngredients.map(ingredientInfo => {
-        return [ingredientInfo.original]
+    const ingredients = recipeData.extendedIngredients;
+    const organizedIngredients = ingredients.map(ingredientInfo => {
+        return [ingredientInfo.original.toLowerCase()]
     });
 
-    const organizedInstructions = recipeData.analyzedInstructions[0].steps.map(step => {
-        return [step.step]
+    const instructionsSteps = recipeData.analyzedInstructions[0].steps;
+    const organizedInstructions = instructionsSteps.flatMap(step => {
+        if (instructionsSteps.length === 1) {
+            const bigStringWithAllSteps = step.step;
+            const stepsArray = bigStringWithAllSteps
+            .split(".")
+            .map(separetedStep => [separetedStep])
+
+            return stepsArray;
+        }
+        
+        return [[step.step.toLowerCase()]]
     })
+
 
     const organizedMoreInfos = [
         ["Dish type", `${recipeData.dishTypes[0]}`],
