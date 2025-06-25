@@ -1,18 +1,39 @@
 :root {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    --text-color: rgb(114, 114, 114);
+    --text-color: #727272;
+}
+
+
+.containerMainContent {
+
 }
 
 .h1 {
-    max-width: unset;
-    width: unset;
-    text-align: unset;
-    color: #2CA849;
-    font-size: 3rem;
+    color: var(--Paleta01);
+    font-size: 2.5rem;
+    line-height: 2.5rem;
 }
 
 .description {
-    color: var(--text-color);
+    color: var(--Paleta04);
     font-size: 1rem;
     font-style: italic;
+    margin-top: 10px;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+button {
+    color: var(--Paleta01);
+    font-size: 1.2rem;
+    font-weight: bold;
+    font-style: italic;
+    float: right;
+    background-color: transparent;
+    border: none;
 }
