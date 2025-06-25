@@ -1,29 +1,21 @@
-import "./FilterSearchBar.css";
+import styles from "./FilterSearchBar.module.css";
 import CheckboxGroup from "../CheckboxGroup/CheckboxGroup.jsx";
 
 function FilterSearchBar({legendsOptions = ["LegendOne", "Legend2"], arrayInputNameOptions = [["firstOptionFirstSection", "secondOptionFirstSection"], ["firstOptionSecondSection"]]}) {
-
     return (
-        <div className="filter-search-bar">
-           <div className="all-checkbox-groups">
+        <div className={styles.filterSearchBar}>
+           <div className={styles.allCheckboxGroups}>
                {legendsOptions.map((legend, index) => {
                     return (
-                    
                         <CheckboxGroup optionsTitle={legend}
                         inputNameOptions={arrayInputNameOptions[index] || ["UNDEFINED OPTION"]}
                         key={legend}/>
                     );
-                })
-                }
+                })}
             </div>
-            <button type="submit" className="apply-filters">Apply filters</button>
+            <button type="submit" className={styles.applyFilters}>Apply filters</button>
         </div>
-
-
-
     );
-
-
 }
 
 export default FilterSearchBar;

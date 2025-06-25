@@ -5,7 +5,7 @@
 }
 
 
-.recipe-card {
+.recipeCard {
   container-type: inline-size;
   aspect-ratio: 6 / 5;
   width: 100%;
@@ -19,21 +19,21 @@
   max-height: 100%;
 }
 
-.container-recipe-image-and-icon {
+.containerRecipeImageAndIcon {
   background-color: rgb(179, 179, 179);
   position: relative;
   overflow: hidden;
   flex: 0 0 55%;
 }
 
-.container-recipe-image-and-icon img {
+.containerRecipeImageAndIcon img {
   width: 100%;
   height: 100%;  
   object-fit: cover;
   object-position: center center;
 }
 
-.container-wishlist-icon {
+.containerWishlistIcon {
   position: absolute;
   display: flex;
   top: 6px;
@@ -41,23 +41,24 @@
   height: auto;
 }
 
-.bookmark-icon {
+.bookmarkIcon {
   font-size: 130%;
 }
 
-.container-all-recipe-info {
-  padding: 0px 10px;
-  flex: 1 1 auto;
+.filled {}
+.empty {}
 
+.containerAllRecipeInfo {
+  padding: 0px 10px;
   display: flex;
   flex-flow: column nowrap;
+  flex: 1 1 auto;
 }
 
 .name {
   color: black;
   text-align: left;
   font-size: 6.5cqw;
-
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -68,45 +69,41 @@
   font-size: 4.5cqw;
   line-height: 4.5cqw;
   color: gray;
-
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-
   line-clamp: 3;
 }
 
-
-
-.container-recipe-type-and-ready-in-minutes {
+.containerRecipeTypeAndReadyInMinutes {
   margin-top: auto;
   margin-bottom: 4px;
   padding-top: 3px;
   border-top: 1px dashed gray;
-
   display: flex;
   justify-content: space-between;
-
   font-size: min(5cqw, 18px);
   font-weight: bold;
 }
 
-.container-recipe-type {
+.containerRecipeType {
   display: flex;
   align-items: center;
   gap: 5px;
-
   color: black;
 }
 
-.container-ready-in-minutes {
+.containerReadyInMinutes {
   display: flex;
   align-items: center;
   gap: 5px;
 }
 
-.ready-in-minutes {
+.recipeIcon {}
+.clock {}
+
+.readyInMinutes {
   color: black;
 }
 

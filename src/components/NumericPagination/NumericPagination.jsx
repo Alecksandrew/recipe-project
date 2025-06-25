@@ -1,1 +1,1 @@
-import "./NumericPagination.css"
+import styles from "./NumericPagination.module.css"

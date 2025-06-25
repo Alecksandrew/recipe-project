@@ -1,0 +1,78 @@
+/* Converted all class selectors to camelCase for CSS Modules compatibility. */
+:root {
+    --search-bar-color: black;
+    --search-bar-bg-color: white;    
+    --search-button-bg-color: #2CA849;
+    --first-filter-button-color: black;
+    --first-filter-button-bg-color: rgb(255, 255, 255);
+    --first-filter-button-bg-color-hover: #f5f5f5;
+    --input-search-bg-color: transparent;
+    --general-border-radius: 5px;
+}
+
+.searchBar {
+    background-color: var(--search-bar-bg-color);
+    padding: 6px 6px 6px 12px;
+    height: max(40px, 5vh);
+    border-radius: 5px;
+    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.479);
+    width: clamp(290px, 80vw, 800px);
+    display: flex;
+    gap: clamp(5px, 0.5vw, 16px);
+}
+
+.searchIcon {
+    align-self: center;
+    color: #757575;
+}
+
+.inputSearch {
+    flex: 1 1 60%;
+    min-width: 0;
+    color: var(--search-bar-color);
+    background-color: var(--search-bar-bg-color);
+    border: none;
+}
+
+.inputSearch:focus {
+    outline: none;
+}
+
+.containerFilter {
+    position: relative;
+    display: flex;
+}
+
+.searchButton {
+    background-color: var(--search-button-bg-color);
+    font-weight: bolder;
+    transition: box-shadow 0.5s ease, background-color 0.5s ease;
+}
+
+.searchButton:hover {
+    box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.250);
+}
+
+.firstFilterButton {
+    flex: 1 1 auto;
+    border-radius: var(--general-border-radius);
+    color:var(--first-filter-button-color);
+    background-color: var(--first-filter-button-bg-color);
+    font-weight: bolder;
+    transition: box-shadow 0.5s ease, background-color 0.5s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.firstFilterButton:hover {
+    background-color: var(--first-filter-button-bg-color-hover);
+    box-shadow: inset 0px 0px 3px rgba(0, 0, 0, 0.062);
+}
+
+.searchButton, .containerFilter {
+    flex: 1 1 15%;
+    min-width: 60px;
+    max-width: 200px;
+    border-radius: var(--general-border-radius);
+}

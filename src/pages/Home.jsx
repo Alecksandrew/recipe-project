@@ -1,6 +1,6 @@
 import RecipeCard from '../components/RecipeCard/RecipeCard.jsx';
 
-import "../pages/Home.css";
+import styles from "../pages/Home.module.css";
 import SearchBar from "../components/SearchBar/SearchBar.jsx"
 import { useEffect } from 'react';
 import { useState } from 'react';
@@ -10,7 +10,6 @@ function Home() {
     const navigate = useNavigate();
     const [recipesData, setRecipesData] = useState(null);
 
-    
     useEffect(() => {
             const randomRecipesURL = "https://api.spoonacular.com/recipes/random";
             const randomRecipesParams = new URLSearchParams({
@@ -22,7 +21,6 @@ function Home() {
             .then((response) => response.json())
             .then((data) => {
                     setRecipesData(data.recipes)
-                 
                     })
             .catch((error) => console.log(error))
     }, []);
@@ -32,10 +30,9 @@ function Home() {
     };
     
     function listRecipeCardsWithData() { 
-        if (!recipesData) return <p className='loading-text'>Carregando receitas...</p>;
+        if (!recipesData) return <p className={styles.loadingText}>Carregando receitas...</p>;
         console.log(recipesData);
         return  recipesData.map((recipe) => {
-           
              return <RecipeCard 
                     onClick={() => sendRecipeDataToOtherPage(recipe)}
                     key={recipe.id}
@@ -47,31 +44,26 @@ function Home() {
                     readyInMinutes={recipe.readyInMinutes} 
                     iconColor={"#27AE60"}
                     />
-
-
                 });    
-
     };
-
 
     return(
         <>
-            <main>
-                <h1>Inspiration for your next recipe</h1>
-                <p>Discover thousands tasty recipes and find out the perfect inspiration for each situation</p>
+            <main className={styles.main}>
+                <h1 className={styles.h1}>Inspiration for your next recipe</h1>
+                <p className={styles.mainP}>Discover thousands tasty recipes and find out the perfect inspiration for each situation</p>
                 <SearchBar placeHolder="Search recipes by ingredients, nationalities.."/>
                 <div className="overlay blur shadow"></div>
             </main>
-            <section className="popular-recipes">
-                <h2>Popular Recipes</h2>
-                <div className="recipe-grid-home">
+            <section className={styles.popularRecipes}>
+                <h2 className={styles.h2}>Popular Recipes</h2>
+                <div className={styles.recipeGridHome}>
                     {listRecipeCardsWithData()}
                 </div>
             </section>
         </>
         
     )
-
 }
 
 export default Home;

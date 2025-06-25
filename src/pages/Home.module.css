@@ -2,8 +2,7 @@
   --bg-img-main-content: url("../assets/background-food.jpg");
 }
 
-
-h1 {
+.h1 {
   font-size: 4rem;
   width: 80vw;
   max-width: 600px;
@@ -12,7 +11,7 @@ h1 {
   margin-bottom: 10px;
 }
 
-main {
+.main {
   height: 70vh;
 
   display: flex;
@@ -26,7 +25,7 @@ main {
 
 }
 
-main::before {
+.main::before {
   content: "";
   position: absolute;
   top: 0;
@@ -41,7 +40,7 @@ main::before {
   z-index: -1;
 }
 
-main::after {
+.main::after {
   content: "";
   position: absolute;
 
@@ -53,7 +52,7 @@ main::after {
   z-index: -1;
 }
 
-main > p {
+.mainP {
   font-size: 1.8rem;
   line-height: 2.25rem;
   width: 80vw;
@@ -63,7 +62,7 @@ main > p {
   margin-bottom: 70px;
 }
 
-.recipe-grid-home {
+.recipeGridHome {
   width: 80vw;
   max-width: 1559px; /*min width do grid + todos os gaps - 1 */
   display: grid;
@@ -83,13 +82,13 @@ section {
   padding: 30px 0px;
 }
 
-.popular-recipes > h2 {
+.popularRecipes > .h2 {
   font-size: 2rem;
   text-align: center;
   margin-bottom: 30px;
 }
 
-.loading-text {
+.loadingText {
   margin-top: 50px;
 }
 

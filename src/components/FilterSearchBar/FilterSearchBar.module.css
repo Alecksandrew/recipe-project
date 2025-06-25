@@ -3,9 +3,7 @@
     --filter-button-bg-color: #2CA849;
     --search-bar-bg-color: #f1f1f1;
     --search-bar-container-bg-color: #f1f1f1;
-
 }
-
 
 * {
     box-sizing: border-box;
@@ -13,43 +11,39 @@
     padding: 0;
 }
 
-.filter-search-bar {
+.filterSearchBar {
     max-height: 30vh;
     width: 100%;
     min-width: 10rem;
     overflow: auto;
     position: absolute;
-    top: calc(100% + 6px); /*Altura do pai + padding da search bar*/
+    top: calc(100% + 6px);
     right: 0;
-
     background-color: var(--filter-bg-color);
     padding: 5px;
-
     border-radius: 0px 0px 5px 5px;
 }
 
-
-.filter-search-bar > * {
-
+.filterSearchBar > * {
     margin-left: auto;
     margin-right: auto;
 }
 
-.filter-search-bar::-webkit-scrollbar-track {
+.filterSearchBar::-webkit-scrollbar-track {
    
 }
 
-.checkbox-group {
+.checkboxGroup {
     display: flex;
     flex-flow: column nowrap;
     max-width: 100%;
     margin-top: 20px;
 }
-.checkbox-group label {
+.checkboxGroup label {
     margin-top: 2px;
 }
 
-.checkbox-group label:first-of-type {
+.checkboxGroup label:first-of-type {
     margin-top: 4px;
 }
 
@@ -66,7 +60,7 @@ input[type="checkbox"] {
     flex: 0 0 auto;
 }
 
-.apply-filters {
+.applyFilters {
     display: block;
     margin-top: 10px;
     width: 100%;
@@ -76,7 +70,6 @@ input[type="checkbox"] {
 }
 
 button {
-  
     border: none;
 }
 

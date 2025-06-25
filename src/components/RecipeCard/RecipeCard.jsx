@@ -16,7 +16,7 @@ import { FaBookmark } from "react-icons/fa"; // preenchido
 import { useState } from "react";
 import { Link } from 'react-router-dom';
 
-import "./RecipeCard.css";
+import styles from "./RecipeCard.module.css";
 
 
 const recipeTypesIcons = {
@@ -54,26 +54,26 @@ function RecipeCard({name, alternativeText, image, description, type, readyInMin
   };
 
   return (
-      <div className="recipe-card" onClick={onClick}>
+      <div className={styles.recipeCard} onClick={onClick}>
         
-        <div className="container-recipe-image-and-icon">
-          <span className="container-wishlist-icon" onClick={handleWishlistClick} data-testid = "container-bookmark">
-            { isWishlisted ? <FaBookmark style={{color: "#2CA849"}} className="bookmark-icon filled" data-testid = "bookmark-filled"/> : <FaRegBookmark  className="bookmark-icon empty" data-testid = "bookmark-empty" /> }
+        <div className={styles.containerRecipeImageAndIcon}>
+          <span className={styles.containerWishlistIcon} onClick={handleWishlistClick} data-testid = "container-bookmark">
+            { isWishlisted ? <FaBookmark style={{color: "#2CA849"}} className={`${styles.bookmarkIcon} ${styles.filled}`} data-testid = "bookmark-filled"/> : <FaRegBookmark  className={`${styles.bookmarkIcon} ${styles.empty}`} data-testid = "bookmark-empty" /> }
           </span>
           <img src={image} alt={alternativeText}/>
         </div>
         
-        <div  className="container-all-recipe-info">
-          <h2 className="name">{name}</h2>
-          <p className="description" dangerouslySetInnerHTML={{__html: description}}></p>
-          <div className="container-recipe-type-and-ready-in-minutes">
-            <div className="container-recipe-type">
+        <div  className={styles.containerAllRecipeInfo}>
+          <h2 className={styles.name}>{name}</h2>
+          <p className={styles.description} dangerouslySetInnerHTML={{__html: description}}></p>
+          <div className={styles.containerRecipeTypeAndReadyInMinutes}>
+            <div className={styles.containerRecipeType}>
               {showRecipeTypeAndIcon(type, iconColor)}
               <span>{type}</span>
             </div>
-            <div className="container-ready-in-minutes">
-              <FaRegClock className="recipe-icon clock"  color = {iconColor}/>
-              <time className="ready-in-minutes" dateTime={`PT${readyInMinutes}M`}>{`${readyInMinutes} min`}</time>
+            <div className={styles.containerReadyInMinutes}>
+              <FaRegClock className={`${styles.recipeIcon} ${styles.clock}`}  color = {iconColor}/>
+              <time className={styles.readyInMinutes} dateTime={`PT${readyInMinutes}M`}>{`${readyInMinutes} min`}</time>
             </div>
           </div>
         </div>

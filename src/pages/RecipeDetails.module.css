@@ -3,13 +3,12 @@
     --text-color: rgb(114, 114, 114);
 }
 
-h1 {
+.h1 {
     max-width: unset;
     width: unset;
     text-align: unset;
     color: #2CA849;
     font-size: 3rem;
-
 }
 
 .description {

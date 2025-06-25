@@ -1,5 +1,5 @@
 import DataInColumn from "../components/dataInColumn/dataInColumn";
-import "./RecipeDetails.css"
+import styles from "./RecipeDetails.module.css"
 import { useLocation } from 'react-router-dom';
 
 
@@ -26,8 +26,8 @@ function RecipeDetails() {
 
     return (
         <>
-            <h1>{recipeData.title}</h1>
-            <p className="description" dangerouslySetInnerHTML={{__html: recipeData.summary}}></p>
+            <h1 className={styles.h1}>{recipeData.title}</h1>
+            <p className={styles.description} dangerouslySetInnerHTML={{__html: recipeData.summary}}></p>
             <img src={`${recipeData.image}`} alt={`Imagem do ${recipeData.title}`} />
             <DataInColumn title={"Ingredients"} arrayOptionsKeyValue={organizedIngredients}/>
             <DataInColumn title={"Instructions"} arrayOptionsKeyValue={organizedInstructions}/>
