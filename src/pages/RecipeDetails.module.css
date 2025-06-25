@@ -7,6 +7,7 @@
     width: min(94vw, 650px);
     margin: 0 auto;
     display: grid;
+    padding: 35px 0px;
     grid-auto-rows: auto;
     gap: 15px;
 }
@@ -75,10 +76,10 @@
 
 
 
-/*-------------768px and up------------------*/
+/*!-------------768px and up------------------*/
 @media (min-width: 768px) {
     .containerWholePage {
-        width: min(96vw, 900px);
+        width: min(96vw, 1000px);
         grid-template-columns: 3fr minmax(280px, 1fr);
         grid-template-rows: auto;
 
@@ -103,6 +104,7 @@
 
     .data03 {
         grid-area: 2/2/3/3;
+        align-self: start;
     }
 }
 

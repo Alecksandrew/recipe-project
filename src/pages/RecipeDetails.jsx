@@ -15,6 +15,7 @@ function RecipeDetails() {
 
     const instructionsSteps = recipeData.analyzedInstructions[0].steps;
     const organizedInstructions = instructionsSteps.flatMap(step => {
+        
         if (instructionsSteps.length === 1) {
             const bigStringWithAllSteps = step.step;
             const stepsArray = bigStringWithAllSteps
