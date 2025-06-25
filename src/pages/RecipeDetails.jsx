@@ -25,17 +25,27 @@ function RecipeDetails() {
 ];
 
     return (
-        <>
+        <div className={styles.containerWholePage}>
             <div className={styles.containerMainContent}>
                 <h1 className={styles.h1}>{recipeData.title}</h1>
                 <p className={styles.description} dangerouslySetInnerHTML={{__html: recipeData.summary}}></p>
-                <button>Read More</button>
+                <button className={styles.btnReadMore} >Read More</button>
             </div>
-            <img src={`${recipeData.image}`} alt={`Imagem do ${recipeData.title}`} />
-            <DataInColumn title={"Ingredients"} arrayOptionsKeyValue={organizedIngredients}/>
-            <DataInColumn title={"Instructions"} arrayOptionsKeyValue={organizedInstructions}/>
-            <DataInColumn title={"More infos"} arrayOptionsKeyValue={organizedMoreInfos}/>
-        </>
+            <div className={styles.containerFoodImage}>
+                <img className={styles.foodImage} src={`${recipeData.image}`} alt={`Imagem do ${recipeData.title}`} />
+            </div>
+
+            <div className={styles.data01}>
+                <DataInColumn title={"Ingredients"} arrayOptionsKeyValue={organizedIngredients}/>
+            </div>
+            <div  className={styles.data02}>
+                <DataInColumn title={"Instructions"} arrayOptionsKeyValue={organizedInstructions}/>
+            </div>
+            <div  className={styles.data03}>
+                <DataInColumn title={"More infos"} arrayOptionsKeyValue={organizedMoreInfos}/>
+            </div>
+
+        </div>
 
 
     )
