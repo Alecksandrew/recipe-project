@@ -1,15 +1,10 @@
 :root {
-    --header-bg-color: #2CA849;
-    --menu-options-mobile-bg-color: #2CA849;
-    --hover-menu-option-bg-color: white;
-    --hover-menu-option-color: #2CA849;
     --overlay-menu-bg-color: rgba(0, 0, 0, 0.432);
-    --color-menu-options: white;
 }
 
 header {
     height: clamp(40px, 6vh, 60px);
-    background-color: var(--header-bg-color);
+    background-color: var(--Paleta01);
     font-weight: bold;
 }
 
@@ -70,7 +65,7 @@ header {
     gap: 8px;
 
     font-size: clamp(15px, 2vw, 18px);
-    color: var(--color-menu-options);
+    color: var(--Paleta02);
     text-decoration: none;
 }
 
@@ -85,7 +80,7 @@ header {
     height: 100vh;
     transform: translateX(-100%);
     transition: transform 1s ease-in-out;
-    background-color: var(--menu-options-mobile-bg-color);
+    background-color: var(--Paleta01);
     z-index: 2;
 
 }
@@ -102,13 +97,13 @@ header {
 
 
 .menuOption:hover {
-    background-color: var(--hover-menu-option-bg-color);
+    background-color: var(--Paleta02);
     
 
 }
 
 .menuOption:hover .linkRouter {
-    color: var(--hover-menu-option-color);
+    color: var(--Paleta01);
 }
 
 .menuOption.mobile {

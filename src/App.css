@@ -1,3 +1,9 @@
+:root {
+    --Paleta01: #2CA849;
+    --Paleta02: #FFFFFF;
+    --Paleta03: black;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
