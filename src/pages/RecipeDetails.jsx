@@ -7,6 +7,7 @@ import { useRef, useState, useEffect } from 'react';
 function RecipeDetails() {
     const location = useLocation();
     const recipeData = location.state;
+    console.log(recipeData);
 
     const ingredients = recipeData.extendedIngredients;
     const organizedIngredients = ingredients.map(ingredientInfo => {
@@ -14,18 +15,23 @@ function RecipeDetails() {
     });
 
     const instructionsSteps = recipeData.analyzedInstructions[0].steps;
-    const organizedInstructions = instructionsSteps.flatMap(step => {
-        
-        if (instructionsSteps.length === 1) {
-            const bigStringWithAllSteps = step.step;
-            const stepsArray = bigStringWithAllSteps
-            .split(".")
-            .map(separetedStep => [separetedStep])
 
-            return stepsArray;
+    const organizedInstructions = instructionsSteps.flatMap(step => {
+        const stepText = step.step;
+
+        const isThereMoreThanOneStepTogether = /\.\s*[A-Z]/.test(stepText)
+
+        if (isThereMoreThanOneStepTogether) {
+            const stepsArray = stepText.trim()
+            .split(".")
+            .filter(singleStep => singleStep.trim() !== "")
+            .map(singleStep => singleStep.trim());
+
+            stepsArray.forEach((singleStep, index) => stepsArray[index] = [singleStep])
+            return stepsArray
         }
         
-        return [[step.step.toLowerCase()]]
+        return [[stepText]]
     })
 
 
