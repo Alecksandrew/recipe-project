@@ -39,8 +39,8 @@ function RecipeDetails() {
         ["Dish type", `${recipeData.dishTypes[0]}`],
         ["Ready in:", `${recipeData.readyInMinutes} min`], 
         ["Servings", `${recipeData.servings}`], 
-        ["Nationality", `${recipeData.cuisine}`], 
-        ["Restrictions", `${recipeData.diets.join(" /\n ")}`]
+        ["Nationality", recipeData.cuisine ? `${recipeData.cuisine}` : `Unknown`], 
+        ["Restrictions", recipeData.diets.length > 0 ? `${recipeData.diets.join(" /\n ")}` : <span>None</span>]
 
     ];
 
