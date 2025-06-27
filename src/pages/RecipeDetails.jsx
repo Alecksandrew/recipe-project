@@ -1,13 +1,23 @@
 import DataInColumn from "../components/dataInColumn/dataInColumn";
 import styles from "./RecipeDetails.module.css"
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { useRef, useState, useEffect } from 'react';
 
 
 function RecipeDetails() {
     const location = useLocation();
-    const recipeData = location.state;
-    console.log(recipeData);
+    const [ recipeData, setRecipeData ] = useState(location.state);
+    const { id: recipeID } = useParams();
+
+    useEffect(() => {
+        if(!recipeData) {
+            fetch(`https://api.spoonacular.com/recipes/${recipeID}/information`)
+            .then(response => response.json())
+            .then(data => setRecipeData(data))
+        }
+            
+    }, []);
+
 
     const ingredients = recipeData.extendedIngredients;
     const organizedIngredients = ingredients.map(ingredientInfo => {
