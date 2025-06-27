@@ -1,4 +1,4 @@
-import styles from "./checkboxGroup.module.css";
+import styles from "./CheckboxGroup.module.css";
 
 function CheckboxGroup({ optionsTitle = "Crazy", inputNameOptions = ["optionOne, optionTwo"]/*WRITE AN ARRAY WITH ALL OPTION*/ }) {
     
