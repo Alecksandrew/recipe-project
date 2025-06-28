@@ -1,75 +1,19 @@
 import styles from "./WhatsInYourKitchen.module.css"
-import { FaSearch } from "react-icons/fa";
+
 import { useState, useEffect, useRef } from "react"
-import DropdownIngredients from "../components/DropdownIngredients/DropdownIngredients";
+
 import IngredientCard from "../components/IngredientCard/IngredientCard.jsx"
+import KitchenSearchSection from "../components/KitchenSearchSection/KitchenSearchSection.jsx"
 
 
 
 function WhatsInYourKitchen() {
-    
-    const [autocompleteData, setAutocompleteData] = useState(null);
-    const [searchValue, setSearchValue] = useState(null);
+   
     const [ selectedIngredients, setSelectedIngredients] = useState([]);
-    const [ isLoading, setIsLoading] = useState(false);
 
-    console.log(searchValue)
-    console.log(autocompleteData)
-
-    useEffect(() => {
-        async function autocompleteIngredients() {
-            
-            if(!searchValue || searchValue.trim === "") {
-                setAutocompleteData(null)
-                return;
-            }
-
-            try {
-                setIsLoading(true);
-                const autocompletEndpoint = "https://api.spoonacular.com/food/ingredients/autocomplete"
-                const params = new URLSearchParams({
-                    query: searchValue,
-                    apiKey: "6b0d610fe5cf4296b3dd9023ae8150fb",
-                    number: 3
-                })
-            
-                const response = await fetch(`${autocompletEndpoint}?${params.toString()}`)
-                const data = await response.json();
-                setAutocompleteData(data);
-            }
-            catch(error) {
-                console.error(error)
-                setAutocompleteData(null) 
-            }
-            finally {
-                setIsLoading(false)
-            }
-            
-        }
-
-        autocompleteIngredients()
-        
-    }, [searchValue])
+    const [ tolerance, setTolerance] = useState(0);
 
 
-    function listAutocompletedIngredients(data) {
-        if(!data) return
-
-        return data.map((ingredient, index) => {
-                    if(!searchValue || searchValue.trim() ==="") return
-                    
-                    return <li key={index}>
-                                <DropdownIngredients
-                                imageURL={`https://spoonacular.com/cdn/ingredients_250x250/${ingredient.image}`}
-                                imageAlt={ingredient.name}
-                                ingredientName={ingredient.name}
-                                onSelect={makeIngredientBecomeSelected}
-                                />
-                            </li>
-                            
-
-                })
-    }
 
     function makeIngredientBecomeSelected(ingredient) {
         setSelectedIngredients( prevSelected => [...prevSelected, ingredient])
@@ -96,30 +40,33 @@ function WhatsInYourKitchen() {
 
 
 
+    
+    async function fetchRecipesWithSelectedIngredients() {
+        if(!selectedIngredients.lenght === 0) return;
+        const selectedIngredientsString = selectedIngredients.map(ingredient => ingredient.join(","))
+
+        const findByIngredientURL = "https://api.spoonacular.com/recipes/findByIngredients"
+        const params = new URLSearchParams({
+            apiKey: "6b0d610fe5cf4296b3dd9023ae8150fb",
+            ingredients: selectedIngredientsString,
+            ranking: 2,
+            ignorePantry: false,
+        })
+        
+
+        const response = await fetch(`${findByIngredientURL}?${params.toString()}`)
+        const data = await response.json();
+
+        
+    }
+
 
     return(
         <>
             <h1 className={styles.titlePage}>Find out awesome recipes with ingredients you have in your kitchen!</h1>
             <form method="get" className={styles.form}>
-                <section className={styles.sectionAutocomplet}>
-                    <div className={styles.searchBar}>
-                        <FaSearch className={styles.searchIcon}/>
-                        <input
-                        placeholder="Search your ingredients"
-                        type="search"
-                        id="ingredientsName"
-                        name="ingredientsName"
-                        className={styles.inputSearch}
-                        autoComplete="off"
-                        onChange={(e) => setSearchValue(e.target.value)}
-                        />
-                    </div>
-                    <ul className={`${styles.containerAutocompletedIngredients} ${!searchValue || searchValue.trim() === "" ? styles.hidden : ""}`}>
-                        {searchValue && autocompleteData && autocompleteData.length === 0 && !isLoading ? <li key={"notFound"} id={styles.notFound}>Ingredient not found!</li> : 
-                        listAutocompletedIngredients(autocompleteData)}
-                    </ul>
-
-                </section>
+                <KitchenSearchSection onIngredientSelect={makeIngredientBecomeSelected}/>
+                
                 <section className={styles.section}>
                     <h2>Selected ingredients</h2>
                     <ul className={styles.selectedIngredientsContainer}>
@@ -137,7 +84,7 @@ function WhatsInYourKitchen() {
                         <input type="range" min={0} max={6} step={1} id="tolerance" name="tolerance"/>
                     </div>
                 </section>
-                <button type="submit">Search recipes</button>
+                <button type="submit" onClick={fetchRecipesWithSelectedIngredients}>Search recipes</button>
             </form>
             <h2>Selected recipes</h2>
         </>

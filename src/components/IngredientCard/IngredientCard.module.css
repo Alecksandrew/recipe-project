@@ -6,9 +6,11 @@
     aspect-ratio: 4/5;
     width: 100%;
     border-radius: var(--small-border-radius);
+    outline: 1px solid var(--Paleta03);
     overflow: hidden;
     height: 100%;
     flex-flow: column nowrap;
+    background-color: var(--Paleta02);
 }
 
 .closeIcon {
@@ -41,4 +43,5 @@
     padding: 10px 0px;
     text-align: center;
     font-weight: bold;
+    color: var(--Paleta01);
 }
