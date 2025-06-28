@@ -10,7 +10,7 @@
     background-color: var(--Paleta02);
     padding: 5px;
     border-radius: 0px 0px 5px 5px;
-    z-index: 500;
+    z-index: 1;
 }
 
 .filterSearchBar > * {
@@ -18,35 +18,8 @@
     margin-right: auto;
 }
 
-.filterSearchBar::-webkit-scrollbar-track {
-   
-}
-
-.checkboxGroup {
-    display: flex;
-    flex-flow: column nowrap;
-    max-width: 100%;
-    margin-top: 20px;
-}
-.checkboxGroup label {
-    margin-top: 2px;
-}
-
-.checkboxGroup label:first-of-type {
-    margin-top: 4px;
-}
-
-legend {
-    font-weight: bold;
-}
-
-label {
-    display: flex;
-    align-items: stretch;
-}
-
-input[type="checkbox"] {
-    flex: 0 0 auto;
+.allCheckboxGroups > * {
+    margin-bottom: 1rem;
 }
 
 .applyFilters {
@@ -54,7 +27,7 @@ input[type="checkbox"] {
     margin-top: 10px;
     width: 100%;
     padding: 5px;
-    border-radius: 5px;
+    border-radius: var(--small-border-radius);
     background-color: var(--Paleta01);
 }
 

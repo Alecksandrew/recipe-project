@@ -6,14 +6,19 @@
 
 legend {
     color: var(--Paleta01);
-    font-size: clamp(18px, 4vw, 24px);
+    font-size: min(4cqw, 1.4rem);
+    margin-bottom: 0.5rem;
+    font-weight: bold;
 }
 
 label {
     color: var(--Paleta03);
     font-weight: 500;
-    font-size: clamp(12px, 3vw, 14px);
+    font-size: min(2.5cqw, 0.9rem);
     line-height: 1.2rem;
+    display: flex;
+    align-items: stretch;
+
 }
 
 input[type="checkbox"] {
@@ -21,4 +26,5 @@ input[type="checkbox"] {
     width: 10%;
     margin-right:6px;
     accent-color: var(--Paleta01) ;
+  
 }
