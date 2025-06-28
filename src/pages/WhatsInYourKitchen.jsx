@@ -84,13 +84,14 @@ function WhatsInYourKitchen() {
                 < IngredientCard 
                 name={selectedIngredient.name} 
                 image={selectedIngredient.image}
+                onRemove={() => removeIngredientsFromSelectedList(selectedIngredient)}
                 />
             </li>
         })
     }
 
-    function removeIngredientsFromSelectedList(ingredient) {
-        
+    function removeIngredientsFromSelectedList(ingredientObjToRemove) {
+        setSelectedIngredients(prevSelectedIngredients => prevSelectedIngredients.filter(ingredientObj => ingredientObj.name !== ingredientObjToRemove.name))
     }
 
 
