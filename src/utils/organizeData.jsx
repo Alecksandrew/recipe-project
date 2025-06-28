@@ -1,4 +1,12 @@
-export const useOrganizeData = function(recipeData){
+export const organizeData = function(recipeData){
+
+    if (!recipeData) {
+        return {    
+                organizedIngredients: [], 
+                organizedInstructions: [], 
+                organizedMoreInfos: [] 
+                };
+    }
 
     const ingredients = recipeData.extendedIngredients;
     const organizedIngredients = ingredients.map(ingredientInfo => {
