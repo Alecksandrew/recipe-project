@@ -2,29 +2,15 @@ import DataInColumn from "../components/dataInColumn/dataInColumn";
 import styles from "./RecipeDetails.module.css"
 import { useLocation, useParams } from 'react-router-dom';
 import { useRef, useState, useEffect } from 'react';
+import { useFetchRecipeDetailsByID } from "../hooks/useFetchDataByID"; 
 import ExpandableDescription from "../components/ExpandableDescription/ExpandableDescription";
 
 
 function RecipeDetails() {
-    const location = useLocation();
-    const [ recipeData, setRecipeData ] = useState(location.state);
-    console.log(location.state)
-    const { id: recipeID } = useParams();
+    
+    const { recipeData, isLoading } = useFetchRecipeDetailsByID();
 
-    useEffect(() => {
-        if(!recipeData) {
-            fetch(`https://api.spoonacular.com/recipes/${recipeID}/information?apiKey=6b0d610fe5cf4296b3dd9023ae8150fb`)
-            .then(response => response.json())
-            .then(data => setRecipeData(data))
-            .catch(error => {
-                console.error("Error fetching recipe", error);
-                setRecipeData(null);
-            })
-        }
-            
-    }, []);
-
-    if (!recipeData) {
+    if (isLoading) {
         return <div>Loading...</div>;
     }
 
@@ -62,12 +48,6 @@ function RecipeDetails() {
         ["Restrictions", recipeData.diets.length > 0 ? `${recipeData.diets.join(" /\n ")}` : <span>None</span>]
 
     ];
-
-
-    // Logic to show more or less of the description
-   
-
-
 
     return (
         <div className={styles.containerWholePage}>
