@@ -1,0 +1,58 @@
+
+.sectionAutocomplet {
+    width: clamp(290px, 80vw, 700px);
+    margin: 0 auto;
+    position: relative;
+}
+
+.searchBar {
+    background-color: var(--Paleta02);
+    padding: 6px 6px 6px 12px;
+    height: max(40px, 5vh);
+    border-radius: 5px;
+    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.479);
+    width: 100%;
+    display: flex;
+    gap: clamp(5px, 0.5vw, 16px);
+}
+
+.searchIcon {
+    align-self: center;
+    color: var(--Paleta03);
+}
+
+.inputSearch {
+    min-width: 0;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    color: var(--Paleta03);
+}
+
+.inputSearch:focus {
+    outline: none;
+}
+
+.containerAutocompletedIngredients {
+    background-color: var(--Paleta02);
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 10px;
+    padding: 10px 0px;
+    list-style-type: none;
+    outline: 1px solid var(--Paleta03);
+    border-radius: var(--small-border-radius);
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+}
+
+#notFound {
+    text-align: center;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.hidden {
+   display: none;
+}

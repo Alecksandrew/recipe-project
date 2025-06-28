@@ -1,0 +1,29 @@
+:root {
+    --body-width: 80vw;
+
+    color: black;
+}
+
+.titlePage {
+    text-align: center;
+    width: var(--body-width);
+    margin: 0 auto;
+}
+
+.form {
+    display: flex;
+    width: var(--body-width);
+    margin: 0 auto;
+    flex-flow: column nowrap;
+}
+
+.containerH2SelectedRecipes {
+    width: var(--body-width);
+    margin: 0 auto;
+}
+
+
+
+
+/*--------------------GENERAL CLASSES-------------*/
+

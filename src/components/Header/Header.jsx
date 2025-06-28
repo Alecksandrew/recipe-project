@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 
 /*logoFile -> You can use SVG tag or image url*/
 
-function Header({ objectLogo = {logoFile: undefined, altText:"logo"}, arrayMenuOptions = [{name:"Home", icon: <AiOutlineHome />, link: "/"}, {name:"What is there in your fridge?", icon: <TbFridge />, link: "whats-in-fridge"}, {name:"Wishlist", icon: <FaRegHeart />, link: "wishlist"}]}) {
+function Header({ objectLogo = {logoFile: undefined, altText:"logo"}, arrayMenuOptions = [{name:"Home", icon: <AiOutlineHome />, link: "/"}, {name:"What is there in your kitchen?", icon: <TbFridge />, link: "whats-there-in-your-kitchen"}, {name:"Wishlist", icon: <FaRegHeart />, link: "wishlist"}]}) {
     
     /*=============== CODE ABOUT LOGO =================================*/
     const { logoFile, altText } = objectLogo;
