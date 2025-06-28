@@ -10,7 +10,7 @@ function WhatsInYourKitchen() {
     
     const [autocompleteData, setAutocompleteData] = useState(null);
     const [searchValue, setSearchValue] = useState(null);
-    const [ selectedIngredients, setSelectedIngredients] = useState(null);
+    const [ selectedIngredients, setSelectedIngredients] = useState([]);
     const [ isLoading, setIsLoading] = useState(false);
 
     console.log(searchValue)
@@ -62,21 +62,35 @@ function WhatsInYourKitchen() {
                                 <DropdownIngredients
                                 imageURL={`https://spoonacular.com/cdn/ingredients_250x250/${ingredient.image}`}
                                 imageAlt={ingredient.name}
-                                ingredientName={ingredient.name}/>
+                                ingredientName={ingredient.name}
+                                onSelect={makeIngredientBecomeSelected}
+                                />
                             </li>
                             
 
                 })
     }
 
+    function makeIngredientBecomeSelected(ingredient) {
+        setSelectedIngredients( prevSelected => [...prevSelected, ingredient])
+    }
+
+
     function listSelectedIngredients(selectedIngredients) {
         if(!selectedIngredients) return
 
-        return selectedIngredients.map((selectedIngredients, index) => {
+        return selectedIngredients.map((selectedIngredient, index) => {
             return <li key={index}>
-                
+                < IngredientCard 
+                name={selectedIngredient.name} 
+                image={selectedIngredient.image}
+                />
             </li>
         })
+    }
+
+    function removeIngredientsFromSelectedList(ingredient) {
+        
     }
 
 
@@ -107,8 +121,8 @@ function WhatsInYourKitchen() {
                 </section>
                 <section className={styles.section}>
                     <h2>Selected ingredients</h2>
-                    <ul style={styles.selectedIngredientsContainer}>
-                        <li> <IngredientCard/> </li>
+                    <ul className={styles.selectedIngredientsContainer}>
+                        {listSelectedIngredients(selectedIngredients)}
                         
                     </ul>
                 </section>
