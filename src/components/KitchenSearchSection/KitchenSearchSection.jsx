@@ -14,7 +14,7 @@ function KitchenSearchSection({onIngredientSelect}) {
     useEffect(() => {
         async function autocompleteIngredients() {
             
-            if(!searchValue || searchValue.trim === "") {
+            if(!searchValue || searchValue.trim() === "") {
                 setAutocompleteData(null)
                 return;
             }

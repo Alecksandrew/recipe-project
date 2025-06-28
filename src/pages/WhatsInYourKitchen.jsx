@@ -2,36 +2,19 @@ import styles from "./WhatsInYourKitchen.module.css"
 
 import { useState, useEffect, useRef } from "react"
 
-import IngredientCard from "../components/IngredientCard/IngredientCard.jsx"
+
 import KitchenSearchSection from "../components/KitchenSearchSection/KitchenSearchSection.jsx"
+import SelectedIngredientsSection from "../components/SelectedIngredientsSection/SelectedIngredientsSection.jsx"
 
 
 
 function WhatsInYourKitchen() {
    
     const [ selectedIngredients, setSelectedIngredients] = useState([]);
-
     const [ tolerance, setTolerance] = useState(0);
-
-
 
     function makeIngredientBecomeSelected(ingredient) {
         setSelectedIngredients( prevSelected => [...prevSelected, ingredient])
-    }
-
-
-    function listSelectedIngredients(selectedIngredients) {
-        if(!selectedIngredients) return
-
-        return selectedIngredients.map((selectedIngredient, index) => {
-            return <li key={index}>
-                < IngredientCard 
-                name={selectedIngredient.name} 
-                image={selectedIngredient.image}
-                onRemove={() => removeIngredientsFromSelectedList(selectedIngredient)}
-                />
-            </li>
-        })
     }
 
     function removeIngredientsFromSelectedList(ingredientObjToRemove) {
@@ -39,11 +22,9 @@ function WhatsInYourKitchen() {
     }
 
 
-
-    
     async function fetchRecipesWithSelectedIngredients() {
-        if(!selectedIngredients.lenght === 0) return;
-        const selectedIngredientsString = selectedIngredients.map(ingredient => ingredient.join(","))
+        if(selectedIngredients.length === 0) return;
+        const selectedIngredientsString = selectedIngredients.map(ingredient => ingredient.name).join(",");
 
         const findByIngredientURL = "https://api.spoonacular.com/recipes/findByIngredients"
         const params = new URLSearchParams({
@@ -66,14 +47,9 @@ function WhatsInYourKitchen() {
             <h1 className={styles.titlePage}>Find out awesome recipes with ingredients you have in your kitchen!</h1>
             <form method="get" className={styles.form}>
                 <KitchenSearchSection onIngredientSelect={makeIngredientBecomeSelected}/>
+                <SelectedIngredientsSection selectedIngredients={selectedIngredients} removeFromSelectedOnes={removeIngredientsFromSelectedList}/>
                 
-                <section className={styles.section}>
-                    <h2>Selected ingredients</h2>
-                    <ul className={styles.selectedIngredientsContainer}>
-                        {listSelectedIngredients(selectedIngredients)}
-                        
-                    </ul>
-                </section>
+                
                 <section className={styles.section}>
                     <h2>Tolerance Control</h2>
                     <p>It will show recipes with some ingredients you dont have in your kitchen</p>

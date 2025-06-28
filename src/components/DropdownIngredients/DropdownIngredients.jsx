@@ -11,6 +11,7 @@ function DropdownIngredients({imageURL, imageAlt, ingredientName = "Alho de Aimp
 
         if(onSelect) {
             onSelect({name: ingredientName, image: imageURL,})
+            console.log
         }
     }
 
@@ -20,7 +21,7 @@ function DropdownIngredients({imageURL, imageAlt, ingredientName = "Alho de Aimp
                 <img src={imageURL} alt={imageAlt} />
             </div>
             <h3 className={styles.ingredientName}>{ingredientName}</h3>
-            <button type="button" className={styles.btnSelect} onClick={handleButtonClick} onSelect>Select ingredient</button>
+            <button type="button" className={styles.btnSelect} onClick={handleButtonClick}>Select ingredient</button>
         </div>
     )
 }

@@ -21,15 +21,5 @@
 }
 
 
-.selectedIngredientsContainer {
-    list-style-type: none;
-    display: grid;
-    width: 80vw;
-    margin: 0 auto;
-    gap: 15px;
-    grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
-}
-
-
 /*--------------------GENERAL CLASSES-------------*/
 
