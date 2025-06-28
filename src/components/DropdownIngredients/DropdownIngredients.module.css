@@ -1,0 +1,29 @@
+
+.containerIngredient {
+    display: flex;
+    background-color: red;
+
+    height: 12vh;
+
+}
+
+.containerImage {
+    background-color: gray;
+
+    width: 40%;
+
+}
+
+.ingredientName {
+    width: 40%;
+    padding: 1% 0px 0px 1%;
+}
+
+.btnSelect {
+    margin-left: auto;
+    align-self: center;
+    padding: 1%;
+    border-radius: var(--small-border-radius);
+    font-weight: bold;
+    background-color: var(--Paleta01);
+}

@@ -1,10 +1,13 @@
 import styles from "./WhatsInYourKitchen.module.css"
 import { FaSearch } from "react-icons/fa";
+import DropdownIngredients from "../components/DropdownIngredients/DropdownIngredients";
 
 
 
 function WhatsInYourKitchen({placeholderSearch}) {
 
+
+    
 
     return(
         <>
@@ -16,7 +19,9 @@ function WhatsInYourKitchen({placeholderSearch}) {
                     type="search"
                     id="ingredientsName"
                     name="ingredientsName"
-                    className={styles.inputSearch}/>
+                    className={styles.inputSearch}
+                    autoComplete="off"
+                    />
                 </section>
                 <section className={styles.section}>
                     <h2>Selected ingredients</h2>
@@ -37,7 +42,7 @@ function WhatsInYourKitchen({placeholderSearch}) {
                 <button type="submit">Search recipes</button>
             </form>
             <h1>Selected recipes</h1>
-           
+           <DropdownIngredients/>
             
         </>
     )
