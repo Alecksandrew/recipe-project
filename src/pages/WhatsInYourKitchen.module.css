@@ -1,24 +1,25 @@
+:root {
+    --body-width: 80vw;
+
+    color: black;
+}
 
 .titlePage {
     text-align: center;
-    width: 80vw;
+    width: var(--body-width);
     margin: 0 auto;
 }
 
 .form {
     display: flex;
+    width: var(--body-width);
+    margin: 0 auto;
     flex-flow: column nowrap;
 }
 
-:root {
-    color: black;
-}
 
-.toleranceContainer {
-    display: flex;
-    align-items: center;
 
-}
+
 
 
 /*--------------------GENERAL CLASSES-------------*/
