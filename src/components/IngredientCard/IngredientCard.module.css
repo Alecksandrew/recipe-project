@@ -1,0 +1,44 @@
+
+
+.cardContainer {
+    display: flex;
+    position: relative;
+    aspect-ratio: 4/5;
+    width: 100%;
+    border-radius: var(--small-border-radius);
+    overflow: hidden;
+    height: 100%;
+    flex-flow: column nowrap;
+}
+
+.closeIcon {
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    font-size: 200%;
+    color: var(--Paleta01);
+}
+
+.closeIcon:hover {
+    color: #FF2C2C;
+}
+
+.containerImage {
+    background-color: rgb(58, 58, 58)(41, 33, 33);
+    border-radius: var(--small-border-radius);
+    overflow: hidden;
+    flex: 1;
+}
+
+.containerImage img {
+    width: 100%;
+    height: 100%;
+    object-position: center center;
+    object-fit: contain;
+}
+
+.cardContainer p {
+    padding: 10px 0px;
+    text-align: center;
+    font-weight: bold;
+}

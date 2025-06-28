@@ -1,4 +1,10 @@
 
+.titlePage {
+    text-align: center;
+    width: 80vw;
+    margin: 0 auto;
+}
+
 .form {
     display: flex;
     flex-flow: column nowrap;
@@ -7,6 +13,7 @@
 .sectionAutocomplet {
     width: clamp(290px, 80vw, 700px);
     margin: 0 auto;
+    position: relative;
 }
 
 .searchBar {
@@ -46,6 +53,8 @@
     list-style-type: none;
     outline: 1px solid var(--Paleta03);
     border-radius: var(--small-border-radius);
+    position: absolute;
+    width: 100%;
 }
 
 

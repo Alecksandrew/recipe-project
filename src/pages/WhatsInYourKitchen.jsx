@@ -2,10 +2,11 @@ import styles from "./WhatsInYourKitchen.module.css"
 import { FaSearch } from "react-icons/fa";
 import { useState, useEffect, useRef } from "react"
 import DropdownIngredients from "../components/DropdownIngredients/DropdownIngredients";
+import IngredientCard from "../components/IngredientCard/IngredientCard.jsx"
 
 
 
-function WhatsInYourKitchen({placeholderSearch}) {
+function WhatsInYourKitchen() {
     
     const [autocompleteData, setAutocompleteData] = useState(null);
     const [searchValue, setSearchValue] = useState(null);
@@ -52,7 +53,7 @@ function WhatsInYourKitchen({placeholderSearch}) {
 
 
     function listAutocompletedIngredients(data) {
-        if(!data) return null
+        if(!data) return
 
         return data.map((ingredient, index) => {
                     if(!searchValue || searchValue.trim() ==="") return
@@ -68,17 +69,28 @@ function WhatsInYourKitchen({placeholderSearch}) {
                 })
     }
 
+    function listSelectedIngredients(selectedIngredients) {
+        if(!selectedIngredients) return
+
+        return selectedIngredients.map((selectedIngredients, index) => {
+            return <li key={index}>
+                
+            </li>
+        })
+    }
+
 
 
 
     return(
         <>
+            <h1 className={styles.titlePage}>Find out awesome recipes with ingredients you have in your kitchen!</h1>
             <form method="get" className={styles.form}>
                 <section className={styles.sectionAutocomplet}>
                     <div className={styles.searchBar}>
                         <FaSearch className={styles.searchIcon}/>
                         <input
-                        placeholder={placeholderSearch}
+                        placeholder="Search your ingredients"
                         type="search"
                         id="ingredientsName"
                         name="ingredientsName"
@@ -87,15 +99,16 @@ function WhatsInYourKitchen({placeholderSearch}) {
                         onChange={(e) => setSearchValue(e.target.value)}
                         />
                     </div>
-                        <ul className={`${styles.containerAutocompletedIngredients} ${!searchValue || searchValue.trim() === "" ? styles.hidden : ""}`}>
-                            {searchValue && autocompleteData && autocompleteData.length === 0 && !isLoading ? <li key={"notFound"} id={styles.notFound}>Ingredient not found!</li> : 
-                            listAutocompletedIngredients(autocompleteData)}
-                        </ul>
+                    <ul className={`${styles.containerAutocompletedIngredients} ${!searchValue || searchValue.trim() === "" ? styles.hidden : ""}`}>
+                        {searchValue && autocompleteData && autocompleteData.length === 0 && !isLoading ? <li key={"notFound"} id={styles.notFound}>Ingredient not found!</li> : 
+                        listAutocompletedIngredients(autocompleteData)}
+                    </ul>
 
                 </section>
                 <section className={styles.section}>
                     <h2>Selected ingredients</h2>
                     <ul style={styles.selectedIngredientsContainer}>
+                        <li> <IngredientCard/> </li>
                         
                     </ul>
                 </section>
@@ -111,7 +124,7 @@ function WhatsInYourKitchen({placeholderSearch}) {
                 </section>
                 <button type="submit">Search recipes</button>
             </form>
-            <h1>Selected recipes</h1>
+            <h2>Selected recipes</h2>
         </>
     )
 
