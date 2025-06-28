@@ -6,10 +6,10 @@ function CheckboxGroup({ optionsTitle = "Crazy", inputNameOptions = ["optionOne,
 
     return (
         <fieldset className={styles.checkboxGroup}>
-            <legend>{optionsTitle}</legend>
+            <legend className={styles.legend}>{optionsTitle}</legend>
             { inputNameOptions.map((option) => {
                 return (
-                <label key={option}>
+                <label className={styles.label} key={option}>
                     <input type="checkbox" name={nameAttribute} value={option}/>
                     {option}
                 </label>

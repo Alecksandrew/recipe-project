@@ -4,14 +4,14 @@
     border: none;
 }
 
-legend {
+.legend {
     color: var(--Paleta01);
     font-size: min(4cqw, 1.4rem);
     margin-bottom: 0.5rem;
     font-weight: bold;
 }
 
-label {
+.label {
     color: var(--Paleta03);
     font-weight: 500;
     font-size: min(2.5cqw, 0.9rem);

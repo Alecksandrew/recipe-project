@@ -1,0 +1,45 @@
+.form {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+section {
+    background-color: red;
+}
+
+.searchBar {
+    background-color: var(--Paleta02);
+    padding: 6px 6px 6px 12px;
+    height: max(40px, 5vh);
+    border-radius: 5px;
+    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.479);
+    width: clamp(290px, 80vw, 800px);
+    display: flex;
+    gap: clamp(5px, 0.5vw, 16px);
+}
+
+.searchIcon {
+    align-self: center;
+    color: var(--Paleta03);
+}
+
+.inputSearch {
+    flex: 1 1 60%;
+    min-width: 0;
+    background-color: transparent;
+    border: none;
+}
+
+.inputSearch:focus {
+    outline: none;
+}
+
+:root {
+    color: black;
+}
+
+.toleranceContainer {
+    display: flex;
+    align-items: center;
+
+}
