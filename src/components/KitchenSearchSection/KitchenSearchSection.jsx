@@ -48,7 +48,7 @@ function KitchenSearchSection({onIngredientSelect}) {
 
 
     function listAutocompletedIngredients(data) {
-        if(!data) return
+        if(!data || !Array.isArray(data)) return
 
         return data.map((ingredient, index) => {
                     if(!searchValue || searchValue.trim() ==="") return
