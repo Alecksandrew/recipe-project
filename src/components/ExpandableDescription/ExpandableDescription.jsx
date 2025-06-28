@@ -13,22 +13,13 @@ function ExpandableDescription({description, descriptionClassName, btnClassName}
     }, []);
 
     function handleReadMoreClick() {
-        if (!isExpanded) {
-            readMoreButton.current.innerText = "Read Less";
-            descriptionTag.current.className = `${descriptionClassName} ${styles.expanded}`
-        }
-        else {
-            readMoreButton.current.innerText = "Read More";
-            descriptionTag.current.className = `${descriptionClassName} ${styles.collapsed}`
-        }
-
         setIsExpanded(!isExpanded) 
     }
 
     return(
         <>
-            <p className={descriptionClassName} dangerouslySetInnerHTML={{__html: description}} ref={descriptionTag}></p>
-            <button className={btnClassName} ref={readMoreButton} onClick={handleReadMoreClick}>Read More</button>
+            <p className={`${descriptionClassName} ${isExpanded ? styles.expanded : styles.collapsed}`} dangerouslySetInnerHTML={{__html: description}} ref={descriptionTag}></p>
+            <button className={btnClassName} ref={readMoreButton} onClick={handleReadMoreClick}>{isExpanded ? "Read Less" : "Read More"}</button>
         </>
     )
 
