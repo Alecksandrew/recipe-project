@@ -2,29 +2,38 @@ import DataInColumn from "../components/dataInColumn/dataInColumn";
 import styles from "./RecipeDetails.module.css"
 import { useLocation, useParams } from 'react-router-dom';
 import { useRef, useState, useEffect } from 'react';
+import ExpandableDescription from "../components/ExpandableDescription/ExpandableDescription";
 
 
 function RecipeDetails() {
     const location = useLocation();
     const [ recipeData, setRecipeData ] = useState(location.state);
+    console.log(location.state)
     const { id: recipeID } = useParams();
 
     useEffect(() => {
         if(!recipeData) {
-            fetch(`https://api.spoonacular.com/recipes/${recipeID}/information`)
+            fetch(`https://api.spoonacular.com/recipes/${recipeID}/information?apiKey=6b0d610fe5cf4296b3dd9023ae8150fb`)
             .then(response => response.json())
             .then(data => setRecipeData(data))
+            .catch(error => {
+                console.error("Error fetching recipe", error);
+                setRecipeData(null);
+            })
         }
             
     }, []);
 
+    if (!recipeData) {
+        return <div>Loading...</div>;
+    }
 
     const ingredients = recipeData.extendedIngredients;
     const organizedIngredients = ingredients.map(ingredientInfo => {
         return [ingredientInfo.original.toLowerCase()]
     });
 
-    const instructionsSteps = recipeData.analyzedInstructions[0].steps;
+    const instructionsSteps = recipeData?.analyzedInstructions?.[0]?.steps || [] ;
 
     const organizedInstructions = instructionsSteps.flatMap(step => {
         const stepText = step.step;
@@ -56,49 +65,19 @@ function RecipeDetails() {
 
 
     // Logic to show more or less of the description
-    const readMoreButton = useRef(null);
-    const descriptionTag = useRef(null);
-    const [ isExpanded, setIsExpanded ] = useState(false);
+   
 
-    useEffect(() => {
-        const isOverflowing = descriptionTag.current.scrollHeight > descriptionTag.current.clientHeight;
-        
-        isOverflowing ? readMoreButton.current.style.display = "block" : readMoreButton.current.style.display = "none";
-    }, []);
 
-    function handleReadMoreClick() {
-        if (!isExpanded) {
-            readMoreButton.current.innerText = "Read Less";
-            descriptionTag.current.style.cssText = `
-                display: block;
-                -webkit-line-clamp: unset;
-                line-clamp: unset;
-                -webkit-box-orient: unset;
-                overflow: visible;
-                text-overflow: unset;
-            `;
-        }
-        else {
-            readMoreButton.current.innerText = "Read More";
-            descriptionTag.current.style.cssText = `
-                display :-webkit-box;
-                -webkit-line-clamp: 3;
-                line-clamp: 3;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            `;
-        }
-
-        setIsExpanded(!isExpanded) 
-    }
 
     return (
         <div className={styles.containerWholePage}>
             <div className={styles.containerMainContent}>
                 <h1 className={styles.h1}>{recipeData.title}</h1>
-                <p className={styles.description} dangerouslySetInnerHTML={{__html: recipeData.summary}} ref={descriptionTag}></p>
-                <button className={styles.btnReadMore} ref={readMoreButton} onClick={handleReadMoreClick}>Read More</button>
+                <ExpandableDescription 
+                description={recipeData.summary}
+                descriptionClassName={styles.description}
+                btnClassName={styles.btnReadMore}
+                />
             </div>
             <div className={styles.containerFoodImage}>
                 <img className={styles.foodImage} src={`${recipeData.image}`} alt={`Imagem do ${recipeData.title}`} />
