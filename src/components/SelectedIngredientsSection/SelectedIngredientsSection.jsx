@@ -1,7 +1,7 @@
 import styles from "./SelectedIngredientsSection.module.css"
 import IngredientCard from "../IngredientCard/IngredientCard"
 
-function SelectedIngredientsSection({selectedIngredients, removeFromSelectedOnes}) {
+function SelectedIngredientsSection({selectedIngredients, removeFromSelectedOnes, classNameFromParent}) {
      
     function listSelectedIngredients(selectedIngredients) {
         if(!selectedIngredients) return
@@ -20,7 +20,7 @@ function SelectedIngredientsSection({selectedIngredients, removeFromSelectedOnes
     
     
     return(
-        <section className={styles.section}>
+        <section className={`${styles.section} ${classNameFromParent}`}>
             <h2>Selected ingredients</h2>
             <ul className={styles.selectedIngredientsContainer}>
                 {listSelectedIngredients(selectedIngredients)}

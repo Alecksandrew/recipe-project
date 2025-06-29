@@ -88,7 +88,7 @@ function WhatsInYourKitchen() {
     }
 
     function listSelectedRecipes() { 
-        if (!hasDetailedRecipes) return <p className={styles.loadingText}>Carregando receitas...</p>;
+        if (!hasDetailedRecipes) return <p className={styles.loadingText}>Select some ingredients and hit the button "Search Recipe"!</p>;
 
         return  selectedRecipes.map((selectedRecipe) => {
                     return <RecipeCard 
@@ -105,20 +105,32 @@ function WhatsInYourKitchen() {
                 });
     }
 
+    function ModifyTolerance(e) {
+        setTolerance(e.target.value)
+    }
+
     return(
         <>
             <h1 className={styles.titlePage}>Find out awesome recipes with ingredients you have in your kitchen!</h1>
             <form method="get" className={styles.form}>
                 <KitchenSearchSection 
                 onIngredientSelect={makeIngredientBecomeSelected}
+                classNameFromParent={styles.searchSection}
                 />
                 <SelectedIngredientsSection 
                 selectedIngredients={selectedIngredients} 
                 removeFromSelectedOnes={removeIngredientsFromSelectedList}
+                classNameFromParent={styles.selectedIngredientsSection}
                 />
-                <ToleranceSection />
+                <ToleranceSection 
+                classNameFromParent={styles.toleranceSection}
+                tolerance={tolerance}
+                handleTolerance={ModifyTolerance}/>
                
-                <button type="submit" onClick={fetchRecipesWithSelectedIngredients}>Search recipes</button>
+                <button 
+                type="submit" 
+                onClick={fetchRecipesWithSelectedIngredients} 
+                className={styles.btnSubmit}>Search recipes</button>
             </form>
             <section className={styles.containerH2SelectedRecipes}>
                 <h2>Selected recipes</h2>

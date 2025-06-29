@@ -1,5 +1,5 @@
 :root {
-    --body-width: 80vw;
+    --body-width: min(1200px, 80vw);
 
     color: black;
 }
@@ -7,23 +7,89 @@
 .titlePage {
     text-align: center;
     width: var(--body-width);
+    font-size: clamp(1.5rem, 1.318rem + 0.909vw, 2rem);
+    line-height: clamp(1.7rem, 1.518rem + 0.909vw, 2.2rem);
     margin: 0 auto;
+    padding: 50px 0px;
+    color: var(--Paleta01);
 }
 
 .form {
-    display: flex;
+    display: grid;
     width: var(--body-width);
+    gap: 10px;
     margin: 0 auto;
-    flex-flow: column nowrap;
+    grid-template-columns: 1fr;
+}
+
+
+.selectedIngredientsSection {
+    margin-top: 10px;
+}
+
+.toleranceSection {
+    margin-top: 50px;
+}
+
+.btnSubmit {
+    align-self: flex-start;
+    margin-top: 20px;
+    padding: 8px;
+    border-radius: var(--small-border-radius);
+    background-color: var(--Paleta01);
+
 }
 
 .containerH2SelectedRecipes {
     width: var(--body-width);
     margin: 0 auto;
+    margin-top: 40px;
+
+
 }
 
+.containerSelectedRecipes {
+    list-style-type: none;
+    display: grid;
+    justify-items: center;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 20px;
+    gap: 15px;
+    grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
+}
 
 
 
 /*--------------------GENERAL CLASSES-------------*/
 
+
+
+/*----MEDIA QUERY 768px-------*/
+
+@media ( min-width:768px ) {
+    .form {
+        grid-template-columns: 3fr 1fr;
+    }
+
+    .selectedIngredientsSection {
+        grid-area: 2/1/3/2;
+    }
+
+    .selectedIngredientsSection {
+        margin-top: unset;
+    }
+
+    .toleranceSection {
+        margin-top: unset;
+    }
+
+    .btnSubmit {
+   
+        margin-top: unset;
+    
+
+    }
+
+
+}

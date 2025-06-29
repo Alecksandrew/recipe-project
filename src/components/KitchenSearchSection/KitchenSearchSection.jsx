@@ -4,7 +4,7 @@ import { FaSearch } from "react-icons/fa";
 import DropdownIngredients from "../DropdownIngredients/DropdownIngredients";
 
 
-function KitchenSearchSection({onIngredientSelect}) {
+function KitchenSearchSection({onIngredientSelect, classNameFromParent}) {
  
     const [autocompleteData, setAutocompleteData] = useState(null);
     const [searchValue, setSearchValue] = useState(null);
@@ -67,7 +67,7 @@ function KitchenSearchSection({onIngredientSelect}) {
     }
 
     return(
-        <section className={styles.sectionAutocomplet}>
+        <section className={`${styles.sectionAutocomplet} ${classNameFromParent}`}>
             <div className={styles.searchBar}>
                 <FaSearch className={styles.searchIcon}/>
                 <input

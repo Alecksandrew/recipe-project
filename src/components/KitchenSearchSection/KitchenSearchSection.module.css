@@ -1,7 +1,5 @@
 
 .sectionAutocomplet {
-    width: clamp(290px, 80vw, 700px);
-    margin: 0 auto;
     position: relative;
 }
 
