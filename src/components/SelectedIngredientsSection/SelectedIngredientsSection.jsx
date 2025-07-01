@@ -5,7 +5,7 @@ import { useContext } from 'react'
 import { SelectedIngredientsStateContext } from "../../contexts/selectedIngredientsStateContext";
 
 
-function SelectedIngredientsSection() {
+function SelectedIngredientsSection({className}) {
 
     const selectedIngredients = useContext(SelectedIngredientsStateContext)
      
@@ -24,7 +24,7 @@ function SelectedIngredientsSection() {
     
     
     return(
-        <section className={`${styles.section} ${classNameFromParent}`}>
+        <section className={className}>
             <h2>Selected ingredients</h2>
             <ul className={styles.selectedIngredientsContainer}>
                 {listSelectedIngredients(selectedIngredients)}

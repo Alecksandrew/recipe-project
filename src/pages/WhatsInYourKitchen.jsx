@@ -116,9 +116,9 @@ function WhatsInYourKitchen() {
             <form method="get" className={styles.form}>
                 <SelectedIngredientsActionsContext.Provider value={{makeIngredientBecomeSelected, removeIngredientsFromSelectedList}}>
                     <SelectedIngredientsStateContext.Provider value={selectedIngredients}>
-                        <KitchenSearchSection
+                        <KitchenSearchSection 
                         />
-                        <SelectedIngredientsSection
+                        <SelectedIngredientsSection className={styles.selectedIngredientsSection}
                         />
                     </SelectedIngredientsStateContext.Provider>
                 </SelectedIngredientsActionsContext.Provider>
