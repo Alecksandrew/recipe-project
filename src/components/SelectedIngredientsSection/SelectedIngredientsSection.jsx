@@ -2,12 +2,12 @@ import styles from "./SelectedIngredientsSection.module.css"
 import IngredientCard from "../IngredientCard/IngredientCard"
 
 import { useContext } from 'react'
-import { SelectedIngredientsContext } from "../../contexts/selectedIngredientsContext";
+import { SelectedIngredientsStateContext } from "../../contexts/selectedIngredientsStateContext";
 
 
 function SelectedIngredientsSection() {
 
-    const { selectedIngredients } = useContext(SelectedIngredientsContext)
+    const selectedIngredients = useContext(SelectedIngredientsStateContext)
      
     function listSelectedIngredients(selectedIngredients) {
         if(!selectedIngredients) return

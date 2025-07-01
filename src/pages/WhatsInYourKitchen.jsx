@@ -2,7 +2,8 @@ import styles from "./WhatsInYourKitchen.module.css"
 
 import { useNavigate } from "react-router-dom" 
 import { useState, useEffect, useRef} from "react"
-import { SelectedIngredientsContext } from "../contexts/selectedIngredientsContext.js";
+import {  SelectedIngredientsStateContext } from "../contexts/selectedIngredientsStateContext.js";
+import { SelectedIngredientsActionsContext } from "../contexts/selectedIngredientsActionsContext.js";
 
 
 import KitchenSearchSection from "../components/KitchenSearchSection/KitchenSearchSection.jsx"
@@ -111,12 +112,14 @@ function WhatsInYourKitchen() {
         <>
             <h1 className={styles.titlePage}>Find out awesome recipes with ingredients you have in your kitchen!</h1>
             <form method="get" className={styles.form}>
-                <SelectedIngredientsContext.Provider value={{selectedIngredients, makeIngredientBecomeSelected, removeIngredientsFromSelectedList}}>
-                    <KitchenSearchSection
-                    />
-                    <SelectedIngredientsSection
-                    />
-                </SelectedIngredientsContext.Provider>
+                <SelectedIngredientsActionsContext.Provider value={{makeIngredientBecomeSelected, removeIngredientsFromSelectedList}}>
+                    <SelectedIngredientsStateContext.Provider value={selectedIngredients}>
+                        <KitchenSearchSection
+                        />
+                        <SelectedIngredientsSection
+                        />
+                    </SelectedIngredientsStateContext.Provider>
+                </SelectedIngredientsActionsContext.Provider>
                 <ToleranceSection />
                
                 <button type="submit" onClick={fetchRecipesWithSelectedIngredients}>Search recipes</button>
