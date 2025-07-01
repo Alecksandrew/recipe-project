@@ -24,7 +24,7 @@ function SelectedIngredientsSection() {
     
     
     return(
-        <section className={styles.section}>
+        <section className={`${styles.section} ${classNameFromParent}`}>
             <h2>Selected ingredients</h2>
             <ul className={styles.selectedIngredientsContainer}>
                 {listSelectedIngredients(selectedIngredients)}

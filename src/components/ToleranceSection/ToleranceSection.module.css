@@ -1,5 +1,25 @@
+
+.section h2 {
+    font-size: 1.3rem;
+}
+
+.section p {
+    font-size: 0.9rem;
+    font-style: italic;
+    line-height: 1rem;
+    margin-top: 5px;
+}
+
 .toleranceContainer {
     display: flex;
     align-items: center;
-
+    font-weight: bold;
+    font-style: italic;
+    justify-content: space-between;
+    margin-top: 15px;
+    outline: 2px solid var(--Paleta01);
+    border-radius: var(--small-border-radius);
+    padding: 5px 0px;
 }
+
+

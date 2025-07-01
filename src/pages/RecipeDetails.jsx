@@ -1,16 +1,22 @@
+
+//Components
 import DataInColumn from "../components/dataInColumn/dataInColumn";
 import ExpandableDescription from "../components/ExpandableDescription/ExpandableDescription";
 
+//CSS
 import styles from "./RecipeDetails.module.css"
 
-import { useFetchRecipeDetailsByID } from "../hooks/useFetchDataByID"; 
-import { useOrganizeData } from "../hooks/useOrganizeData";
+//Custom Hooks
+import { useFetchRecipeDetailsByID } from "../hooks/useFetchDataByID";
+
+//Pure functions
+import { organizeData }  from "../utils/organizeData.jsx";
 
 
 function RecipeDetails() {
     
     const { recipeData, isLoading } = useFetchRecipeDetailsByID();
-    const { organizedIngredients, organizedInstructions, organizedMoreInfos } = useOrganizeData(recipeData)
+    const { organizedIngredients, organizedInstructions, organizedMoreInfos } = organizeData(recipeData)
 
     if (isLoading) {
         return <div>Loading...</div>;

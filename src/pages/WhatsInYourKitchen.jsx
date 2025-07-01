@@ -106,6 +106,10 @@ function WhatsInYourKitchen() {
                 });
     }, [hasDetailedRecipes, selectedRecipes, sendRecipeDataToOtherPage])
 
+    function ModifyTolerance(e) {
+        setTolerance(e.target.value)
+    }
+
     return(
         <>
             <h1 className={styles.titlePage}>Find out awesome recipes with ingredients you have in your kitchen!</h1>
@@ -120,7 +124,10 @@ function WhatsInYourKitchen() {
                 </SelectedIngredientsActionsContext.Provider>
                 <ToleranceSection />
                
-                <button type="submit" onClick={fetchRecipesWithSelectedIngredients}>Search recipes</button>
+                <button 
+                type="submit" 
+                onClick={fetchRecipesWithSelectedIngredients} 
+                className={styles.btnSubmit}>Search recipes</button>
             </form>
             <section className={styles.containerH2SelectedRecipes}>
                 <h2>Selected recipes</h2>

@@ -66,7 +66,7 @@ function KitchenSearchSection() {
     }
 
     return(
-        <section className={styles.sectionAutocomplet}>
+        <section className={`${styles.sectionAutocomplet} ${classNameFromParent}`}>
             <div className={styles.searchBar}>
                 <FaSearch className={styles.searchIcon}/>
                 <input
