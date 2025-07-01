@@ -111,12 +111,10 @@ function WhatsInYourKitchen() {
         <>
             <h1 className={styles.titlePage}>Find out awesome recipes with ingredients you have in your kitchen!</h1>
             <form method="get" className={styles.form}>
-                <SelectedIngredientsContext.Provider value={{makeIngredientBecomeSelected, removeIngredientsFromSelectedList}}>
+                <SelectedIngredientsContext.Provider value={{selectedIngredients, makeIngredientBecomeSelected, removeIngredientsFromSelectedList}}>
                     <KitchenSearchSection
                     />
                     <SelectedIngredientsSection
-                    selectedIngredients={selectedIngredients}
-                    removeFromSelectedOnes={removeIngredientsFromSelectedList}
                     />
                 </SelectedIngredientsContext.Provider>
                 <ToleranceSection />

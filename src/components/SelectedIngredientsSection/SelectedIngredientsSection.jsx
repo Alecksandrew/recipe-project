@@ -1,7 +1,13 @@
 import styles from "./SelectedIngredientsSection.module.css"
 import IngredientCard from "../IngredientCard/IngredientCard"
 
-function SelectedIngredientsSection({selectedIngredients, removeFromSelectedOnes}) {
+import { useContext } from 'react'
+import { SelectedIngredientsContext } from "../../contexts/selectedIngredientsContext";
+
+
+function SelectedIngredientsSection() {
+
+    const { selectedIngredients } = useContext(SelectedIngredientsContext)
      
     function listSelectedIngredients(selectedIngredients) {
         if(!selectedIngredients) return
@@ -11,8 +17,6 @@ function SelectedIngredientsSection({selectedIngredients, removeFromSelectedOnes
                 < IngredientCard 
                 name={selectedIngredient.name} 
                 image={selectedIngredient.image}
-                onRemove={removeFromSelectedOnes}
-                ingredient={selectedIngredient}
                 />
             </li>
         })
