@@ -8,6 +8,7 @@ import { FaHandLizard } from "react-icons/fa";
 import { FaShrimp } from "react-icons/fa6";
 import { TbBowlSpoonFilled } from "react-icons/tb";
 import { MdLunchDining } from "react-icons/md";
+import { PiCookingPotFill } from "react-icons/pi";
 
 
 import { FaRegBookmark } from "react-icons/fa6";; //vazio
@@ -45,7 +46,7 @@ function showRecipeTypeAndIcon(nameType, iconColor) {
 };
 
 
-function RecipeCard({name, alternativeText, image, description, type, readyInMinutes, iconColor, onClick}) {
+function RecipeCard({name, alternativeText, image, description, type, readyInMinutes, iconColor, onClick, missedIngredientsContainer = false, missedIngredients, missedBgColor}) {
   
   const [ isWishlisted, setIsWishlisted ] = useState(false);
 
@@ -58,7 +59,12 @@ function RecipeCard({name, alternativeText, image, description, type, readyInMin
         
         <div className={styles.containerRecipeImageAndIcon}>
           <span className={styles.containerWishlistIcon} onClick={handleWishlistClick} data-testid = "container-bookmark">
-            { isWishlisted ? <FaBookmark style={{color: "#2CA849"}} className={`${styles.bookmarkIcon} ${styles.filled}`} data-testid = "bookmark-filled"/> : <FaRegBookmark  className={`${styles.bookmarkIcon} ${styles.empty}`} data-testid = "bookmark-empty" /> }
+            { isWishlisted ? <FaBookmark style={{color: "#2CA849"}} className={`${styles.bookmarkIcon} ${styles.filled}`} data-testid = "bookmark-filled"/> :
+             <FaRegBookmark  className={`${styles.bookmarkIcon} ${styles.empty}`} data-testid = "bookmark-empty" /> 
+             }
+          </span>
+          <span className={styles.missedIngredients}> 
+            { missedIngredientsContainer ? <PiCookingPotFill /> : null} {`Missing ${missedIngredients}`}
           </span>
           <img src={image} alt={alternativeText}/>
         </div>
@@ -71,7 +77,7 @@ function RecipeCard({name, alternativeText, image, description, type, readyInMin
               {showRecipeTypeAndIcon(type, iconColor)}
               <span>{type}</span>
             </div>
-            <div className={styles.containerReadyInMinutes}>
+            <div className={styles.containerReadyInMinutes} style={ missedBgColor <= 2 ? {backgroundColor: missedBgColor} : 2 < missedBgColor <= 4 ? {backgroundColor: yellow} : {backgroundColor: red} }>
               <FaRegClock className={`${styles.recipeIcon} ${styles.clock}`}  color = {iconColor}/>
               <time className={styles.readyInMinutes} dateTime={`PT${readyInMinutes}M`}>{`${readyInMinutes} min`}</time>
             </div>

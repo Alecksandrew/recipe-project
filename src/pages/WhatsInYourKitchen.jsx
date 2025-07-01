@@ -42,7 +42,7 @@ function WhatsInYourKitchen() {
             ingredients: selectedIngredientsString,
             ranking: 2,
             ignorePantry: true,
-            number:100 
+            number:10 
         })
         
         //First fetch -> Only fetch selected recipes
@@ -111,8 +111,11 @@ function WhatsInYourKitchen() {
                             image={selectedRecipe.image} 
                             description={selectedRecipe.summary} 
                             type={selectedRecipe.dishTypes[0]} 
-                            readyInMinutes={selectedRecipe.missedIngredientCount || null} 
+                            readyInMinutes={selectedRecipe.readyInMinutes || null} 
                             iconColor={"#27AE60"}
+                            missedIngredients={selectedRecipe.missedIngredientCount}
+                            usedIngredients={selectedRecipe.usedIngredientCount}
+                            missedIngredientsContainer = {true}
                             />
                 });
     }, [hasDetailedRecipes, selectedRecipes, sendRecipeDataToOtherPage])
