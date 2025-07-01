@@ -1,7 +1,7 @@
 import styles from "./WhatsInYourKitchen.module.css"
 
 import { useNavigate } from "react-router-dom" 
-import { useState, useEffect, useRef} from "react"
+import { useState, useEffect, useRef, useCallback} from "react"
 import {  SelectedIngredientsStateContext } from "../contexts/selectedIngredientsStateContext.js";
 import { SelectedIngredientsActionsContext } from "../contexts/selectedIngredientsActionsContext.js";
 
@@ -14,20 +14,18 @@ import RecipeCard from "../components/RecipeCard/RecipeCard.jsx"
 function WhatsInYourKitchen() {
     const navigate = useNavigate();
 
-    
-
     const [ selectedIngredients, setSelectedIngredients] = useState([]);
     const [ selectedRecipes, setSelectedRecipes ] = useState([]);
     const [ hasDetailedRecipes, setHasDetailedRecipes] = useState(false);
     const [ tolerance, setTolerance] = useState(0);
 
-    function makeIngredientBecomeSelected(ingredient) {
+    const makeIngredientBecomeSelected = useCallback((ingredient) => {
         setSelectedIngredients( prevSelected => [...prevSelected, ingredient])
-    }
+    }, [])
 
-    function removeIngredientsFromSelectedList(ingredientObjToRemove) {
+    const removeIngredientsFromSelectedList = useCallback((ingredientObjToRemove) => {
         setSelectedIngredients(prevSelectedIngredients => prevSelectedIngredients.filter(ingredientObj => ingredientObj.name !== ingredientObjToRemove.name))
-    }
+    },[])
 
 
     async function fetchRecipesWithSelectedIngredients(e) {
@@ -86,11 +84,11 @@ function WhatsInYourKitchen() {
         };
     }
 
-    function sendRecipeDataToOtherPage(data) {
+    const sendRecipeDataToOtherPage = useCallback((data) => {
                 navigate(`/recipe/${data.id}`, { state: data})
-    }
+    },[navigate])
 
-    function listSelectedRecipes() { 
+    const listSelectedRecipes = useCallback(() => { 
         if (!hasDetailedRecipes) return <p className={styles.loadingText}>Carregando receitas...</p>;
 
         return  selectedRecipes.map((selectedRecipe) => {
@@ -106,7 +104,7 @@ function WhatsInYourKitchen() {
                             iconColor={"#27AE60"}
                             />
                 });
-    }
+    }, [hasDetailedRecipes, selectedRecipes, sendRecipeDataToOtherPage])
 
     return(
         <>
