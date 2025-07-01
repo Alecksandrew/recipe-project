@@ -18,6 +18,8 @@ function WhatsInYourKitchen() {
     const [ selectedRecipes, setSelectedRecipes ] = useState([]);
     const [ hasDetailedRecipes, setHasDetailedRecipes] = useState(false);
     const [ tolerance, setTolerance] = useState(0);
+    const [ basicIngredients, setBasicIngredients] = useState(false); //USER CAN DECIDE IF HE WANNA EITHER INCLUDE INGREDIENTS LIKE SALT, FLOUR IN THE SEARCH OR NOT -> IGNORE PANTRY
+    const [ exactTolerance, setExactTolerance] = useState(false); // Feature which the user can decide either he wanna show only recipes with the exact tolerance or with the exact tolerance and other
 
     const makeIngredientBecomeSelected = useCallback((ingredient) => {
         setSelectedIngredients( prevSelected => [...prevSelected, ingredient])
@@ -39,17 +41,25 @@ function WhatsInYourKitchen() {
             apiKey: "6b0d610fe5cf4296b3dd9023ae8150fb",
             ingredients: selectedIngredientsString,
             ranking: 2,
-            ignorePantry: false,
-            number:12
+            ignorePantry: true,
+            number:100 
         })
         
         //First fetch -> Only fetch selected recipes
-        let basicSelectedData;
+        let dataWithTolerance;
 
         try {
+            const numberOfRecipesToShow = 12;
             const response = await fetch(`${findByIngredientURL}?${params.toString()}`)
-            basicSelectedData = await response.json();
-            setSelectedRecipes(basicSelectedData);
+            const basicSelectedData = await response.json();
+            
+            dataWithTolerance = basicSelectedData
+            .filter(recipe => exactTolerance ? recipe.missedIngredientCount === tolerance : recipe.missedIngredientCount <= tolerance)
+            .sort((firstRecipe, secondRecipe) => firstRecipe.missedIngredientCount - secondRecipe.missedIngredientCount)
+            .slice(0, numberOfRecipesToShow)
+            
+            setSelectedRecipes(dataWithTolerance);
+            console.log(dataWithTolerance)
         }
         catch(error){
             console.error(error)
@@ -58,7 +68,7 @@ function WhatsInYourKitchen() {
 
         //Second fetch -> Get more details about each recipe in order to show fill recipe card
         const severalRecipesURL = "https://api.spoonacular.com/recipes/informationBulk"
-        const selectedRecipesStringIDs = basicSelectedData.map(data => data.id).join(",")
+        const selectedRecipesStringIDs = dataWithTolerance.map(data => data.id).join(",")
         const severalRecipersParams = new URLSearchParams({
             apiKey: "6b0d610fe5cf4296b3dd9023ae8150fb",
             ids: selectedRecipesStringIDs
@@ -69,7 +79,7 @@ function WhatsInYourKitchen() {
             const detailedSelectedData = await detailedResponse.json()
             
             const combinedData = detailedSelectedData.map( detailedRecipe => {
-                const someDataFromFirstFetch = basicSelectedData.find(recipe => recipe.id === detailedRecipe.id)
+                const someDataFromFirstFetch = dataWithTolerance.find(recipe => recipe.id === detailedRecipe.id)
 
                 return {...detailedRecipe, missedIngredientCount: someDataFromFirstFetch.missedIngredientCount, usedIngredientCount: someDataFromFirstFetch.usedIngredientCount}
             })
@@ -89,10 +99,11 @@ function WhatsInYourKitchen() {
     },[navigate])
 
     const listSelectedRecipes = useCallback(() => { 
-        if (!hasDetailedRecipes) return <p className={styles.loadingText}>Carregando receitas...</p>;
+        if (!hasDetailedRecipes) return <p className={styles.loadingText}>No recipe found</p>;
 
         return  selectedRecipes.map((selectedRecipe) => {
-                    return <RecipeCard 
+
+                        return <RecipeCard 
                             onClick={() => sendRecipeDataToOtherPage(selectedRecipe)}
                             key={selectedRecipe.id}
                             name={selectedRecipe.title} 
@@ -106,23 +117,23 @@ function WhatsInYourKitchen() {
                 });
     }, [hasDetailedRecipes, selectedRecipes, sendRecipeDataToOtherPage])
 
-    function ModifyTolerance(e) {
+    const modifyTolerance = useCallback((e) => {
         setTolerance(e.target.value)
-    }
+    }, [tolerance])
 
     return(
         <>
             <h1 className={styles.titlePage}>Find out awesome recipes with ingredients you have in your kitchen!</h1>
             <form method="get" className={styles.form}>
-                <SelectedIngredientsActionsContext.Provider value={{makeIngredientBecomeSelected, removeIngredientsFromSelectedList}}>
+                <SelectedIngredientsActionsContext.Provider value={{makeIngredientBecomeSelected, removeIngredientsFromSelectedList, modifyTolerance, tolerance}}>
                     <SelectedIngredientsStateContext.Provider value={selectedIngredients}>
                         <KitchenSearchSection 
                         />
                         <SelectedIngredientsSection className={styles.selectedIngredientsSection}
                         />
                     </SelectedIngredientsStateContext.Provider>
+                    <ToleranceSection />
                 </SelectedIngredientsActionsContext.Provider>
-                <ToleranceSection />
                
                 <button 
                 type="submit" 
