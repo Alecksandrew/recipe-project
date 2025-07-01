@@ -1,6 +1,8 @@
 import styles from "./WhatsInYourKitchen.module.css"
+
 import { useNavigate } from "react-router-dom" 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef} from "react"
+import { SelectedIngredientsContext } from "../contexts/selectedIngredientsContext.js";
 
 
 import KitchenSearchSection from "../components/KitchenSearchSection/KitchenSearchSection.jsx"
@@ -8,10 +10,10 @@ import SelectedIngredientsSection from "../components/SelectedIngredientsSection
 import ToleranceSection from "../components/ToleranceSection/ToleranceSection.jsx"
 import RecipeCard from "../components/RecipeCard/RecipeCard.jsx"
 
-
-
 function WhatsInYourKitchen() {
     const navigate = useNavigate();
+
+    
 
     const [ selectedIngredients, setSelectedIngredients] = useState([]);
     const [ selectedRecipes, setSelectedRecipes ] = useState([]);
@@ -109,13 +111,14 @@ function WhatsInYourKitchen() {
         <>
             <h1 className={styles.titlePage}>Find out awesome recipes with ingredients you have in your kitchen!</h1>
             <form method="get" className={styles.form}>
-                <KitchenSearchSection 
-                onIngredientSelect={makeIngredientBecomeSelected}
-                />
-                <SelectedIngredientsSection 
-                selectedIngredients={selectedIngredients} 
-                removeFromSelectedOnes={removeIngredientsFromSelectedList}
-                />
+                <SelectedIngredientsContext.Provider value={{makeIngredientBecomeSelected, removeIngredientsFromSelectedList}}>
+                    <KitchenSearchSection
+                    />
+                    <SelectedIngredientsSection
+                    selectedIngredients={selectedIngredients}
+                    removeFromSelectedOnes={removeIngredientsFromSelectedList}
+                    />
+                </SelectedIngredientsContext.Provider>
                 <ToleranceSection />
                
                 <button type="submit" onClick={fetchRecipesWithSelectedIngredients}>Search recipes</button>

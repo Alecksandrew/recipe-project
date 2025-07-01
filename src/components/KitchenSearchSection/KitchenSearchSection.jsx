@@ -4,7 +4,7 @@ import { FaSearch } from "react-icons/fa";
 import DropdownIngredients from "../DropdownIngredients/DropdownIngredients";
 
 
-function KitchenSearchSection({onIngredientSelect}) {
+function KitchenSearchSection() {
  
     const [autocompleteData, setAutocompleteData] = useState(null);
     const [searchValue, setSearchValue] = useState(null);
@@ -58,7 +58,6 @@ function KitchenSearchSection({onIngredientSelect}) {
                                 imageURL={`https://spoonacular.com/cdn/ingredients_250x250/${ingredient.image}`}
                                 imageAlt={ingredient.name}
                                 ingredientName={ingredient.name}
-                                onSelect={onIngredientSelect}
                                 />
                             </li>
                             
