@@ -42,7 +42,7 @@ function WhatsInYourKitchen() {
             ingredients: selectedIngredientsString,
             ranking: 2,
             ignorePantry: true,
-            number:10 
+            number: exactTolerance == true && tolerance >= 1 ? 100 : 12,
         })
         
         //First fetch -> Only fetch selected recipes
@@ -55,7 +55,6 @@ function WhatsInYourKitchen() {
             
             dataWithTolerance = basicSelectedData
             .filter(recipe => exactTolerance ? recipe.missedIngredientCount === tolerance : recipe.missedIngredientCount <= tolerance)
-            .sort((firstRecipe, secondRecipe) => firstRecipe.missedIngredientCount - secondRecipe.missedIngredientCount)
             .slice(0, numberOfRecipesToShow)
             
             setSelectedRecipes(dataWithTolerance);

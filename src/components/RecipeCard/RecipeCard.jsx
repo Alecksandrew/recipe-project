@@ -63,7 +63,11 @@ function RecipeCard({name, alternativeText, image, description, type, readyInMin
              <FaRegBookmark  className={`${styles.bookmarkIcon} ${styles.empty}`} data-testid = "bookmark-empty" /> 
              }
           </span>
-          <span className={styles.missedIngredients}> 
+          <span className={styles.missedIngredients}  
+          style={ missedIngredients <= 2 ? {backgroundColor: "var(--green-missed-ingredients)" } : 
+          2 < missedIngredients <= 4 ? {backgroundColor: "var(--yellow-missed-ingredients)"} : 
+          {backgroundColor: "var(--red-missed-ingredients)"} }
+          > 
             { missedIngredientsContainer ? <PiCookingPotFill /> : null} {`Missing ${missedIngredients}`}
           </span>
           <img src={image} alt={alternativeText}/>
@@ -77,7 +81,7 @@ function RecipeCard({name, alternativeText, image, description, type, readyInMin
               {showRecipeTypeAndIcon(type, iconColor)}
               <span>{type}</span>
             </div>
-            <div className={styles.containerReadyInMinutes} style={ missedBgColor <= 2 ? {backgroundColor: missedBgColor} : 2 < missedBgColor <= 4 ? {backgroundColor: yellow} : {backgroundColor: red} }>
+            <div className={styles.containerReadyInMinutes}>
               <FaRegClock className={`${styles.recipeIcon} ${styles.clock}`}  color = {iconColor}/>
               <time className={styles.readyInMinutes} dateTime={`PT${readyInMinutes}M`}>{`${readyInMinutes} min`}</time>
             </div>

@@ -59,6 +59,9 @@
     grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
 }
 
+    .containerSelectedRecipes > p {
+        justify-self: flex-start;
+    }
 
 
 /*--------------------GENERAL CLASSES-------------*/
@@ -87,6 +90,8 @@
     
 
     }
+
+
 
 
 }
