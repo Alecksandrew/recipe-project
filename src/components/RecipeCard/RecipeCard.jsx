@@ -54,6 +54,12 @@ function RecipeCard({name, alternativeText, image, description, type, readyInMin
     setIsWishlisted(!isWishlisted);
   };
 
+  function getMissedIngredientsContainerStyle(count) {
+    if(count <= 2) return {backgroundColor: "var(--green-missed-ingredients)" };
+    if(count <= 4) return {backgroundColor: "var(--yellow-missed-ingredients)"};
+    if(count > 4) return {backgroundColor: "var(--red-missed-ingredients)"} ;
+  };
+
   return (
       <div className={styles.recipeCard} onClick={onClick}>
         
@@ -63,13 +69,15 @@ function RecipeCard({name, alternativeText, image, description, type, readyInMin
              <FaRegBookmark  className={`${styles.bookmarkIcon} ${styles.empty}`} data-testid = "bookmark-empty" /> 
              }
           </span>
-          <span className={styles.missedIngredients}  
-          style={ missedIngredients <= 2 ? {backgroundColor: "var(--green-missed-ingredients)" } : 
-          2 < missedIngredients <= 4 ? {backgroundColor: "var(--yellow-missed-ingredients)"} : 
-          {backgroundColor: "var(--red-missed-ingredients)"} }
-          > 
-            { missedIngredientsContainer ? <PiCookingPotFill /> : null} {`Missing ${missedIngredients}`}
-          </span>
+          { missedIngredientsContainer && (
+                <span 
+                className={styles.missedIngredients}  
+                style={getMissedIngredientsContainerStyle(missedIngredients) }
+                > 
+                <PiCookingPotFill /> {`Missing ${missedIngredients}`}
+                </span> 
+            )
+          }
           <img src={image} alt={alternativeText}/>
         </div>
         
