@@ -121,7 +121,7 @@ function WhatsInYourKitchen() {
 
     const modifyTolerance = useCallback((e) => {
         setTolerance(e.target.value)
-    }, [tolerance])
+    }, [])
 
     return(
         <>
@@ -129,12 +129,13 @@ function WhatsInYourKitchen() {
             <form method="get" className={styles.form}>
                 <SelectedIngredientsActionsContext.Provider value={{makeIngredientBecomeSelected, removeIngredientsFromSelectedList, modifyTolerance, tolerance}}>
                     <SelectedIngredientsStateContext.Provider value={selectedIngredients}>
-                        <KitchenSearchSection 
+                        <KitchenSearchSection className={`${styles.kitchenSearchSection} ${styles.shadowBox}`}
                         />
-                        <SelectedIngredientsSection className={styles.selectedIngredientsSection}
+                        <SelectedIngredientsSection 
+                        className={`${styles.selectedIngredientsSection} ${styles.shadowBox}`}
                         />
                     </SelectedIngredientsStateContext.Provider>
-                    <ToleranceSection />
+                    <ToleranceSection classNameFromParent={`${styles.toleranceSection} ${styles.shadowBox}`}/>
                 </SelectedIngredientsActionsContext.Provider>
                
                 <button 

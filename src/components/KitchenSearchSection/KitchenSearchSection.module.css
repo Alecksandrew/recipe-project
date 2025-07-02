@@ -8,7 +8,6 @@
     padding: 6px 6px 6px 12px;
     height: max(40px, 5vh);
     border-radius: 5px;
-    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.479);
     width: 100%;
     display: flex;
     gap: clamp(5px, 0.5vw, 16px);
