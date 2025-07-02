@@ -139,18 +139,12 @@ function WhatsInYourKitchen() {
                     <div className={styles.toleranceAndSearch}>
                         <ToleranceSection classNameFromParent={`${styles.toleranceSection} ${styles.shadowBox}`}/>
                         <div className={styles.containerSearch}>
-                            <label className={styles.labelTolerance}>  
-                                Ignore basic ingredients
-                                <label className={styles.toggle}>
-                                    <input type="checkbox" />
-                                    <span className={styles.slider}></span>
-                                </label>
-                            </label>
+                            <ToggleButton text={"Ignore basic ingredients"}/>
                             <button
                             type="submit"
                             onClick={fetchRecipesWithSelectedIngredients}
                             className={styles.btnSubmit}>Search recipes</button>
-                        <ToggleButton/>
+                        
                         </div>
                     </div>
                 </SelectedIngredientsActionsContext.Provider>

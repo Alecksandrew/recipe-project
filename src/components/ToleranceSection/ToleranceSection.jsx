@@ -3,6 +3,8 @@ import styles from "../ToleranceSection/ToleranceSection.module.css"
 import { SelectedIngredientsActionsContext } from "../../contexts/selectedIngredientsActionsContext";
 import { useContext, useRef} from "react";
 
+import ToggleButton from "../ToggleButton/ToggleButton";
+
 function ToleranceSection({classNameFromParent}) {
     const rangeInput = useRef(null)
     const { modifyTolerance, tolerance } = useContext(SelectedIngredientsActionsContext)
@@ -44,13 +46,7 @@ function ToleranceSection({classNameFromParent}) {
                      />
                 </label>
                
-                <label className={styles.labelTolerance}>
-                    Exact tolerance
-                    <label className={styles.toggle}>
-                        <input type="checkbox" name="" id="" />
-                        <span className={styles.slider}></span>
-                    </label>
-                </label>
+                <ToggleButton text={"Exact Tolerance"}/>
             </div>
         </section>
     )
