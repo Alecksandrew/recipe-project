@@ -1,7 +1,11 @@
 import styles from "../ToleranceSection/ToleranceSection.module.css"
 
-function ToleranceSection({classNameFromParent, tolerance, handleTolerance}) {
+import { SelectedIngredientsActionsContext } from "../../contexts/selectedIngredientsActionsContext";
+import { useContext } from "react";
 
+function ToleranceSection({classNameFromParent}) {
+
+    const { modifyTolerance, tolerance } = useContext(SelectedIngredientsActionsContext)
 
     return ( 
         <section className={`${styles.section} ${classNameFromParent}`}>
@@ -11,7 +15,7 @@ function ToleranceSection({classNameFromParent, tolerance, handleTolerance}) {
                 <label htmlFor="tolerance" className={styles.labelTolerance}>
                     <span>Tolerance level: {tolerance}</span>
                 </label>
-                <input type="range" min={0} max={6} step={1} id="tolerance" name="tolerance" value={tolerance} onChange={handleTolerance}/>
+                <input type="range" min={0} max={6} step={1} id="tolerance" name="tolerance" value={tolerance} onChange={modifyTolerance}/>
             </div>
         </section>
     )

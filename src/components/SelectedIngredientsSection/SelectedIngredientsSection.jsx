@@ -1,7 +1,13 @@
 import styles from "./SelectedIngredientsSection.module.css"
 import IngredientCard from "../IngredientCard/IngredientCard"
 
-function SelectedIngredientsSection({selectedIngredients, removeFromSelectedOnes, classNameFromParent}) {
+import { useContext } from 'react'
+import { SelectedIngredientsStateContext } from "../../contexts/selectedIngredientsStateContext";
+
+
+function SelectedIngredientsSection({className}) {
+
+    const selectedIngredients = useContext(SelectedIngredientsStateContext)
      
     function listSelectedIngredients(selectedIngredients) {
         if(!selectedIngredients) return
@@ -11,8 +17,6 @@ function SelectedIngredientsSection({selectedIngredients, removeFromSelectedOnes
                 < IngredientCard 
                 name={selectedIngredient.name} 
                 image={selectedIngredient.image}
-                onRemove={removeFromSelectedOnes}
-                ingredient={selectedIngredient}
                 />
             </li>
         })
@@ -20,7 +24,7 @@ function SelectedIngredientsSection({selectedIngredients, removeFromSelectedOnes
     
     
     return(
-        <section className={`${styles.section} ${classNameFromParent}`}>
+        <section className={className}>
             <h2>Selected ingredients</h2>
             <ul className={styles.selectedIngredientsContainer}>
                 {listSelectedIngredients(selectedIngredients)}

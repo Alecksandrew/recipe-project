@@ -1,17 +1,21 @@
 
 import styles from "./DropdownIngredients.module.css";
-import { useState } from "react"
+import { useState, useContext } from "react"
 
-function DropdownIngredients({imageURL, imageAlt, ingredientName = "Alho de Aimpim", onSelect} ) {
+import { SelectedIngredientsActionsContext } from "../../contexts/selectedIngredientsActionsContext";
+
+function DropdownIngredients({imageURL, imageAlt, ingredientName = "Alho de Aimpim"} ) {
+
+    const { makeIngredientBecomeSelected } = useContext(SelectedIngredientsActionsContext)
 
     const [isSelected, setIsSelected] = useState(false);
 
     function handleButtonClick() {
         setIsSelected(true);
 
-        if(onSelect) {
-            onSelect({name: ingredientName, image: imageURL,})
-            console.log
+        if(makeIngredientBecomeSelected) {
+            makeIngredientBecomeSelected({name: ingredientName, image: imageURL,})
+            console.log("Button was clicked!")
         }
     }
 

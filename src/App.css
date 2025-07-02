@@ -4,9 +4,14 @@
     --Paleta03: black;
     --Paleta04: #727272;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    
     --small-border-radius: 5px;
     --medium-border-radius: 10px;
     --large-border-radius: 15px;
+
+    --green-missed-ingredients: var(--Paleta01);
+    --red-missed-ingredients: #E63946;
+    --yellow-missed-ingredients: #FFB700;
 }
 
 * {
