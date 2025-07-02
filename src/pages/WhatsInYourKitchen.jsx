@@ -10,6 +10,7 @@ import KitchenSearchSection from "../components/KitchenSearchSection/KitchenSear
 import SelectedIngredientsSection from "../components/SelectedIngredientsSection/SelectedIngredientsSection.jsx"
 import ToleranceSection from "../components/ToleranceSection/ToleranceSection.jsx"
 import RecipeCard from "../components/RecipeCard/RecipeCard.jsx"
+import ToggleButton from "../components/ToggleButton/ToggleButton.jsx"
 
 function WhatsInYourKitchen() {
     const navigate = useNavigate();
@@ -135,13 +136,25 @@ function WhatsInYourKitchen() {
                         className={`${styles.selectedIngredientsSection} ${styles.shadowBox}`}
                         />
                     </SelectedIngredientsStateContext.Provider>
-                    <ToleranceSection classNameFromParent={`${styles.toleranceSection} ${styles.shadowBox}`}/>
+                    <div className={styles.toleranceAndSearch}>
+                        <ToleranceSection classNameFromParent={`${styles.toleranceSection} ${styles.shadowBox}`}/>
+                        <div className={styles.containerSearch}>
+                            <label className={styles.labelTolerance}>  
+                                Ignore basic ingredients
+                                <label className={styles.toggle}>
+                                    <input type="checkbox" />
+                                    <span className={styles.slider}></span>
+                                </label>
+                            </label>
+                            <button
+                            type="submit"
+                            onClick={fetchRecipesWithSelectedIngredients}
+                            className={styles.btnSubmit}>Search recipes</button>
+                        <ToggleButton/>
+                        </div>
+                    </div>
                 </SelectedIngredientsActionsContext.Provider>
                
-                <button 
-                type="submit" 
-                onClick={fetchRecipesWithSelectedIngredients} 
-                className={styles.btnSubmit}>Search recipes</button>
             </form>
             <section className={styles.containerH2SelectedRecipes}>
                 <h2>Selected recipes</h2>

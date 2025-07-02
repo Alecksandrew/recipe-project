@@ -30,7 +30,18 @@ function ToleranceSection({classNameFromParent}) {
             <div className={styles.toleranceContainer}>
                 <label className={styles.labelTolerance}>
                     <span>Tolerance level: {tolerance}</span>
-                     <input type="range" min={0} max={6} step={1} id="tolerance" name="tolerance" value={tolerance} onChange={handleInputRange} ref={rangeInput} />
+                     <input 
+                     className={styles.inputRange}
+                     type="range" 
+                     min={0} 
+                     max={6} 
+                     step={1} 
+                     id="tolerance" 
+                     name="tolerance" 
+                     value={tolerance} 
+                     onChange={handleInputRange} 
+                     ref={rangeInput} 
+                     />
                 </label>
                
                 <label className={styles.labelTolerance}>

@@ -1,4 +1,8 @@
 
+.h2 {
+    font-size: 1.3rem;
+}
+
 .selectedIngredientsContainer {
     list-style-type: none;
     display: grid;
