@@ -12,6 +12,7 @@
     margin: 0 auto;
     padding: 50px 0px;
     color: var(--Paleta01);
+    max-width: 1000px;
 }
 
 .form {
@@ -69,6 +70,10 @@
    gap: 10px;
 }
 
+.containerSearch > * {
+    width: 90%;
+}
+
 
 
 .inputRange {
@@ -112,7 +117,6 @@
     color: var(--Paleta03);
     font-weight: bold;
     background-color: var(--Paleta02);
-    width: 90%;
 
 }
 
@@ -120,6 +124,7 @@
     width: var(--body-width);
     margin: 0 auto;
     margin-top: 40px;
+    max-width: 1000px;
 
 
 }
@@ -139,15 +144,17 @@
     justify-self: flex-start;
 }
 
-
-.containerToggle {
-    container-type: inine-size;
-    width: 90%;
+.containerBasicIngredients {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
-.containerToggle > span {
-    font-style: italic;
-    font-size: min(4cqw, 1.1rem) ;
-    text-align: right;
+
+.containerBasicIngredients > span {
+    flex: 0 1 45%;
+    max-width: fit-content;
+    line-height: 1.1rem;
 }
 
 /*--------------------GENERAL CLASSES-------------*/

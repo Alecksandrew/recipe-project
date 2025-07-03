@@ -33,6 +33,8 @@
 .containerAutocompletedIngredients {
     background-color: var(--Paleta02);
     display: flex;
+    left: 0;
+    top: 100%;
     flex-flow: column nowrap;
     gap: 10px;
     padding: 10px 0px;
