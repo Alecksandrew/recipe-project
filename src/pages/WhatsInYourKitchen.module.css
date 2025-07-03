@@ -66,6 +66,7 @@
    justify-content: center;
    align-items: center;
    min-height: 100px;
+   gap: 10px;
 }
 
 
@@ -111,7 +112,7 @@
     color: var(--Paleta03);
     font-weight: bold;
     background-color: var(--Paleta02);
-    width: 80%;
+    width: 90%;
 
 }
 
@@ -138,6 +139,16 @@
     justify-self: flex-start;
 }
 
+
+.containerToggle {
+    container-type: inine-size;
+    width: 90%;
+}
+.containerToggle > span {
+    font-style: italic;
+    font-size: min(4cqw, 1.1rem) ;
+    text-align: right;
+}
 
 /*--------------------GENERAL CLASSES-------------*/
 

@@ -46,7 +46,7 @@ function ToleranceSection({classNameFromParent}) {
                      />
                 </label>
                
-                <ToggleButton text={"Exact Tolerance"}/>
+                <ToggleButton className={styles.containerToggle} text={"Exact Tolerance"}/>
             </div>
         </section>
     )
