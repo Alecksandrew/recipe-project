@@ -1,6 +1,6 @@
 import styles from "./ToggleButton.module.css"
 
-function ToggleButton({text, trackColor = "var(--Paleta06)", ballColor = "var(--Paleta02)", checkedColor = "var(--Paleta01)"}) {
+function ToggleButton({className,text, trackColor = "var(--Paleta06)", ballColor = "var(--Paleta02)", checkedColor = "var(--Paleta01)"}) {
 
 
     const componentStyles = {
@@ -10,7 +10,7 @@ function ToggleButton({text, trackColor = "var(--Paleta06)", ballColor = "var(--
     }
 
     return(
-        <label className={styles.labelTolerance} style={componentStyles}>  
+        <label className={`${styles.labelTolerance} ${className}`} style={componentStyles}>  
             {text}
             <label className={styles.toggle}>
                 <input type="checkbox" />

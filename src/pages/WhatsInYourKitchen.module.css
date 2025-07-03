@@ -68,13 +68,6 @@
    min-height: 100px;
 }
 
-.labelTolerance {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
-    gap: 10px;
-}
 
 
 .inputRange {
