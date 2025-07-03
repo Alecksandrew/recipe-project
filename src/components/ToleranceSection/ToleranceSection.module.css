@@ -12,14 +12,64 @@
 
 .toleranceContainer {
     display: flex;
+    flex-flow: column nowrap;
+    gap: 5px;
     align-items: center;
     font-weight: bold;
     font-style: italic;
     justify-content: space-between;
     margin-top: 15px;
-    outline: 2px solid var(--Paleta01);
     border-radius: var(--small-border-radius);
     padding: 5px 0px;
 }
 
+.labelTolerance {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 5px;
+}
 
+
+.inputRange {
+    width: 40%;
+
+    border-radius: var(--small-border-radius);
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: transparent;
+}
+
+.inputRange::-webkit-slider-container {
+
+}
+
+.inputRange::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: var(--Paleta01);
+    height: 16px;
+    width: 16px;
+    outline: 2px solid var(--Paleta02);
+    margin-top: -3px;
+    border-radius: 50%;
+
+}
+
+.inputRange::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    appearance: none;
+    background: linear-gradient(to right, 
+    var(--Paleta01) var(--filled-percentage, 0%),
+    var(--Paleta06) var(--filled-percentage, 0%) /* Cor do preenchimento (cinza) */
+           /* Cor do fundo (verde) */
+    );
+    height: 10px;
+    border-radius: var(--small-border-radius);
+}
+
+.containerToggle {
+    justify-content: space-between;
+    width: 100%;
+}

@@ -1,97 +1,204 @@
 :root {
-    --body-width: min(1200px, 80vw);
-
-    color: black;
+  --body-width: min(1200px, 80vw);
+  background-color: var(--Paleta05);
+  color: black;
 }
 
 .titlePage {
-    text-align: center;
-    width: var(--body-width);
-    font-size: clamp(1.5rem, 1.318rem + 0.909vw, 2rem);
-    line-height: clamp(1.7rem, 1.518rem + 0.909vw, 2.2rem);
-    margin: 0 auto;
-    padding: 50px 0px;
-    color: var(--Paleta01);
+  text-align: center;
+  width: var(--body-width);
+  font-size: clamp(1.5rem, 1.318rem + 0.909vw, 2rem);
+  line-height: clamp(1.7rem, 1.518rem + 0.909vw, 2.2rem);
+  margin: 0 auto;
+  padding: 50px 0px;
+  color: var(--Paleta01);
+  max-width: 1000px;
 }
 
 .form {
-    display: grid;
-    width: var(--body-width);
-    gap: 10px;
-    margin: 0 auto;
-    grid-template-columns: 1fr;
+  display: flex;
+  flex-flow: column nowrap;
+  width: var(--body-width);
+  gap: 25px;
+  margin: 0 auto;
+  max-width: 1000px;
 }
 
+.kitchenSearchSection {
+  background-color: var(--Paleta01);
+  padding: min(10px, 3vw);
+  border-radius: var(--small-border-radius);
+}
 
 .selectedIngredientsSection {
-    margin-top: 10px;
+  min-height: 150px;
+  padding: min(2vw, 10px) min(0.5vw, 10px);
+  border-radius: var(--small-border-radius);
+  outline: 2px solid var(--Paleta01);
+}
+
+.toleranceAndSearch {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 25px;
+  justify-content: space-between;
 }
 
 .toleranceSection {
-    margin-top: 50px;
+  min-height: 150px;
+  padding: min(2vw, 10px) min(1vw, 10px);
+  border-radius: var(--small-border-radius);
+  outline: 2px solid var(--Paleta01);
+}
+
+.containerSearch {
+  background-color: var(--Paleta01);
+  border-radius: var(--small-border-radius);
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  min-height: 100px;
+  gap: 10px;
+}
+
+.containerSearch > * {
+  width: 90%;
+}
+
+.inputRange {
+  width: 40%;
+
+  border-radius: var(--small-border-radius);
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+}
+
+.inputRange::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: var(--Paleta01);
+  height: 16px;
+  width: 16px;
+  outline: 2px solid var(--Paleta02);
+  margin-top: -3px;
+  border-radius: 50%;
+}
+
+.inputRange::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+  appearance: none;
+  background: linear-gradient(
+    to right,
+    var(--Paleta01) var(--filled-percentage, 0%),
+    var(--Paleta06) var(--filled-percentage, 0%)
+      /* Cor do preenchimento (cinza) */ /* Cor do fundo (verde) */
+  );
+  height: 10px;
+  border-radius: var(--small-border-radius);
+}
+
+.containerToggle {
 }
 
 .btnSubmit {
-    align-self: flex-start;
-    margin-top: 20px;
-    padding: 8px;
-    border-radius: var(--small-border-radius);
-    background-color: var(--Paleta01);
-
+  padding: 8px;
+  border-radius: var(--small-border-radius);
+  color: var(--Paleta03);
+  font-weight: bold;
+  background-color: var(--Paleta02);
 }
 
 .containerH2SelectedRecipes {
-    width: var(--body-width);
-    margin: 0 auto;
-    margin-top: 40px;
-
-
+  width: var(--body-width);
+  margin: 0 auto;
+  margin-top: 40px;
+  max-width: 1000px;
 }
 
 .containerSelectedRecipes {
-    list-style-type: none;
-    display: grid;
-    justify-items: center;
-    width: 100%;
-    margin: 0 auto;
-    margin-top: 20px;
-    gap: 15px;
-    grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
+  list-style-type: none;
+  display: grid;
+  justify-items: center;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 20px;
+  gap: 15px;
+  grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
 }
 
-    .containerSelectedRecipes > p {
-        justify-self: flex-start;
-    }
+.containerSelectedRecipes > p {
+  justify-self: flex-start;
+}
 
+.containerBasicIngredients {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  padding: 4px;
+  background-color: var(--Paleta02);
+  border-radius: var(--small-border-radius);
+}
+
+.containerBasicIngredients > span {
+  flex: 0 1 45%;
+  line-height: 0.9rem;
+  font-size: 0.8rem;
+  position: relative;
+  text-decoration: underline;
+}
+
+.containerBasicIngredients > span::after {
+  content: "If you turn on, basic ingredients like salt, flour will be considered in te search";
+  border: 2px solid var(--Paleta03);
+  padding: 4px;
+  border-radius: var(--small-border-radius);
+  position: absolute;
+  width: 100%;
+  top: 125%;
+  left: 0;
+  background-color: var(--Paleta02);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.26);
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  pointer-events: none;
+}
+
+.containerBasicIngredients > span:hover::after {
+  display: unset;
+  opacity: 1;
+}
+
+.containerBasicIngredients > span:active::after {
+  display: unset;
+  opacity: 1;
+}
 
 /*--------------------GENERAL CLASSES-------------*/
 
-
-
 /*----MEDIA QUERY 768px-------*/
 
-@media ( min-width:768px ) {
-    .form {
-        grid-template-columns: 3fr 1fr;
-    }
+@media (min-width: 768px) {
+  .form {
+  }
 
-    .selectedIngredientsSection {
-        grid-area: 2/1/3/2;
-        margin-top: unset;
-    }
+  .toleranceAndSearch {
+    flex-flow: row nowrap;
+  }
 
-    .toleranceSection {
-        margin-top: unset;
-    }
+  .toleranceSection {
+    flex: 1;
+  }
 
-    .btnSubmit {
-   
-        margin-top: unset;
-    
+  .containerSearch {
+    flex: 0 0 30%;
+  }
+}
 
-    }
-
-
-
-
+/*------------GLOBAL CSS----------*/
+.shadowBox {
+  box-shadow: 0px 5px 6px rgba(0, 0, 0, 0.233);
 }

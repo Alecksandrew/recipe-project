@@ -1,0 +1,7 @@
+
+function InputRange() {
+
+    const componentStyles = {
+        
+    }
+}
