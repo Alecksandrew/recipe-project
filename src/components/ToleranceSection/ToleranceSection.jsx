@@ -7,7 +7,7 @@ import ToggleButton from "../ToggleButton/ToggleButton";
 
 function ToleranceSection({ classNameFromParent }) {
   const rangeInput = useRef(null);
-  const { modifyTolerance, tolerance } = useContext(
+  const { modifyTolerance, tolerance, handleExactTolerance, exactTolerance } = useContext(
     SelectedIngredientsActionsContext
   );
 
@@ -49,10 +49,11 @@ function ToleranceSection({ classNameFromParent }) {
           />
         </label>
 
-        <label className={styles.labelTolerance}>
+        <label className={styles.labelTolerance} onClick={(e) => { e.preventDefault(); console.log("Running handleExactTolerance"); handleExactTolerance()}}>
             <span>Exact Tolerance</span>
             <ToggleButton
               className={styles.containerToggle}
+              isChecked={exactTolerance}
             />
         </label>
       </div>

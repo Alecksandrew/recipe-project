@@ -5,6 +5,7 @@ function ToggleButton({
   trackColor = "var(--Paleta06)",
   ballColor = "var(--Paleta02)",
   checkedColor = "var(--Paleta01)",
+  isChecked
 }) {
     
   const componentStyles = {
@@ -15,7 +16,7 @@ function ToggleButton({
 
   return (
     <label className={`${styles.toggle} ${className}`} style={componentStyles}>
-      <input type="checkbox" />
+      <input type="checkbox" checked={isChecked}/>
       <span className={styles.slider}></span>
     </label>
   );

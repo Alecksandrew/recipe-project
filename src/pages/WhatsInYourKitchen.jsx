@@ -38,7 +38,7 @@ function WhatsInYourKitchen() {
 
   async function fetchRecipesWithSelectedIngredients(e) {
     e.preventDefault();
-
+    console.log(exactTolerance)
     if (selectedIngredients.length === 0) return;
     const selectedIngredientsString = selectedIngredients
       .map((ingredient) => ingredient.name)
@@ -50,10 +50,11 @@ function WhatsInYourKitchen() {
       apiKey: "6b0d610fe5cf4296b3dd9023ae8150fb",
       ingredients: selectedIngredientsString,
       ranking: 2,
-      ignorePantry: true,
+      ignorePantry: basicIngredients,
       number: exactTolerance == true && tolerance >= 1 ? 100 : 12,
     });
 
+    console.log(params.toString())
     //First fetch -> Only fetch selected recipes
     let dataWithTolerance;
 
@@ -72,8 +73,8 @@ function WhatsInYourKitchen() {
         )
         .slice(0, numberOfRecipesToShow);
 
+        
       setSelectedRecipes(dataWithTolerance);
-      console.log(dataWithTolerance);
     } catch (error) {
       console.error(error);
       setSelectedIngredients([]);
@@ -137,7 +138,7 @@ function WhatsInYourKitchen() {
           alternativeText={selectedRecipe.title}
           image={selectedRecipe.image}
           description={selectedRecipe.summary}
-          type={selectedRecipe.dishTypes[0]}
+          type={selectedRecipe.dishTypes?.[0] || "Unknown"}
           readyInMinutes={selectedRecipe.readyInMinutes || null}
           iconColor={"#27AE60"}
           missedIngredients={selectedRecipe.missedIngredientCount}
@@ -149,8 +150,16 @@ function WhatsInYourKitchen() {
   }, [hasDetailedRecipes, selectedRecipes, sendRecipeDataToOtherPage]);
 
   const modifyTolerance = useCallback((e) => {
-    setTolerance(e.target.value);
+    setTolerance(Number(e.target.value));
   }, []);
+
+  function handleBasicIngredients() {
+    setBasicIngredients(!basicIngredients);
+  };
+
+  function handleExactTolerance() {
+    setExactTolerance(!exactTolerance);
+  };
 
   return (
     <>
@@ -164,6 +173,8 @@ function WhatsInYourKitchen() {
             removeIngredientsFromSelectedList,
             modifyTolerance,
             tolerance,
+            handleExactTolerance,
+            exactTolerance
           }}
         >
           <SelectedIngredientsStateContext.Provider value={selectedIngredients}>
@@ -179,11 +190,15 @@ function WhatsInYourKitchen() {
               classNameFromParent={`${styles.toleranceSection} ${styles.shadowBox}`}
             />
             <div className={styles.containerSearch}>
-              <label className={styles.containerBasicIngredients}>
+              <label
+                className={styles.containerBasicIngredients}
+                onClick={(e) => { e.preventDefault(); handleBasicIngredients()}}
+              >
                 <span>Include basic ingredients</span>
-                  <ToggleButton
-                    className={styles.containerToggle}
-                  />
+                <ToggleButton
+                  className={styles.containerToggle}
+                  isChecked={basicIngredients}
+                />
               </label>
               <button
                 type="submit"
