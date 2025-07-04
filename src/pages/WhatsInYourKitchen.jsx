@@ -13,6 +13,7 @@ import SelectedIngredientsSection from "../components/SelectedIngredientsSection
 import ToleranceSection from "../components/ToleranceSection/ToleranceSection.jsx";
 import RecipeCard from "../components/RecipeCard/RecipeCard.jsx";
 import ToggleButton from "../components/ToggleButton/ToggleButton.jsx";
+import SnackBar from "../components/SnackBar/SnackBar.jsx";
 
 function WhatsInYourKitchen() {
   const navigate = useNavigate();
@@ -172,6 +173,7 @@ function WhatsInYourKitchen() {
           </div>
         )}
       </section>
+      <SnackBar className={styles.snackBar} text={"This ingredient have already been choosen!"}/>
     </>
   );
 }
