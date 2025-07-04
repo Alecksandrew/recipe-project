@@ -65,7 +65,9 @@ function WhatsInYourKitchen() {
 
   const listSelectedRecipes = useCallback(() => {
     if (!hasDetailedRecipes)
-      return <p className={styles.loadingText}>No recipe found</p>;
+      return <p className={styles.loadingText}>Select some ingredients and hit the search button!</p>;
+
+    if(selectedRecipes.length === 0 || !selectedRecipes) return <p>No recipe found! Try to use other search options!</p>;
 
     return selectedRecipes.map((selectedRecipe) => {
       return (
