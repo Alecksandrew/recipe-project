@@ -11,9 +11,9 @@ function DropdownIngredients({imageURL, imageAlt, ingredientName = "Alho de Aimp
     const [isSelected, setIsSelected] = useState(false);
 
     function handleButtonClick() {
-        setIsSelected(true);
-
-        if(makeIngredientBecomeSelected) {
+        
+        if(!isSelected) {
+            setIsSelected(true);
             makeIngredientBecomeSelected({name: ingredientName, image: imageURL,})
             console.log("Button was clicked!")
         }
