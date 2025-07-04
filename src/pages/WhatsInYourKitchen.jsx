@@ -1,5 +1,7 @@
 import styles from "./WhatsInYourKitchen.module.css";
 
+import { OrbitProgress } from "react-loading-indicators";
+
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { SelectedIngredientsStateContext } from "../contexts/selectedIngredientsStateContext.js";
@@ -143,6 +145,7 @@ function WhatsInYourKitchen() {
                 type="submit"
                 onClick={handleFetchSelectedRecipe}
                 className={styles.btnSubmit}
+                disabled={isLoading}
               >
                 Search recipes
               </button>
@@ -153,12 +156,14 @@ function WhatsInYourKitchen() {
       <section className={styles.containerH2SelectedRecipes}>
         <h2>Selected recipes</h2>
         {isLoading ? (
-          <OrbitProgress
-            variant="track-disc"
-            dense
-            color="var(--Paleta01)"
-            size="medium"
-          />
+          <div className={styles.containerLoading}>
+            <OrbitProgress
+              variant="track-disc"
+              dense
+              color="var(--Paleta01)"
+              size="medium"
+            />
+          </div>
         ) : (
           <div className={styles.containerSelectedRecipes}>
             {listSelectedRecipes()}

@@ -177,6 +177,14 @@
   opacity: 1;
 }
 
+.containerLoading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 200px;
+}
+
 /*--------------------GENERAL CLASSES-------------*/
 
 /*----MEDIA QUERY 768px-------*/
