@@ -1,25 +1,47 @@
 import styles from "./WhatsInYourKitchen.module.css";
 
+import { OrbitProgress } from "react-loading-indicators";
+
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { SelectedIngredientsStateContext } from "../contexts/selectedIngredientsStateContext.js";
 import { SelectedIngredientsActionsContext } from "../contexts/selectedIngredientsActionsContext.js";
+import useSearchRecipesByIngredients from "../hooks/useSearchRecipesByIngredients.jsx";
 
 import KitchenSearchSection from "../components/KitchenSearchSection/KitchenSearchSection.jsx";
 import SelectedIngredientsSection from "../components/SelectedIngredientsSection/SelectedIngredientsSection.jsx";
 import ToleranceSection from "../components/ToleranceSection/ToleranceSection.jsx";
 import RecipeCard from "../components/RecipeCard/RecipeCard.jsx";
 import ToggleButton from "../components/ToggleButton/ToggleButton.jsx";
+import SnackBar from "../components/SnackBar/SnackBar.jsx";
 
 function WhatsInYourKitchen() {
   const navigate = useNavigate();
 
   const [selectedIngredients, setSelectedIngredients] = useState([]);
-  const [selectedRecipes, setSelectedRecipes] = useState([]);
-  const [hasDetailedRecipes, setHasDetailedRecipes] = useState(false);
+
   const [tolerance, setTolerance] = useState(0);
   const [basicIngredients, setBasicIngredients] = useState(false); //USER CAN DECIDE IF HE WANNA EITHER INCLUDE INGREDIENTS LIKE SALT, FLOUR IN THE SEARCH OR NOT -> IGNORE PANTRY
   const [exactTolerance, setExactTolerance] = useState(false); // Feature which the user can decide either he wanna show only recipes with the exact tolerance or with the exact tolerance and other
+  const [countSelectedTimes, setCountSelectedTimes] = useState(0);
+
+  const {
+    selectedRecipes,
+    hasDetailedRecipes,
+    isLoading,
+    fetchRecipesWithSelectedIngredients,
+  } = useSearchRecipesByIngredients();
+
+  function handleFetchSelectedRecipe(e) {
+    e.preventDefault();
+
+    fetchRecipesWithSelectedIngredients({
+      selectedIngredients: selectedIngredients,
+      basicIngredients: basicIngredients,
+      exactTolerance: exactTolerance,
+      tolerance: tolerance,
+    });
+  }
 
   const makeIngredientBecomeSelected = useCallback((ingredient) => {
     setSelectedIngredients((prevSelected) => [...prevSelected, ingredient]);
@@ -36,88 +58,6 @@ function WhatsInYourKitchen() {
     []
   );
 
-  async function fetchRecipesWithSelectedIngredients(e) {
-    e.preventDefault();
-    console.log(exactTolerance)
-    if (selectedIngredients.length === 0) return;
-    const selectedIngredientsString = selectedIngredients
-      .map((ingredient) => ingredient.name)
-      .join(",");
-
-    const findByIngredientURL =
-      "https://api.spoonacular.com/recipes/findByIngredients";
-    const params = new URLSearchParams({
-      apiKey: "6b0d610fe5cf4296b3dd9023ae8150fb",
-      ingredients: selectedIngredientsString,
-      ranking: 2,
-      ignorePantry: basicIngredients,
-      number: exactTolerance == true && tolerance >= 1 ? 100 : 12,
-    });
-
-    console.log(params.toString())
-    //First fetch -> Only fetch selected recipes
-    let dataWithTolerance;
-
-    try {
-      const numberOfRecipesToShow = 12;
-      const response = await fetch(
-        `${findByIngredientURL}?${params.toString()}`
-      );
-      const basicSelectedData = await response.json();
-
-      dataWithTolerance = basicSelectedData
-        .filter((recipe) =>
-          exactTolerance
-            ? recipe.missedIngredientCount === tolerance
-            : recipe.missedIngredientCount <= tolerance
-        )
-        .slice(0, numberOfRecipesToShow);
-
-        
-      setSelectedRecipes(dataWithTolerance);
-    } catch (error) {
-      console.error(error);
-      setSelectedIngredients([]);
-    }
-
-    //Second fetch -> Get more details about each recipe in order to show fill recipe card
-    const severalRecipesURL =
-      "https://api.spoonacular.com/recipes/informationBulk";
-    const selectedRecipesStringIDs = dataWithTolerance
-      .map((data) => data.id)
-      .join(",");
-    const severalRecipersParams = new URLSearchParams({
-      apiKey: "6b0d610fe5cf4296b3dd9023ae8150fb",
-      ids: selectedRecipesStringIDs,
-    });
-
-    try {
-      const detailedResponse = await fetch(
-        `${severalRecipesURL}?${severalRecipersParams}`
-      );
-      const detailedSelectedData = await detailedResponse.json();
-
-      const combinedData = detailedSelectedData.map((detailedRecipe) => {
-        const someDataFromFirstFetch = dataWithTolerance.find(
-          (recipe) => recipe.id === detailedRecipe.id
-        );
-
-        return {
-          ...detailedRecipe,
-          missedIngredientCount: someDataFromFirstFetch.missedIngredientCount,
-          usedIngredientCount: someDataFromFirstFetch.usedIngredientCount,
-        };
-      });
-
-      setSelectedRecipes(combinedData);
-      setHasDetailedRecipes(true);
-      console.log(combinedData);
-    } catch (error) {
-      console.log(error);
-      setSelectedRecipes([]);
-    }
-  }
-
   const sendRecipeDataToOtherPage = useCallback(
     (data) => {
       navigate(`/recipe/${data.id}`, { state: data });
@@ -127,7 +67,9 @@ function WhatsInYourKitchen() {
 
   const listSelectedRecipes = useCallback(() => {
     if (!hasDetailedRecipes)
-      return <p className={styles.loadingText}>No recipe found</p>;
+      return <p className={styles.loadingText}>Select some ingredients and hit the search button!</p>;
+
+    if(selectedRecipes.length === 0 || !selectedRecipes) return <p>No recipe found! Try to use other search options!</p>;
 
     return selectedRecipes.map((selectedRecipe) => {
       return (
@@ -155,11 +97,11 @@ function WhatsInYourKitchen() {
 
   function handleBasicIngredients() {
     setBasicIngredients(!basicIngredients);
-  };
+  }
 
   function handleExactTolerance() {
     setExactTolerance(!exactTolerance);
-  };
+  }
 
   return (
     <>
@@ -174,10 +116,10 @@ function WhatsInYourKitchen() {
             modifyTolerance,
             tolerance,
             handleExactTolerance,
-            exactTolerance
+            exactTolerance,
           }}
         >
-          <SelectedIngredientsStateContext.Provider value={selectedIngredients}>
+          <SelectedIngredientsStateContext.Provider value={{selectedIngredients, countSelectedTimes, setCountSelectedTimes}}>
             <KitchenSearchSection
               className={`${styles.kitchenSearchSection} ${styles.shadowBox}`}
             />
@@ -192,7 +134,10 @@ function WhatsInYourKitchen() {
             <div className={styles.containerSearch}>
               <label
                 className={styles.containerBasicIngredients}
-                onClick={(e) => { e.preventDefault(); handleBasicIngredients()}}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleBasicIngredients();
+                }}
               >
                 <span>Include basic ingredients</span>
                 <ToggleButton
@@ -202,8 +147,9 @@ function WhatsInYourKitchen() {
               </label>
               <button
                 type="submit"
-                onClick={fetchRecipesWithSelectedIngredients}
+                onClick={handleFetchSelectedRecipe}
                 className={styles.btnSubmit}
+                disabled={isLoading}
               >
                 Search recipes
               </button>
@@ -213,10 +159,22 @@ function WhatsInYourKitchen() {
       </form>
       <section className={styles.containerH2SelectedRecipes}>
         <h2>Selected recipes</h2>
-        <div className={styles.containerSelectedRecipes}>
-          {listSelectedRecipes()}
-        </div>
+        {isLoading ? (
+          <div className={styles.containerLoading}>
+            <OrbitProgress
+              variant="track-disc"
+              dense
+              color="var(--Paleta01)"
+              size="medium"
+            />
+          </div>
+        ) : (
+          <div className={styles.containerSelectedRecipes}>
+            {listSelectedRecipes()}
+          </div>
+        )}
       </section>
+      <SnackBar popup={ countSelectedTimes > 1 } className={styles.snackBar} text={"This ingredient have already been choosen!"}/>
     </>
   );
 }

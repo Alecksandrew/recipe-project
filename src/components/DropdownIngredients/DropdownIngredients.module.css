@@ -38,3 +38,12 @@
     font-size: clamp(0.6rem, 2vw, 0.9rem);
     background-color: var(--Paleta01);
 }
+
+.btnSelect:hover {
+  filter: brightness(1.05);
+}
+
+.btnSelect:active {
+  filter: brightness(0.90);
+  transform: scale(0.98);
+}

@@ -3,19 +3,26 @@ import styles from "./DropdownIngredients.module.css";
 import { useState, useContext } from "react"
 
 import { SelectedIngredientsActionsContext } from "../../contexts/selectedIngredientsActionsContext";
+import { SelectedIngredientsStateContext } from "../../contexts/selectedIngredientsStateContext";
 
 function DropdownIngredients({imageURL, imageAlt, ingredientName = "Alho de Aimpim"} ) {
 
+    const [ isSelected, setIsSelected] = useState(false);
     const { makeIngredientBecomeSelected } = useContext(SelectedIngredientsActionsContext)
-
-    const [isSelected, setIsSelected] = useState(false);
+    
+    const { countSelectedTimes, setCountSelectedTimes } = useContext(SelectedIngredientsStateContext)
 
     function handleButtonClick() {
-        setIsSelected(true);
-
-        if(makeIngredientBecomeSelected) {
+        
+        if(!isSelected) {
+            setIsSelected(true);
+            setCountSelectedTimes(1);
             makeIngredientBecomeSelected({name: ingredientName, image: imageURL,})
+
             console.log("Button was clicked!")
+        }
+        else {
+            setCountSelectedTimes(countSelectedTimes + 1)
         }
     }
 

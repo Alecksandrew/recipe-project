@@ -31,7 +31,7 @@
 }
 
 .selectedIngredientsSection {
-  min-height: 150px;
+  min-height: 200px;
   padding: min(2vw, 10px) min(0.5vw, 10px);
   border-radius: var(--small-border-radius);
   outline: 2px solid var(--Paleta01);
@@ -175,6 +175,14 @@
 .containerBasicIngredients > span:active::after {
   display: unset;
   opacity: 1;
+}
+
+.containerLoading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 200px;
 }
 
 /*--------------------GENERAL CLASSES-------------*/
