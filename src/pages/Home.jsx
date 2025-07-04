@@ -4,7 +4,7 @@ import styles from "../pages/Home.module.css";
 import SearchBar from "../components/SearchBar/SearchBar.jsx"
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 function Home() {
     const navigate = useNavigate();
@@ -47,12 +47,31 @@ function Home() {
                 });    
     };
 
+    function fetchSpecificRecipes(e) {
+        e.preventDefault()
+
+        const formData = new FormData(e.target);
+        const params = new URLSearchParams(formData);
+        params.append("number", 12);
+        const apiKey = "6b0d610fe5cf4296b3dd9023ae8150fb";
+        const url = `https://api.spoonacular.com/recipes/complexSearch?${params}&apiKey=${apiKey}`
+
+        fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            setRecipesData(data.results);
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }
+
     return(
         <>
             <main className={styles.main}>
                 <h1 className={styles.h1}>Inspiration for your next recipe</h1>
                 <p className={styles.mainP}>Discover thousands tasty recipes and find out the perfect inspiration for each situation</p>
-                <SearchBar placeHolder="Search recipes by ingredients, nationalities.."/>
+                <SearchBar placeHolder="Search recipes by ingredients, nationalities.." onSubmit={fetchSpecificRecipes}/>
                 <div className="overlay blur shadow"></div>
             </main>
             <section className={styles.popularRecipes}>

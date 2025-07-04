@@ -12,6 +12,7 @@
     width: clamp(290px, 80vw, 800px);
     display: flex;
     gap: clamp(5px, 0.5vw, 16px);
+
 }
 
 .searchIcon {
@@ -24,6 +25,7 @@
     min-width: 0;
     background-color: transparent;
     border: none;
+    color: var(--Paleta03);
 }
 
 .inputSearch:focus {

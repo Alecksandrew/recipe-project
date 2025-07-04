@@ -1,8 +1,6 @@
 import styles from "./CheckboxGroup.module.css";
 
-function CheckboxGroup({ optionsTitle = "Crazy", inputNameOptions = ["optionOne, optionTwo"]/*WRITE AN ARRAY WITH ALL OPTION*/ }) {
-    
-    const nameAttribute = optionsTitle.trim().toLowerCase().replace(" ", '_');   
+function CheckboxGroup({nameAttribute, optionsTitle = "Crazy", inputNameOptions = ["optionOne, optionTwo"]/*WRITE AN ARRAY WITH ALL OPTION*/ }) {
 
     return (
         <fieldset className={styles.checkboxGroup}>
