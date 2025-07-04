@@ -7,7 +7,7 @@ import { SelectedIngredientsStateContext } from "../../contexts/selectedIngredie
 
 function SelectedIngredientsSection({className}) {
 
-    const selectedIngredients = useContext(SelectedIngredientsStateContext)
+    const {selectedIngredients} = useContext(SelectedIngredientsStateContext)
      
     function listSelectedIngredients(selectedIngredients) {
         if(!selectedIngredients) return

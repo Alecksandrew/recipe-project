@@ -4,8 +4,7 @@
     bottom: 5%;
     left: 50%;
     border-radius: var(--small-border-radius);
-    transform: translateX(-50%);
-    transition: transform 1s ease-in-out;
+    transform: translate(-50%, 10vh);
     color: var(--Paleta02);
     text-align: center;
     padding: 10px;
@@ -13,10 +12,26 @@
     font-style: italic;
     z-index: 1000;
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.418);
+    animation: none;
 }
 
-.hidden {
+.popup {
 
 
-    transform: translateX(-50%) translateY(100vh);
+    animation: bounce-in-out 4s ease-in-out forwards;
+}
+
+@keyframes bounce-in-out {
+    0% {
+        transform: translateX(-50%) translateY(10vh);
+    }
+    20% {
+        transform: translateX(-50%) translateY(0)
+    }
+    80% {
+        transform: translateX(-50%) translateY(0);
+    }
+    100% {
+        transform: translateX(-50%) translateY(10vh) ;
+    }
 }

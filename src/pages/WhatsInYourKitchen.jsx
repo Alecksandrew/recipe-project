@@ -23,6 +23,7 @@ function WhatsInYourKitchen() {
   const [tolerance, setTolerance] = useState(0);
   const [basicIngredients, setBasicIngredients] = useState(false); //USER CAN DECIDE IF HE WANNA EITHER INCLUDE INGREDIENTS LIKE SALT, FLOUR IN THE SEARCH OR NOT -> IGNORE PANTRY
   const [exactTolerance, setExactTolerance] = useState(false); // Feature which the user can decide either he wanna show only recipes with the exact tolerance or with the exact tolerance and other
+  const [countSelectedTimes, setCountSelectedTimes] = useState(0);
 
   const {
     selectedRecipes,
@@ -118,7 +119,7 @@ function WhatsInYourKitchen() {
             exactTolerance,
           }}
         >
-          <SelectedIngredientsStateContext.Provider value={selectedIngredients}>
+          <SelectedIngredientsStateContext.Provider value={{selectedIngredients, countSelectedTimes, setCountSelectedTimes}}>
             <KitchenSearchSection
               className={`${styles.kitchenSearchSection} ${styles.shadowBox}`}
             />
@@ -173,7 +174,7 @@ function WhatsInYourKitchen() {
           </div>
         )}
       </section>
-      <SnackBar className={styles.snackBar} text={"This ingredient have already been choosen!"}/>
+      <SnackBar popup={ countSelectedTimes > 1 } className={styles.snackBar} text={"This ingredient have already been choosen!"}/>
     </>
   );
 }
