@@ -24,6 +24,7 @@ function WhatsInYourKitchen() {
   const [basicIngredients, setBasicIngredients] = useState(false); //USER CAN DECIDE IF HE WANNA EITHER INCLUDE INGREDIENTS LIKE SALT, FLOUR IN THE SEARCH OR NOT -> IGNORE PANTRY
   const [exactTolerance, setExactTolerance] = useState(false); // Feature which the user can decide either he wanna show only recipes with the exact tolerance or with the exact tolerance and other
   const [countSelectedTimes, setCountSelectedTimes] = useState(0);
+  const [snackBarArray, setSnackBarArray] = useState([]);
 
   const {
     selectedRecipes,
@@ -67,9 +68,14 @@ function WhatsInYourKitchen() {
 
   const listSelectedRecipes = useCallback(() => {
     if (!hasDetailedRecipes)
-      return <p className={styles.loadingText}>Select some ingredients and hit the search button!</p>;
+      return (
+        <p className={styles.loadingText}>
+          Select some ingredients and hit the search button!
+        </p>
+      );
 
-    if(selectedRecipes.length === 0 || !selectedRecipes) return <p>No recipe found! Try to use other search options!</p>;
+    if (selectedRecipes.length === 0 || !selectedRecipes)
+      return <p>No recipe found! Try to use other search options!</p>;
 
     return selectedRecipes.map((selectedRecipe) => {
       return (
@@ -90,6 +96,45 @@ function WhatsInYourKitchen() {
       );
     });
   }, [hasDetailedRecipes, selectedRecipes, sendRecipeDataToOtherPage]);
+
+  
+  useEffect(() => {
+    
+    const id = Date.now();
+
+    function queueSnackBars() {
+      if (countSelectedTimes > 1) {
+        setSnackBarArray(snackBarArray =>[
+          ...snackBarArray,
+          {
+            id: id,
+            component:
+            <SnackBar
+            popup={"true"}
+            bgColor={"var(--Paleta01)"}
+            text={"This ingredient has already been selected"}
+            />,
+          }
+        ]);
+      }
+    }
+
+    queueSnackBars();
+
+    const timeout = setTimeout(() => {
+      setSnackBarArray(prevArray => prevArray.filter(
+        snackBar => snackBar.id !== id
+      ));
+    }, 4000 /*-TEMPO DA ANIMAÇÃO-*/);
+
+  }, [countSelectedTimes]);
+
+
+  const listSnackBarPopup = () => {
+    const listedSnackBars = snackBarArray.map((snackBar) => <li key={snackBar.id}>{snackBar.component}</li>);
+
+    return <ul className={styles.containerSnackBars}>{listedSnackBars}</ul>;
+  };
 
   const modifyTolerance = useCallback((e) => {
     setTolerance(Number(e.target.value));
@@ -119,7 +164,13 @@ function WhatsInYourKitchen() {
             exactTolerance,
           }}
         >
-          <SelectedIngredientsStateContext.Provider value={{selectedIngredients, countSelectedTimes, setCountSelectedTimes}}>
+          <SelectedIngredientsStateContext.Provider
+            value={{
+              selectedIngredients,
+              countSelectedTimes,
+              setCountSelectedTimes,
+            }}
+          >
             <KitchenSearchSection
               className={`${styles.kitchenSearchSection} ${styles.shadowBox}`}
             />
@@ -174,7 +225,7 @@ function WhatsInYourKitchen() {
           </div>
         )}
       </section>
-      <SnackBar popup={ countSelectedTimes > 1 } className={styles.snackBar} text={"This ingredient have already been choosen!"}/>
+      {listSnackBarPopup()}
     </>
   );
 }

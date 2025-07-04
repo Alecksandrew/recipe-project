@@ -185,6 +185,10 @@
   min-height: 200px;
 }
 
+.containerSnackBars {
+  position: fixed;
+  z-index: 1000;
+}
 /*--------------------GENERAL CLASSES-------------*/
 
 /*----MEDIA QUERY 768px-------*/
