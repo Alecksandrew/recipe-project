@@ -2,29 +2,29 @@ import styles from "../ToleranceSection/ToleranceSection.module.css";
 
 import { SelectedIngredientsActionsContext } from "../../contexts/selectedIngredientsActionsContext";
 import { SelectedIngredientsStateContext } from "../../contexts/selectedIngredientsStateContext";
-import { useContext, useRef } from "react";
+import { useContext, useRef, useCallback, memo } from "react";
 
 import ToggleButton from "../ToggleButton/ToggleButton";
 
-function ToleranceSection({ classNameFromParent }) {
+const ToleranceSection = memo(({ classNameFromParent }) => {
   const rangeInput = useRef(null);
 
   const { dispatch } = useContext(SelectedIngredientsActionsContext);
   const { state } = useContext(SelectedIngredientsStateContext);
 
-  function updateRangeProgressStyle(element, e) {
+  const updateRangeProgressStyle = useCallback((element, e) => {
     const min = rangeInput.current.getAttribute("min");
     const max = rangeInput.current.getAttribute("max");
     const percentageEachValue = 100 / (max - min);
     const percentage =
       Math.trunc(percentageEachValue * e.target.value * 100) / 100;
     element.current.style.setProperty("--filled-percentage", `${percentage}%`);
-  }
+  },[rangeInput]);
 
-  function handleInputRange(e) {
+  const handleInputRange = useCallback((e) => {
     dispatch({ type: "SET_TOLERANCE", payload: Number(e.target.value) });
     updateRangeProgressStyle(rangeInput, e);
-  }
+  },[rangeInput, updateRangeProgressStyle]);
 
   return (
     <section className={`${styles.section} ${classNameFromParent}`}>
@@ -53,7 +53,6 @@ function ToleranceSection({ classNameFromParent }) {
           className={styles.labelTolerance}
           onClick={(e) => {
             e.preventDefault();
-            console.log("Running handleExactTolerance");
             dispatch({ type: "SET_EXACT_TOLERANCE" });
           }}
         >
@@ -66,6 +65,6 @@ function ToleranceSection({ classNameFromParent }) {
       </div>
     </section>
   );
-}
+});
 
 export default ToleranceSection;
