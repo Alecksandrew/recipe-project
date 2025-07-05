@@ -11,7 +11,7 @@ function RecipeDetails() {
     
     const { recipeData, isLoading } = useFetchRecipeDetailsByID();
     const { organizedIngredients, organizedInstructions, organizedMoreInfos } = useOrganizeData(recipeData)
-
+    console.log(organizedMoreInfos)
     if (isLoading) {
         return <div>Loading...</div>;
     }

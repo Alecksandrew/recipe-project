@@ -25,12 +25,12 @@ export const useOrganizeData = function(recipeData){
         return [[stepText]]
     })
 
-
+    console.log(`TESTANDO SE EXISTE CUISINE ${recipeData.cuisines?.[0]}`)
     const organizedMoreInfos = [
         ["Dish type", `${recipeData.dishTypes[0]}`],
         ["Ready in:", `${recipeData.readyInMinutes} min`], 
         ["Servings", `${recipeData.servings}`], 
-        ["Nationality", recipeData.cuisine ? `${recipeData.cuisine}` : `Unknown`], 
+        ["Nationality", recipeData.cuisines ? `${recipeData.cuisines?.[0]}` : `Unknown`], 
         ["Restrictions", recipeData.diets.length > 0 ? `${recipeData.diets.join(" /\n ")}` : <span>None</span>]
 
     ];
