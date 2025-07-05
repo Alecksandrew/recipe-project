@@ -47,14 +47,15 @@ Através do desenvolvimento do Recipe Project, aprendi e me aprofundei em:
 - [ ] **Filtros e busca de receitas**
 - [ ] **Paginação das receitas**
 - [x] **Visualização detalhada de cada receita**
-- [x] **Funcionalidade “O que tem na geladeira?” [Em andamento]**
+- [x] **Funcionalidade “O que tem na geladeira?”**
 - [ ] **Aprimoramento de acessibilidade**
   - [x] Alt
   - [x] Label
   - [ ] ARIA
 - [x] **Responsividade**
-- [ ] **Perfomance**
-  - [x] Reaproveitar dados da API para aumentar performance e reduzir custos 
+- [x] **Perfomance**
+  - [x] Reaproveitar dados da API para aumentar performance e reduzir custos
+  - [x] uso de useCallback, useMemo, memo para aprimorar performance
 - [ ] **Testes**
     - [x] Unitários [Em andamento]
     - [ ] de Integração
