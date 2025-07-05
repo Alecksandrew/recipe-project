@@ -8,21 +8,17 @@ import { SelectedIngredientsStateContext } from "../../contexts/selectedIngredie
 function DropdownIngredients({imageURL, imageAlt, ingredientName = "Alho de Aimpim"} ) {
 
     const [ isSelected, setIsSelected] = useState(false);
-    const { makeIngredientBecomeSelected } = useContext(SelectedIngredientsActionsContext)
-    
-    const { countSelectedTimes, setCountSelectedTimes } = useContext(SelectedIngredientsStateContext)
+    const { dispatch } = useContext(SelectedIngredientsActionsContext)
 
     function handleButtonClick() {
         
         if(!isSelected) {
             setIsSelected(true);
-            setCountSelectedTimes(1);
-            makeIngredientBecomeSelected({name: ingredientName, image: imageURL,})
-
-            console.log("Button was clicked!")
+            dispatch({ type: "INCREMENT_COUNT_SELECTED_TIMES" });
+            dispatch({ type: "ADD_TO_SELECTED_INGREDIENTS", payload: {name: ingredientName, image: imageURL}});
         }
         else {
-            setCountSelectedTimes(countSelectedTimes + 1)
+            dispatch({type: "INCREMENT_COUNT_SELECTED_TIMES"});
         }
     }
 
