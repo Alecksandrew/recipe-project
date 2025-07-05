@@ -3,7 +3,6 @@ import styles from "./DropdownIngredients.module.css";
 import { useState, useContext } from "react"
 
 import { SelectedIngredientsActionsContext } from "../../contexts/selectedIngredientsActionsContext";
-import { SelectedIngredientsStateContext } from "../../contexts/selectedIngredientsStateContext";
 
 function DropdownIngredients({imageURL, imageAlt, ingredientName = "Alho de Aimpim"} ) {
 

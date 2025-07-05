@@ -1,10 +1,10 @@
 import styles from "./KitchenSearchSection.module.css"
-import { useState, useEffect} from "react"
+import { useState, useEffect, memo} from "react"
 import { FaSearch } from "react-icons/fa";
 import DropdownIngredients from "../DropdownIngredients/DropdownIngredients";
 
 
-function KitchenSearchSection({className}) {
+const KitchenSearchSection = memo(({className}) => {
  
     const [autocompleteData, setAutocompleteData] = useState(null);
     const [searchValue, setSearchValue] = useState(null);
@@ -87,7 +87,7 @@ function KitchenSearchSection({className}) {
         </section>
     )
 
-}
+})
 
 
 export default KitchenSearchSection;
