@@ -1,7 +1,7 @@
 import styles from "./SelectedIngredientsSection.module.css"
 import IngredientCard from "../IngredientCard/IngredientCard"
 
-import { useContext } from 'react'
+import { useCallback, useContext} from 'react'
 import { SelectedIngredientsStateContext } from "../../contexts/selectedIngredientsStateContext";
 
 
@@ -9,7 +9,7 @@ function SelectedIngredientsSection({className}) {
 
     const { state } = useContext(SelectedIngredientsStateContext)
      
-    function listSelectedIngredients(selectedIngredients) {
+    const listSelectedIngredients = useCallback((selectedIngredients) => {
         if(!selectedIngredients) return
 
         return selectedIngredients.map((selectedIngredient, index) => {
@@ -20,7 +20,7 @@ function SelectedIngredientsSection({className}) {
                 />
             </li>
         })
-    }
+    },[])
     
     
     return(

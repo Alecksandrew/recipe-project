@@ -7,12 +7,10 @@ import { SelectedIngredientsActionsContext } from "../../contexts/selectedIngred
 
 function IngredientCard({image, name}) {
 
-    const { removeIngredientsFromSelectedList } = useContext(SelectedIngredientsActionsContext)
+    const { dispatch } = useContext(SelectedIngredientsActionsContext)
 
     function handleRemove() {
-        if(removeIngredientsFromSelectedList) {
-            removeIngredientsFromSelectedList({name: name, image: image});
-        }
+        dispatch({ type: "REMOVE_FROM_SELECTED_INGREDIENTS", payload: {name: name, image: image}});
     }
 
 
