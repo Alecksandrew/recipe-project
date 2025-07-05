@@ -2,12 +2,16 @@ import styles from "./WhatsInYourKitchen.module.css";
 
 import { OrbitProgress } from "react-loading-indicators";
 
+//Hooks
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect, useRef, useCallback } from "react";
-import { SelectedIngredientsStateContext } from "../contexts/selectedIngredientsStateContext.js";
-import { SelectedIngredientsActionsContext } from "../contexts/selectedIngredientsActionsContext.js";
+import { useReducer, useCallback } from "react";
 import useSearchRecipesByIngredients from "../hooks/useSearchRecipesByIngredients.jsx";
 
+//Contexts
+import { SelectedIngredientsStateContext } from "../contexts/selectedIngredientsStateContext.js";
+import { SelectedIngredientsActionsContext } from "../contexts/selectedIngredientsActionsContext.js";
+
+//Components
 import KitchenSearchSection from "../components/KitchenSearchSection/KitchenSearchSection.jsx";
 import SelectedIngredientsSection from "../components/SelectedIngredientsSection/SelectedIngredientsSection.jsx";
 import ToleranceSection from "../components/ToleranceSection/ToleranceSection.jsx";
@@ -15,16 +19,46 @@ import RecipeCard from "../components/RecipeCard/RecipeCard.jsx";
 import ToggleButton from "../components/ToggleButton/ToggleButton.jsx";
 import SnackBar from "../components/SnackBar/SnackBar.jsx";
 
+function kitchenReducer(state, action) {
+  switch (action.type) {
+    case "SET_TOLERANCE":
+      return { ...state, tolerance: action.payload };
+    case "SET_EXACT_TOLERANCE":
+      return { ...state, exactTolerance: !state.exactTolerance };
+    case "ADD_TO_SELECTED_INGREDIENTS":
+      return {
+        ...state,
+        selectedIngredients: [...state.selectedIngredients, action.payload],
+      };
+    case "REMOVE_FROM_SELECTED_INGREDIENTS":
+      return {
+        ...state,
+        selectedIngredients: state.selectedIngredients.filter(
+          (ingredientObj) => ingredientObj.name !== action.payload.name
+        ),
+      };
+    case "SET_BASIC_INGREDIENTS":
+      return { ...state, basicIngredients: !state.basicIngredients };
+
+    case "INCREMENT_COUNT_SELECTED_TIMES":
+      return { ...state, countSelectedTimes: state.countSelectedTimes + 1 };
+    default:
+      throw new Error();
+  }
+}
+
 function WhatsInYourKitchen() {
   const navigate = useNavigate();
 
-  const [selectedIngredients, setSelectedIngredients] = useState([]);
 
-  const [tolerance, setTolerance] = useState(0);
-  const [basicIngredients, setBasicIngredients] = useState(false); //USER CAN DECIDE IF HE WANNA EITHER INCLUDE INGREDIENTS LIKE SALT, FLOUR IN THE SEARCH OR NOT -> IGNORE PANTRY
-  const [exactTolerance, setExactTolerance] = useState(false); // Feature which the user can decide either he wanna show only recipes with the exact tolerance or with the exact tolerance and other
-  const [countSelectedTimes, setCountSelectedTimes] = useState(0);
-  const [snackBarArray, setSnackBarArray] = useState([]);
+  const initialState = {
+    selectedIngredients: [],
+    basicIngredients: false,
+    tolerance: 0,
+    exactTolerance: false,
+    countSelectedTimes: 0,
+  };
+  const [state, dispatch] = useReducer(kitchenReducer, initialState);
 
   const {
     selectedRecipes,
@@ -32,32 +66,16 @@ function WhatsInYourKitchen() {
     isLoading,
     fetchRecipesWithSelectedIngredients,
   } = useSearchRecipesByIngredients();
-
   function handleFetchSelectedRecipe(e) {
     e.preventDefault();
 
     fetchRecipesWithSelectedIngredients({
-      selectedIngredients: selectedIngredients,
-      basicIngredients: basicIngredients,
-      exactTolerance: exactTolerance,
-      tolerance: tolerance,
+      selectedIngredients: state.selectedIngredients,
+      basicIngredients: state.basicIngredients,
+      exactTolerance: state.exactTolerance,
+      tolerance: state.tolerance,
     });
   }
-
-  const makeIngredientBecomeSelected = useCallback((ingredient) => {
-    setSelectedIngredients((prevSelected) => [...prevSelected, ingredient]);
-  }, []);
-
-  const removeIngredientsFromSelectedList = useCallback(
-    (ingredientObjToRemove) => {
-      setSelectedIngredients((prevSelectedIngredients) =>
-        prevSelectedIngredients.filter(
-          (ingredientObj) => ingredientObj.name !== ingredientObjToRemove.name
-        )
-      );
-    },
-    []
-  );
 
   const sendRecipeDataToOtherPage = useCallback(
     (data) => {
@@ -96,6 +114,7 @@ function WhatsInYourKitchen() {
       );
     });
   }, [hasDetailedRecipes, selectedRecipes, sendRecipeDataToOtherPage]);
+
 
   
   useEffect(() => {
@@ -154,23 +173,9 @@ function WhatsInYourKitchen() {
         Find out awesome recipes with ingredients you have in your kitchen!
       </h1>
       <form method="get" className={styles.form}>
-        <SelectedIngredientsActionsContext.Provider
-          value={{
-            makeIngredientBecomeSelected,
-            removeIngredientsFromSelectedList,
-            modifyTolerance,
-            tolerance,
-            handleExactTolerance,
-            exactTolerance,
-          }}
-        >
-          <SelectedIngredientsStateContext.Provider
-            value={{
-              selectedIngredients,
-              countSelectedTimes,
-              setCountSelectedTimes,
-            }}
-          >
+        <SelectedIngredientsActionsContext.Provider value={dispatch}>
+          <SelectedIngredientsStateContext.Provider value={state}>
+
             <KitchenSearchSection
               className={`${styles.kitchenSearchSection} ${styles.shadowBox}`}
             />
@@ -187,13 +192,13 @@ function WhatsInYourKitchen() {
                 className={styles.containerBasicIngredients}
                 onClick={(e) => {
                   e.preventDefault();
-                  handleBasicIngredients();
+                  dispatch({ type: "SET_BASIC_INGREDIENTS" });
                 }}
               >
                 <span>Include basic ingredients</span>
                 <ToggleButton
                   className={styles.containerToggle}
-                  isChecked={basicIngredients}
+                  isChecked={state.basicIngredients}
                 />
               </label>
               <button
