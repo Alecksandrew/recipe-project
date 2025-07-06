@@ -128,8 +128,7 @@ function WhatsInYourKitchen() {
             <SelectedIngredientsSection
               className={`${styles.selectedIngredientsSection} ${styles.shadowBox}`}
             />
-          </SelectedIngredientsStateContext.Provider>
-          <div className={styles.toleranceAndSearch}>
+            <div className={styles.toleranceAndSearch}>
             <ToleranceSection
               classNameFromParent={`${styles.toleranceSection} ${styles.shadowBox}`}
             />
@@ -157,6 +156,7 @@ function WhatsInYourKitchen() {
               </button>
             </div>
           </div>
+          </SelectedIngredientsStateContext.Provider>   
         </SelectedIngredientsActionsContext.Provider>
       </form>
       <section className={styles.containerH2SelectedRecipes}>
