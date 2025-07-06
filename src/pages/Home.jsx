@@ -2,12 +2,14 @@ import RecipeCard from "../components/RecipeCard/RecipeCard.jsx";
 
 import styles from "../pages/Home.module.css";
 import SearchBar from "../components/SearchBar/SearchBar.jsx";
+import Warning from "../components/Warning/Warning.jsx";
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Home() {
   const navigate = useNavigate();
   const [recipesData, setRecipesData] = useState(null);
+  const [ apiError, setApiError] = useState(false);
 
   //first fetch to show random recipes
   useEffect(() => {
@@ -18,8 +20,13 @@ function Home() {
     });
 
     fetch(`${randomRecipesURL}?${randomRecipesParams.toString()}`)
-      .then((response) => response.json())
+      .then((response) => {
+        if(response.status === 402) return setApiError(true);
+        response.json()
+      })
       .then((data) => {
+
+        
         setRecipesData(data.recipes);
       })
       .catch((error) => console.log(error));
@@ -89,9 +96,14 @@ function Home() {
       });
   }, []);
 
+  function handleOnCloseWarning() {
+    setApiError(false);
+  }
+
   return (
     <>
       <main className={styles.main}>
+        {apiError && <Warning title={"Limite de requisições excedido!"} text={"Por favor, tente novamente mais tarde."} onClose={handleOnCloseWarning}/>}
         <h1 className={styles.h1}>Inspiration for your next recipe</h1>
         <p className={styles.mainP}>
           Discover thousands tasty recipes and find out the perfect inspiration

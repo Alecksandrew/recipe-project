@@ -1,0 +1,42 @@
+.container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 600px;
+    padding: 20px;
+    border-radius: var(--small-border-radius);
+    text-align: center;
+
+    display:flex;
+    flex-flow: column nowrap;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    height: clamp(200px, 30vh, 400px);
+    z-index: 1000;
+}
+
+.btn {
+    width: 20%;
+    min-width: 100px;
+    margin-top: 20px;
+    padding: 5px;
+    border-radius: var(--small-border-radius);
+    background-color: var(--Paleta02);
+    color: var(--Paleta01);
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.733);
+    z-index: 0;
+}
