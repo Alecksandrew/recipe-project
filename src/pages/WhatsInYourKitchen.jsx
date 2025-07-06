@@ -50,7 +50,6 @@ function kitchenReducer(state, action) {
 function WhatsInYourKitchen() {
   const navigate = useNavigate();
 
-
   const initialState = {
     selectedIngredients: [],
     basicIngredients: false,
@@ -115,58 +114,6 @@ function WhatsInYourKitchen() {
     });
   }, [hasDetailedRecipes, selectedRecipes, sendRecipeDataToOtherPage]);
 
-
-  
-  useEffect(() => {
-    
-    const id = Date.now();
-
-    function queueSnackBars() {
-      if (countSelectedTimes > 1) {
-        setSnackBarArray(snackBarArray =>[
-          ...snackBarArray,
-          {
-            id: id,
-            component:
-            <SnackBar
-            popup={"true"}
-            bgColor={"var(--Paleta01)"}
-            text={"This ingredient has already been selected"}
-            />,
-          }
-        ]);
-      }
-    }
-
-    queueSnackBars();
-
-    const timeout = setTimeout(() => {
-      setSnackBarArray(prevArray => prevArray.filter(
-        snackBar => snackBar.id !== id
-      ));
-    }, 4000 /*-TEMPO DA ANIMAÇÃO-*/);
-
-  }, [countSelectedTimes]);
-
-
-  const listSnackBarPopup = () => {
-    const listedSnackBars = snackBarArray.map((snackBar) => <li key={snackBar.id}>{snackBar.component}</li>);
-
-    return <ul className={styles.containerSnackBars}>{listedSnackBars}</ul>;
-  };
-
-  const modifyTolerance = useCallback((e) => {
-    setTolerance(Number(e.target.value));
-  }, []);
-
-  function handleBasicIngredients() {
-    setBasicIngredients(!basicIngredients);
-  }
-
-  function handleExactTolerance() {
-    setExactTolerance(!exactTolerance);
-  }
-
   return (
     <>
       <h1 className={styles.titlePage}>
@@ -175,7 +122,6 @@ function WhatsInYourKitchen() {
       <form method="get" className={styles.form}>
         <SelectedIngredientsActionsContext.Provider value={dispatch}>
           <SelectedIngredientsStateContext.Provider value={state}>
-
             <KitchenSearchSection
               className={`${styles.kitchenSearchSection} ${styles.shadowBox}`}
             />
@@ -230,7 +176,11 @@ function WhatsInYourKitchen() {
           </div>
         )}
       </section>
-      {listSnackBarPopup()}
+      <SnackBar
+        popup={state.countSelectedTimes > 1}
+        className={styles.snackBar}
+        text={"This ingredient have already been choosen!"}
+      />
     </>
   );
 }
