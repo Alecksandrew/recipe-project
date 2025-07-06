@@ -13,7 +13,7 @@ function CheckboxGroup({
       const { label, value } = option;
 
       return (
-        <label key={label}>
+        <label key={label} className={styles.label}>
           <input type="checkbox" name={nameAttribute} value={value} />
           {label}
         </label>
@@ -22,7 +22,7 @@ function CheckboxGroup({
   }
   return (
     <fieldset className={styles.checkboxGroup}>
-      <legend>{optionsTitle}</legend>
+      <legend className={styles.legend}>{optionsTitle}</legend>
       {renderOptions()}
     </fieldset>
   );

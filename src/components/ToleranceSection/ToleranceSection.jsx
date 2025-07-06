@@ -9,8 +9,8 @@ import ToggleButton from "../ToggleButton/ToggleButton";
 const ToleranceSection = memo(({ classNameFromParent }) => {
   const rangeInput = useRef(null);
 
-  const { dispatch } = useContext(SelectedIngredientsActionsContext);
-  const { state } = useContext(SelectedIngredientsStateContext);
+  const dispatch = useContext(SelectedIngredientsActionsContext);
+  const state = useContext(SelectedIngredientsStateContext);
 
   const updateRangeProgressStyle = useCallback((element, e) => {
     const min = rangeInput.current.getAttribute("min");
