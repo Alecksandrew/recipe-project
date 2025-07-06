@@ -1,22 +1,31 @@
 import styles from "./CheckboxGroup.module.css";
 
-function CheckboxGroup({ optionsTitle = "Crazy", inputNameOptions = ["optionOne, optionTwo"]/*WRITE AN ARRAY WITH ALL OPTION*/ }) {
-    
-    const nameAttribute = optionsTitle.trim().toLowerCase().replace(" ", '_');   
+function CheckboxGroup({
+  nameAttribute,
+  optionsTitle = "Crazy",
+  inputNameOptions = [
+    { label: "labelOne", value: "optionOne" },
+    { label: "labelTwo", value: "optionTwo" },
+  ] /*WRITE AN ARRAY WITH ALL OPTION*/,
+}) {
+  function renderOptions() {
+    return inputNameOptions.map((option) => {
+      const { label, value } = option;
 
-    return (
-        <fieldset className={styles.checkboxGroup}>
-            <legend className={styles.legend}>{optionsTitle}</legend>
-            { inputNameOptions.map((option) => {
-                return (
-                <label className={styles.label} key={option}>
-                    <input type="checkbox" name={nameAttribute} value={option}/>
-                    {option}
-                </label>
-                )
-            }) }
-        </fieldset>
-    );
-};
+      return (
+        <label key={label}>
+          <input type="checkbox" name={nameAttribute} value={value} />
+          {label}
+        </label>
+      );
+    });
+  }
+  return (
+    <fieldset className={styles.checkboxGroup}>
+      <legend>{optionsTitle}</legend>
+      {renderOptions()}
+    </fieldset>
+  );
+}
 
 export default CheckboxGroup;
