@@ -6,11 +6,13 @@ import App from './App.jsx'
 import Home from "./pages/Home.jsx"
 import RecipeDetails from './pages/RecipeDetails.jsx';
 import WhatsInYourKitchen from "./pages/WhatsInYourKitchen.jsx"
+import ErrorPage from "./pages/ErrorPage.jsx";
 
 const router = createHashRouter([
   {
     path: "/",
     element: <App/>,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
@@ -26,6 +28,7 @@ const router = createHashRouter([
       }
     ]
   },
+  
 
 ])
 
