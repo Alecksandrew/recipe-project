@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 function Home() {
   const navigate = useNavigate();
   const [recipesData, setRecipesData] = useState(null);
-  const [ apiError, setApiError] = useState(false);
+  const [apiError, setApiError] = useState(false);
 
   //first fetch to show random recipes
   useEffect(() => {
@@ -21,12 +21,10 @@ function Home() {
 
     fetch(`${randomRecipesURL}?${randomRecipesParams.toString()}`)
       .then((response) => {
-        if(response.status === 402) return setApiError(true);
-        response.json()
+        if (response.status === 402) return setApiError(true);
+        response.json();
       })
       .then((data) => {
-
-        
         setRecipesData(data.recipes);
       })
       .catch((error) => console.log(error));
@@ -61,7 +59,7 @@ function Home() {
     e.preventDefault();
 
     const formData = new FormData(e.target);
-    console.log(formData);
+
     e.target.reset();
 
     //first basic fetch
@@ -70,21 +68,24 @@ function Home() {
 
     const apiKey = "6b0d610fe5cf4296b3dd9023ae8150fb";
     const basicURL = `https://api.spoonacular.com/recipes/complexSearch?${params}&apiKey=${apiKey}`;
-    console.log(basicURL);
 
     fetch(basicURL)
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.status === 402) return setApiError(true);
+        response.json();
+      })
       .then((data) => {
-        console.log(`FIRST FETCHED DATA: `, data);
         //second detailed fetch
 
         const stringWithIDS = data.results.map((recipe) => recipe.id).join(",");
         const detailedURL = `https://api.spoonacular.com/recipes/informationBulk?ids=${stringWithIDS}&apiKey=${apiKey}`;
 
         fetch(detailedURL)
-          .then((response) => response.json())
+          .then((response) => {
+            if (response.status === 402) return setApiError(true);
+            response.json();
+          })
           .then((data) => {
-            console.log(`SECOND FETCHED DATA: `, data);
             setRecipesData(data);
           })
           .catch((error) => {
@@ -103,7 +104,15 @@ function Home() {
   return (
     <>
       <main className={styles.main}>
-        {apiError && <Warning title={"Limite de requisições excedido!"} text={"Por favor, tente novamente mais tarde."} onClose={handleOnCloseWarning}/>}
+        {apiError && (
+          <Warning
+            title={"Request limit exceeded!"}
+            text={
+              "Please try again later. Requests reset every day at 9pm"
+            }
+            onClose={handleOnCloseWarning}
+          />
+        )}
         <h1 className={styles.h1}>Inspiration for your next recipe</h1>
         <p className={styles.mainP}>
           Discover thousands tasty recipes and find out the perfect inspiration

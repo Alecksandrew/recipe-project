@@ -4,6 +4,7 @@ function useSearchRecipesByIngredients() {
   const [selectedRecipes, setSelectedRecipes] = useState([]);
   const [hasDetailedRecipes, setHasDetailedRecipes] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [apiError, setApiError] = useState(false);
 
   async function fetchRecipesWithSelectedIngredients({
     selectedIngredients,
@@ -41,6 +42,11 @@ function useSearchRecipesByIngredients() {
       );
 
       if (!response.ok) {
+        if(response.status === 402) {
+            setApiError(true);
+            setIsLoading(false);
+            return;
+        }
         throw new Error(`${response.status} ${response.statusText}`);
       }
 
@@ -82,6 +88,11 @@ function useSearchRecipesByIngredients() {
       );
 
       if (!detailedResponse.ok) {
+        if(detailedResponse.status === 402) {
+            setApiError(true);
+            setIsLoading(false);
+            return;
+        }
         throw new Error(
           `${detailedResponse.status} ${detailedResponse.statusText}`
         );
@@ -116,6 +127,8 @@ function useSearchRecipesByIngredients() {
     selectedRecipes,
     hasDetailedRecipes,
     isLoading,
+    setApiError,
+    apiError,
     fetchRecipesWithSelectedIngredients,
   };
 }

@@ -18,6 +18,7 @@ import ToleranceSection from "../components/ToleranceSection/ToleranceSection.js
 import RecipeCard from "../components/RecipeCard/RecipeCard.jsx";
 import ToggleButton from "../components/ToggleButton/ToggleButton.jsx";
 import SnackBar from "../components/SnackBar/SnackBar.jsx";
+import Warning from "../components/Warning/Warning.jsx";
 
 function kitchenReducer(state, action) {
   switch (action.type) {
@@ -58,11 +59,14 @@ function WhatsInYourKitchen() {
     countSelectedTimes: 0,
   };
   const [state, dispatch] = useReducer(kitchenReducer, initialState);
+  
 
   const {
     selectedRecipes,
     hasDetailedRecipes,
     isLoading,
+    setApiError,
+    apiError,    
     fetchRecipesWithSelectedIngredients,
   } = useSearchRecipesByIngredients();
   function handleFetchSelectedRecipe(e) {
@@ -114,8 +118,21 @@ function WhatsInYourKitchen() {
     });
   }, [hasDetailedRecipes, selectedRecipes, sendRecipeDataToOtherPage]);
 
+  function handleOnCloseWarning() {
+    setApiError(false);
+  }
+
   return (
     <>
+      {apiError && (
+          <Warning
+            title={"Request limit exceeded!"}
+            text={
+              "Please try again later. Requests reset every day at 9pm"
+            }
+            onClose={handleOnCloseWarning}
+          />
+        )}
       <h1 className={styles.titlePage}>
         Find out awesome recipes with ingredients you have in your kitchen!
       </h1>
@@ -124,6 +141,7 @@ function WhatsInYourKitchen() {
           <SelectedIngredientsStateContext.Provider value={state}>
             <KitchenSearchSection
               className={`${styles.kitchenSearchSection} ${styles.shadowBox}`}
+              setApiError={setApiError}
             />
             <SelectedIngredientsSection
               className={`${styles.selectedIngredientsSection} ${styles.shadowBox}`}

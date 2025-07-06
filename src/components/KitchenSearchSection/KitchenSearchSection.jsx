@@ -4,7 +4,7 @@ import { FaSearch } from "react-icons/fa";
 import DropdownIngredients from "../DropdownIngredients/DropdownIngredients";
 
 
-const KitchenSearchSection = memo(({className}) => {
+const KitchenSearchSection = memo(({className, setApiError}) => {
  
     const [autocompleteData, setAutocompleteData] = useState(null);
     const [searchValue, setSearchValue] = useState(null);
@@ -29,6 +29,14 @@ const KitchenSearchSection = memo(({className}) => {
                 })
             
                 const response = await fetch(`${autocompletEndpoint}?${params.toString()}`)
+                if(!response.ok) {
+                    if(response.status === 402) {
+                        setApiError(true);
+                        setIsLoading(false);
+                        return;
+                    }
+                    throw new Error(`${response.status} ${response.statusText}`);
+                }
                 const data = await response.json();
                 setAutocompleteData(data);
             }
