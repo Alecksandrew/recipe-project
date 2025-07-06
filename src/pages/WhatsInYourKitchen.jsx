@@ -4,7 +4,7 @@ import { OrbitProgress } from "react-loading-indicators";
 
 //Hooks
 import { useNavigate } from "react-router-dom";
-import { useReducer, useCallback } from "react";
+import { useReducer, useCallback, useEffect } from "react";
 import useSearchRecipesByIngredients from "../hooks/useSearchRecipesByIngredients.jsx";
 
 //Contexts
