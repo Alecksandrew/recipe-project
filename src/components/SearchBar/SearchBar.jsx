@@ -18,13 +18,18 @@ const SearchBar = memo(({ placeHolder, onSubmit }) =>{
     };
   }
 
+  const filterSectionStyle = {
+    display: isDropDownOpen ? 'block' : 'none',
+    position: "relative"
+  };
+
   return (
-    <form className={styles.searchBar} method="get" onSubmit={onSubmit}>
+    <form className={styles.searchBar} onSubmit={onSubmit}>
       <FaSearch className={styles.searchIcon} />
       <input
         type="search"
         placeholder={placeHolder}
-        name="search"
+        name="query"
         autoComplete="off"
         className={styles.inputSearch}
       />
@@ -37,23 +42,35 @@ const SearchBar = memo(({ placeHolder, onSubmit }) =>{
           Filter
           <IoIosArrowRoundUp style={cssInlineArrowIcon()} />
         </button>
-        {isDropDownOpen ? (
-          <FilterSearchBar
-            nameAtributte={["type", "cuisines", "intolerances", "maxReadyTime"]}
-            legendsOptions={["Type", "Cuisine", "Restriction", "Ready in"]}
-            arrayInputNameOptions={[
-              ["Main meal", "Snack", "Dessert", "Drink"],
-              ["Brazilian", "Mexican", "Japanese", "Indian"],
-              ["No gluten", "Vegan", "Vegetarian", "No lactose"],
-              [
-                "Less than 30 min",
-                "30 - 60 min",
-                "60 - 90 min",
-                "More than 90 min",
-              ],
-            ]}
-          />
-        ) : null}
+          <div style={filterSectionStyle}>
+            <FilterSearchBar
+              nameAtributte={["type", "cuisine", "intolerances", "maxReadyTime"]}
+              legendsOptions={["Type", "Cuisine", "Restriction", "Ready by"]}
+              arrayInputNameOptions={[
+                 [
+                  { label: "Main meal", value: "main course" },
+                  { label: "Snack", value: "snack" },
+                  { label: "Dessert", value: "dessert" },
+                  { label: "Drink", value: "drink" },
+                ],
+                [
+                  { label: "Brazilian", value: "Brazilian" },
+                  { label: "Mexican", value: "Mexican" },
+                  { label: "Japanese", value: "Japanese" },
+                  { label: "Indian", value: "Indian" },],
+                [
+                  { label: "No gluten", value: "gluten" },
+                  { label: "No lactose", value: "lactose" },
+                ],
+                [
+                  { label: "15 min", value: 15 },
+                  { label: "30 min", value: 30 },
+                  { label: "60 min", value: 60 },
+                  { label: "90 min", value: 90 },
+                ],
+              ]}
+            />
+          </div>
       </span>
       <button type="submit" className={styles.searchButton}>
         Search

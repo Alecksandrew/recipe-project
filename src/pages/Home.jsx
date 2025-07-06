@@ -54,6 +54,8 @@ function Home() {
     e.preventDefault();
 
     const formData = new FormData(e.target);
+    console.log(formData);
+    e.target.reset();
 
     //first basic fetch
     const params = new URLSearchParams(formData);
@@ -61,10 +63,12 @@ function Home() {
 
     const apiKey = "6b0d610fe5cf4296b3dd9023ae8150fb";
     const basicURL = `https://api.spoonacular.com/recipes/complexSearch?${params}&apiKey=${apiKey}`;
+    console.log(basicURL);
 
     fetch(basicURL)
       .then((response) => response.json())
       .then((data) => {
+        console.log(`FIRST FETCHED DATA: `, data);
         //second detailed fetch
 
         const stringWithIDS = data.results.map((recipe) => recipe.id).join(",");
@@ -73,6 +77,7 @@ function Home() {
         fetch(detailedURL)
           .then((response) => response.json())
           .then((data) => {
+            console.log(`SECOND FETCHED DATA: `, data);
             setRecipesData(data);
           })
           .catch((error) => {
@@ -82,7 +87,7 @@ function Home() {
       .catch((error) => {
         console.log(error);
       });
-  },[]);
+  }, []);
 
   return (
     <>
