@@ -44,7 +44,7 @@ Através do desenvolvimento do Recipe Project, aprendi e me aprofundei em:
 
 ## 🗺️ Roadmap
 
-- [ ] **Filtros e busca de receitas**
+- [x] **Filtros e busca de receitas**
 - [ ] **Paginação das receitas**
 - [x] **Visualização detalhada de cada receita**
 - [x] **Funcionalidade “O que tem na geladeira?”**
