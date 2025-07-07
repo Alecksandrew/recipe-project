@@ -1,6 +1,6 @@
 ## Languages
-  - [PT-BR](READ.md)
-  - [EN](READ-en.md)
+  - [PT-BR](README.md)
+  - [EN](README-en.md)
 
 ## 🍳 About the Project
 
