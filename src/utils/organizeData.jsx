@@ -33,13 +33,12 @@ export const organizeData = function(recipeData){
         return [[stepText]]
     })
 
-
     const organizedMoreInfos = [
-        ["Dish type", `${recipeData.dishTypes[0]}`],
-        ["Ready in:", `${recipeData.readyInMinutes} min`], 
-        ["Servings", `${recipeData.servings}`], 
-        ["Nationality", recipeData.cuisine ? `${recipeData.cuisine}` : `Unknown`], 
-        ["Restrictions", recipeData.diets.length > 0 ? `${recipeData.diets.join(" /\n ")}` : <span>None</span>]
+        ["Dish type", recipeData.dishTypes?.length > 0 ? recipeData.dishTypes[0] : "Unknown"],
+        ["Ready in:", recipeData.readyInMinutes ? `${recipeData.readyInMinutes} min` : "Unknown"],
+        ["Servings", recipeData.servings ? `${recipeData.servings}` : "Unknown"],
+        ["Nationality", recipeData.cuisines?.length > 0 ? recipeData.cuisines[0] : "Unknown"],
+        ["Restrictions", recipeData.diets?.length > 0 ? recipeData.diets.join(" / ") : "None"]
 
     ];
 
