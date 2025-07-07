@@ -43,6 +43,7 @@ Through the development of the Recipe Project, I learned and delved into:
 - **Hooks** -> Control state through useState, side effects through useState, avoid prop drilling through useContext, manipulate DOM through useRef
 - **Lifecycle** -> When the component re-renders (When its state changes, when its props change, when the parent component updates...)
 - **Conditional rendering**
+- [AND MORE...](https://github.com/Alecksandrew/recipe-project/issues/5)
 
 ## 🗺️ Roadmap
 
