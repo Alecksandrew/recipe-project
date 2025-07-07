@@ -4,7 +4,7 @@ import { OrbitProgress } from "react-loading-indicators";
 
 //Hooks
 import { useNavigate } from "react-router-dom";
-import { useReducer, useCallback, useEffect } from "react";
+import { useReducer, useCallback, useEffect, useRef } from "react";
 import useSearchRecipesByIngredients from "../hooks/useSearchRecipesByIngredients.jsx";
 
 //Contexts
@@ -43,6 +43,8 @@ function kitchenReducer(state, action) {
 
     case "INCREMENT_COUNT_SELECTED_TIMES":
       return { ...state, countSelectedTimes: state.countSelectedTimes + 1 };
+    case "RESET_COUNT_SELECTED_TIMES":
+      return { ...state, countSelectedTimes: 0 };
     default:
       throw new Error();
   }
@@ -59,7 +61,21 @@ function WhatsInYourKitchen() {
     countSelectedTimes: 0,
   };
   const [state, dispatch] = useReducer(kitchenReducer, initialState);
-  
+  const timerRef = useRef(null);
+
+  useEffect(() => {
+    if (state.countSelectedTimes > 1) {
+      // Limpa timer anterior se existir
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+
+      timerRef.current = setTimeout(() => {
+        dispatch({ type: "RESET_COUNT_SELECTED_TIMES" });
+        timerRef.current = null;
+      }, 4000); // 4 segundos = duração da animação do SnackBar
+    }
+  }, [state.countSelectedTimes]);
 
   const {
     selectedRecipes,
