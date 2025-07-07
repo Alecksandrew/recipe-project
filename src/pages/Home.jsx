@@ -21,8 +21,11 @@ function Home() {
 
     fetch(`${randomRecipesURL}?${randomRecipesParams.toString()}`)
       .then((response) => {
-        if (response.status === 402) return setApiError(true);
-        response.json();
+        if (response.status === 402){
+          setApiError(true);
+          return ;
+        }
+        return response.json();
       })
       .then((data) => {
         setRecipesData(data.recipes);
@@ -64,15 +67,18 @@ function Home() {
 
     //first basic fetch
     const params = new URLSearchParams(formData);
-    params.append("number", 12);
+    params.append("number", 12); // Number of recipes to show up in the page
 
     const apiKey = "6b0d610fe5cf4296b3dd9023ae8150fb";
     const basicURL = `https://api.spoonacular.com/recipes/complexSearch?${params}&apiKey=${apiKey}`;
 
     fetch(basicURL)
       .then((response) => {
-        if (response.status === 402) return setApiError(true);
-        response.json();
+        if (response.status === 402) {
+          setApiError(true);
+          return;
+        }
+        return response.json();
       })
       .then((data) => {
         //second detailed fetch
@@ -82,8 +88,11 @@ function Home() {
 
         fetch(detailedURL)
           .then((response) => {
-            if (response.status === 402) return setApiError(true);
-            response.json();
+            if (response.status === 402){ 
+              setApiError(true);
+              return
+            }
+            return response.json();
           })
           .then((data) => {
             setRecipesData(data);

@@ -37,6 +37,7 @@ const KitchenSearchSection = memo(({className, setApiError}) => {
                     }
                     throw new Error(`${response.status} ${response.statusText}`);
                 }
+                
                 const data = await response.json();
                 setAutocompleteData(data);
             }

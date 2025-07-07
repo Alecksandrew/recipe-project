@@ -6,7 +6,7 @@ import { SelectedIngredientsActionsContext } from "../../contexts/selectedIngred
 function DropdownIngredients({imageURL, imageAlt, ingredientName = "Alho de Aimpim"} ) {
 
     const [ isSelected, setIsSelected] = useState(false);
-    const { dispatch } = useContext(SelectedIngredientsActionsContext)
+    const dispatch  = useContext(SelectedIngredientsActionsContext)
 
     function handleButtonClick() {
         
