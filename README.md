@@ -1,3 +1,7 @@
+## Idiomas
+  - [PT-BR](README.md)
+  - [EN](README-en.md)
+
 ## 🍳 Sobre o Projeto
 
 O projeto é uma aplicação web focada em auxiliar usuários a descobrir novas receitas de forma intuitiva e eficiente. O diferencial do site é ter uma página onde o usuário pode descobrir receitas com base nos ingredientes que ele possui na sua cozinha ajudando o usuário a explorar novos sabores com ingredientes que ele já possui ao seu alcance.
