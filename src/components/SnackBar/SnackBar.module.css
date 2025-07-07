@@ -4,7 +4,7 @@
     bottom: 5%;
     left: 50%;
     border-radius: var(--small-border-radius);
-    transform: translate(-50%, 10vh);
+    transform: translate(-50%, 50vh);
     color: var(--Paleta02);
     text-align: center;
     padding: 10px;
@@ -23,7 +23,7 @@
 
 @keyframes bounce-in-out {
     0% {
-        transform: translateX(-50%) translateY(10vh);
+        transform: translateX(-50%) translateY(50vh);
     }
     20% {
         transform: translateX(-50%) translateY(0)
@@ -32,6 +32,6 @@
         transform: translateX(-50%) translateY(0);
     }
     100% {
-        transform: translateX(-50%) translateY(10vh) ;
+        transform: translateX(-50%) translateY(50vh) ;
     }
 }

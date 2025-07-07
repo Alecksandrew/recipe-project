@@ -10,6 +10,7 @@ function Home() {
   const navigate = useNavigate();
   const [recipesData, setRecipesData] = useState(null);
   const [apiError, setApiError] = useState(false);
+  const [notFound, setNotFound] = useState(false);
 
   //first fetch to show random recipes
   useEffect(() => {
@@ -61,6 +62,9 @@ function Home() {
   const fetchSpecificRecipes = useCallback((e) => {
     e.preventDefault();
 
+    setApiError(false);
+    setNotFound(false);
+
     const formData = new FormData(e.target);
 
     e.target.reset();
@@ -81,8 +85,12 @@ function Home() {
         return response.json();
       })
       .then((data) => {
-        //second detailed fetch
+        if (!data.results || data.results.length === 0) {
+          setNotFound(true);
+          return;
+        }
 
+        //second detailed fetch
         const stringWithIDS = data.results.map((recipe) => recipe.id).join(",");
         const detailedURL = `https://api.spoonacular.com/recipes/informationBulk?ids=${stringWithIDS}&apiKey=${apiKey}`;
 
@@ -135,9 +143,15 @@ function Home() {
       </main>
       <section className={styles.popularRecipes}>
         <h2 className={styles.h2}>Popular Recipes</h2>
-        <div className={styles.recipeGridHome}>
-          {listRecipeCardsWithData(recipesData)}
-        </div>
+        {notFound ? (
+          <p style={{ textAlign: 'center', color: '#666' }}>
+            Sorry, we couldn't find any recipes matching your search. Try different keywords or filters.
+          </p>
+        ) : (
+          <div className={styles.recipeGridHome}>
+            {listRecipeCardsWithData(recipesData)}
+          </div>
+        )}
       </section>
     </>
   );
