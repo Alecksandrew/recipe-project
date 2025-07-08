@@ -29,6 +29,17 @@ This project was developed using the following technologies:
 - **Vitest**
 - **React Icons**
 
+
+## Demonstration
+**Home Page**
+![Home Page](https://github.com/user-attachments/assets/4d15175b-13df-415b-95a0-c8d8a99b1459)
+ 
+ **What is there in your kitchen?**
+![O que tem na sua cozinha?](https://github.com/user-attachments/assets/e44530ab-2e23-4ff6-8224-650e561c285a)
+
+**Details page** *( the yellow color in the cards was a small error i got when i was recording )*
+![Página de detalhes](https://github.com/user-attachments/assets/bfc94f02-4b18-4665-ad43-7617d852cde6)
+
 ## 💡 Learnings
 
 Through the development of the Recipe Project, I learned and delved into:
