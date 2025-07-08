@@ -30,6 +30,18 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias:
   - **React Icons**
 
 
+## Demonstração
+**Página Inicial**
+![Home Page](https://github.com/user-attachments/assets/4d15175b-13df-415b-95a0-c8d8a99b1459)
+ 
+ **O que tem na sua cozinha?**
+![O que tem na sua cozinha?](https://github.com/user-attachments/assets/e44530ab-2e23-4ff6-8224-650e561c285a)
+
+**Página de detalhes** *( A cor amarela nos cards foi um pequeno bug no gravador )*
+![Página de detalhes](https://github.com/user-attachments/assets/bfc94f02-4b18-4665-ad43-7617d852cde6)
+
+
+
 ## 💡 Aprendizados
 
 Através do desenvolvimento do Recipe Project, aprendi e me aprofundei em:
